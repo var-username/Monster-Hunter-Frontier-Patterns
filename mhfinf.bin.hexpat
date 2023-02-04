@@ -8,12 +8,14 @@
 
 #include <misc/MonsterIds.hexpat>
 
+// Read Pointer to String
 fn rPS (u32 p) {
 	return std::mem::read_string(p, 100);
 };
 
 using s32p;
 
+// Format s32p to display the string
 fn fmtS32p (s32p p) {
     return rPS(p.string);
 };
@@ -24,11 +26,13 @@ struct s32p {
 } [[format("fmtS32p"), sealed]];
 
 using itemId;
+// Format ItemID to make it easier to look up on Ferias
 fn fmtItemId(itemId n) {
     return std::format("{:04X}", n);
 };
 using itemId = u16 [[format("fmtItemId")]];
 
+// Known quest objective types
 enum questObjType : u32 {
     None = 0x00000000,
     Hunt = 0x00000001,
@@ -46,29 +50,38 @@ enum questObjType : u32 {
 
 struct QuestObj {
     questObjType goalType;
-
-    if (goalType == questObjType::Hunt || 
-        goalType == questObjType::Capture || 
-        goalType == questObjType::Slay || 
-        goalType == questObjType::Damage ||
-        goalType == questObjType::BreakPart
-    ) {
-        MonsterId goalTarget;
-        padding[1];
-    } else if (goalType == questObjType::Deliver) {
-        itemId goalTarget;
+    if (goalType == questObjType::none) {
+        padding[4];
     } else {
-        u16 goalTarget;
-    }
+        if (goalType == questObjType::Hunt || 
+            goalType == questObjType::Capture || 
+            goalType == questObjType::Slay || 
+            goalType == questObjType::Damage ||
+            goalType == questObjType::BreakPart
+        ) {
+            // Goal target is a monster, reference enum
+            MonsterId goalTarget;
+            padding[1];
+        } else if (goalType == questObjType::Deliver) {
+            // Goal target is an item, format as such
+            itemId goalTarget;
+        } else {
+            u16 goalTarget;
+        }
 
-    if(goalType == questObjType::BreakPart) {
-        u16 goalPart;
-    } else {
-        u16 goalCount;
+        if(goalType == questObjType::BreakPart) {
+            // Refers to a part of the monster
+            // ID -> Part mapping varies with monster skeleton
+            u16 goalPart;
+        } else {
+            // How many items to deliver or monsters to hunt or whatever
+            u16 goalCount;
+        }
     }
 };
 
 struct QuestData {
+    // If current address is 0x0, we read a bad pointer, skip to next
     if($==0x00000000) continue;
 
     padding[0x10];
@@ -103,6 +116,7 @@ struct QuestData {
     padding[0x8];
 };
 
+// Pointer to quest data struct
 struct ptQuestData {
     QuestData *qd : u32;
 } [[inline]];
