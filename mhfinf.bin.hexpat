@@ -50,7 +50,7 @@ enum questObjType : u32 {
 
 struct QuestObj {
     questObjType goalType;
-    if (goalType == questObjType::none) {
+    if (goalType == questObjType::None) {
         padding[4];
     } else {
         if (goalType == questObjType::Hunt || 
