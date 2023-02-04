@@ -29,12 +29,17 @@ fn rIPPS (u32 b, u32 i, u32 s=4) {
 	return rPPS(b + (i*s));
 };
 
+using s32p;
+
+fn fmtS32p (s32p p) {
+    return rPS(p.string);
+};
+
 // u32 pointer to a string
 struct s32p {
-	u32 string 
-	[[format("rPS")]]
-	;
-} [[inline]];
+	u32 string;
+} [[format("fmtS32p"), sealed]];
+
 
 #include <mhfdat/constants.hexpat>
 
