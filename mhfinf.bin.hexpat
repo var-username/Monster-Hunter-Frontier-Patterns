@@ -1,3 +1,4 @@
+// Very large limits just in case, feel free to make these more sensible
 #pragma pattern_limit 5000000
 #pragma array_limit 200000
 #include <std/mem.pat>
@@ -5,7 +6,7 @@
 #include <std/ptr.pat>
 //#include <type/byte.pat>
 
-#include <mhf/MonsterIds.hexpat>
+#include <misc/MonsterIds.hexpat>
 
 fn rPS (u32 p) {
 	return std::mem::read_string(p, 100);

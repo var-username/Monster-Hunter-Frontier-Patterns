@@ -1,6 +1,18 @@
+#pragma once
+
 u32 numMeleeEntries = (eoMelee - soMelee) / 0x34;
 u32 numRangedEntries = (eoRanged - soRanged) / 0x3C;
-	
+
+// Add 1 to n (Used for pattern formatting)
+fn plusone (u8 n) {
+	return n+1;
+};
+
+// Multiply n by 10 (Used for pattern formatting)
+fn timesten (u8 n) {
+	return n*10;
+};
+
 using MeleeWeaponEntry;
 fn meleeNameWE (MeleeWeaponEntry n) {
 	return rIPPS(soStringMelee, (($-soMelee)/0x34));

@@ -1,3 +1,4 @@
+// Very large limits just in case, feel free to make these more sensible
 #pragma pattern_limit 10000000
 #pragma array_limit 200000
 #include <std/mem.pat>
@@ -35,20 +36,10 @@ struct s32p {
 	;
 } [[inline]];
 
-// Add 1 to n (Used for pattern formatting)
-fn plusone (u8 n) {
-	return n+1;
-};
-
-// Multiply n by 10 (Used for pattern formatting)
-fn timesten (u8 n) {
-	return n*10;
-};
-
-#include <mhfdat.bin.constants.hexpat>
+#include <mhfdat/constants.hexpat>
 
 #ifdef __ITEMNAMES
-#include <mhfdat.bin.itemnames.hexpat>
+#include <mhfdat/itemnames.hexpat>
 #endif
 
 fn getItemName(u16 n) {
@@ -57,35 +48,35 @@ fn getItemName(u16 n) {
 };
 
 #ifdef __ITEMDATA
-#include <mhfdat.bin.itemdata.hexpat>
+#include <mhfdat/itemdata.hexpat>
 #endif
 
 #ifdef __SHOP
-#include <mhfdat.bin.shop.hexpat>
+#include <mhfdat/shop.hexpat>
 #endif
 
 #ifdef __EQUIPNAMES
-#include <mhfdat.bin.equipnames.hexpat>
+#include <mhfdat/equipnames.hexpat>
 #endif
 
 #ifdef __EQUIPDATA
-#include <mhfdat.bin.equipdata.hexpat>
+#include <mhfdat/equipdata.hexpat>
 #endif
 
 #ifdef __WEAPONNAMES
-#include <mhfdat.bin.weaponnames.hexpat>
+#include <mhfdat/weaponnames.hexpat>
 #endif
 
 #ifdef __WEAPONDATA
-#include <mhfdat.bin.weapondata.hexpat>
+#include <mhfdat/weapondata.hexpat>
 #endif
 
 #ifdef __CRAFTING
-#include <mhfdat.bin.crafting.hexpat>
+#include <mhfdat/crafting.hexpat>
 #endif
 
 #ifdef __PARTBREAKS
-#include <mhfdat.bin.partbreaks.hexpat>
+#include <mhfdat/partbreaks.hexpat>
 #endif
 
 //s32p CreatureDescriptions [142] @ 0x16AAC20;
