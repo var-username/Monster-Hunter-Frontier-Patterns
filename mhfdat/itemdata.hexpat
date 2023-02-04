@@ -2,6 +2,11 @@
 
 namespace itemdata {
 
+	// Add 1 to n (Used for pattern formatting)
+	fn plusone (u8 n) {
+		return n+1;
+	};
+
 	u32 count = (eoItemData - soItemData) / 0x24;
 
 	using Item;
@@ -12,7 +17,7 @@ namespace itemdata {
 
 	struct Item {
 		u16 unk00;
-		u8 rarity [[format("plusone")]];
+		u8 rarity [[format("itemdata::plusone")]];
 		u8 maxStack;
 		u8 unk04;
 		u8 icon [[comment("Item Icon??")]];
