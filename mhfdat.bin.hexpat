@@ -4,6 +4,7 @@
 #include <std/mem.pat>
 #include <std/io.pat>
 
+//#define __DECOMPILE 1
 //#define __ITEMNAMES 1
 //#define __ITEMDATA 1
 //#define __SHOP 1
@@ -31,6 +32,7 @@ fn rIPPS (u32 b, u32 i, u32 s=4) {
 
 using s32p;
 
+// Format s32p to display the string
 fn fmtS32p (s32p p) {
     return rPS(p.string);
 };
@@ -40,8 +42,11 @@ struct s32p {
 	u32 string;
 } [[format("fmtS32p"), sealed]];
 
-
 #include <mhfdat/constants.hexpat>
+
+#ifdef __DECOMPILE
+#include <mhfdat/decompile/decompile.hexpat>
+#endif
 
 #ifdef __ITEMNAMES
 #include <mhfdat/itemnames.hexpat>

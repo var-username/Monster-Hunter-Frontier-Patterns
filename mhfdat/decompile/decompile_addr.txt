@@ -6,11 +6,12 @@ af4709 B04
 af4729 B18 
 af4749 B30 
 
-// TODO: Figure out what [mhfo-hd.dll + 0xaf475a] is doing
+// DONE: [mhfo-hd.dll + 0xaf475a] seems to be accessing every short in
+// and array of a defined size, but it doesn't do anything with them
 
 af4772 B34 
 
-// TODO: Same deal with [mhfo-hd.dll + 0xaf4783]
+// DONE: Same deal with [mhfo-hd.dll + 0xaf4783] as above
 
 af4794 B5C 
 
@@ -25,7 +26,7 @@ af47d8 44
 af47db B48 
 af47e1 48 
 
-// TODO: Another loop at [mhfo-hd.dll + 0xaf47f6]
+// DONE: Loop at [mhfo-hd.dll + 0xaf47f6] analyzed. See hd_dll_af47ed
 
 af480f 50
 af482e 64
@@ -609,3 +610,87 @@ af7b7f 86c
 af7b85 870
 af7b8b 874
 af7b91 878
+
+af7be3 87c
+af7c0a 880
+af7c10 884
+af7c42 888
+af7c9c 88c
+af7ca2 89c
+
+af7cc8 8a0
+af7cce 8a4
+af7cd4 8a8
+af7cda 8ac
+af7ce0 8b4
+af7ce6 8b8
+af7cec 8bc
+
+af7d34 8c0
+af7d67 8c4
+af7d6d 8f4
+af7d73 8f0
+af7da4 ad8
+af7daa adc
+
+// Odd loop at af7db0
+
+af7e55 8c8
+af7e5b 8cc
+
+af7e79 8d0
+af7e7f 8d4
+af7e85 8d8
+af7e8b 8dc
+af7e91 8e0
+af7e97 8e4
+af7e9d 8e8
+af7ea3 8ec
+
+// Odd code at af7ea9
+
+af8165 900
+af816b 92c
+af8171 904
+af8177 90c
+af817d 924
+af8183 920
+af8189 928
+af818f 914
+
+af81cc 918
+af821c 91c
+
+// Odd code at af8222
+
+af82c4 930
+af82ca 934
+af82d0 938
+af82d6 93c
+
+af831a 940
+af8320 944
+af8326 948
+af832c 94c
+af8332 950
+af8338 954
+af833e 958
+af8344 95c
+af834a 960
+af8350 964
+af8356 968
+af835c 96c
+af8362 970
+af8368 974
+af836e 978
+af8374 97c
+af837a 980
+af8380 984
+
+af839f 98c
+af83a5 990
+af83ab 994
+af83b1 998
+af83b7 99c
+af83bd 9a4
+af83c3 9ac
