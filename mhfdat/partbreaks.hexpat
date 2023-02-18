@@ -1,5 +1,7 @@
 #pragma once
 
+#include <misc/MonsterIds.hexpat>
+
 // Part Break Pointer Array starts at 0x016ABA40
 // u32 pointer to Park Break Array
 
@@ -58,3 +60,22 @@ struct ptCarveDT {
 
 ptPartBreaksDT ptPartBreakDTs[(eoPartBreaks-soPartBreaks)/4] @ soPartBreaks;
 ptCarveDT ptCarveDTs[(eoCarves-soCarves)/4] @ soCarves;
+
+struct HC_GR_Carve {
+    MonsterId monId;
+    padding[1];
+    u16 item [[format("getItemName")]];
+};
+
+HC_GR_Carve GRHCCarves[while(std::mem::read_unsigned($,2)!=0xFFFF)] @ 0x1562CC0;
+
+struct HC_Carve {
+    MonsterId monId;
+    padding[1];
+    u16 item1 [[format("getItemName")]];
+    u16 item2 [[format("getItemName")]];
+    u16 item3 [[format("getItemName")]];
+    u16 item4 [[format("getItemName")]];
+};
+
+HC_Carve HCCarves[while(std::mem::read_unsigned($,2)!=0xFFFF)] @ 0x1562FA0;
