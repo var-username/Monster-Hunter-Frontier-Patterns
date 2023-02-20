@@ -1,5 +1,7 @@
 #pragma once
 
+#include <misc/s32p.pat>
+
 fn meleeName (u16 n) {
     return rIPPS(soStringMelee, n);
 };

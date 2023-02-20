@@ -5,25 +5,9 @@
 #include <std/io.pat>
 #include <std/ptr.pat>
 //#include <type/byte.pat>
+#include <misc/s32p.pat>
 
 #include <misc/MonsterIds.hexpat>
-
-// Read Pointer to String
-fn rPS (u32 p) {
-	return std::mem::read_string(p, 100);
-};
-
-using s32p;
-
-// Format s32p to display the string
-fn fmtS32p (s32p p) {
-    return rPS(p.string);
-};
-
-// u32 pointer to a string
-struct s32p {
-	u32 string;
-} [[format("fmtS32p"), sealed]];
 
 using itemId;
 // Format ItemID to make it easier to look up on Ferias

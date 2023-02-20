@@ -1,5 +1,7 @@
 #pragma once
 
+#include <misc/s32p.pat>
+
 namespace equipnames {
 	
 	u32 numStringHead = (eoStringHead - soStringHead) / 4;

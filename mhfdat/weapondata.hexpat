@@ -1,5 +1,7 @@
 #pragma once
 
+#include <misc/s32p.pat>
+
 u32 numMeleeEntries = (eoMelee - soMelee) / 0x34;
 u32 numRangedEntries = (eoRanged - soRanged) / 0x3C;
 
