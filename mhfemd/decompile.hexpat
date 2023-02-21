@@ -1,6 +1,6 @@
 #include <misc/MonsterIds.hexpat>
 
-using ptr = s32 
+using ptr = s32
 //[[hidden]]
 ;
 
@@ -13,11 +13,32 @@ ptr hd_dll_af96be @ 0x18;
 ptr hd_dll_af96c1[3] @ hd_dll_af96be;
 ptr hd_dll_af96cc @ 0xC;
 
-// TODO: Finish this loop
-s16 hd_af96d2 = u16(hd_dll_af96a5);
-if (hd_dll_af96a5) {
-	ptr hd_dll_af96dd = (hd_dll_af96cc + 0xB0);
-}
+struct unk_struct_af9710 {
+	if ((std::mem::read_signed($, 4)) && (std::mem::read_signed($ + 4, 4))) {
+		ptr unk00; padding[4];
+	} else {
+		padding[8];
+	}
+};
+
+s16 hd_dll_af96d2 = u16(hd_dll_af96a5);
+
+struct unk_struct_af96d8 {
+	ptr unk00; //af96ec
+	ptr unk04[0xC]; //af973d
+	ptr unk34[0xC]; //af9748
+	padding[0x44]; // 0x64
+	ptr unkA8; //af96dd
+	padding[4];
+	if (std::mem::read_signed($, 4)) {
+		unk_struct_af9710 *unkAC[200]: u32; // af9723
+	} else {
+		padding[4];
+	}
+	padding[0xC];
+}; // size of 0xC0
+
+unk_struct_af96d8 hd_dll_af96d8[hd_dll_af96d2] @ (hd_dll_af96cc + 8);
 
 ptr hd_dll_af975c @ 0x08;
 ptr hd_dll_af975f @ 0x10;
@@ -51,7 +72,7 @@ s16 hd_dll_af9827 @ (hd_dll_af96a1 + 0x18);
 ptr hd_dll_af982b @ 0x44;
 
 struct p4_ptr {
-    padding[4]; ptr pointer;
+	padding[4]; ptr pointer;
 };
 p4_ptr hd_dll_af9834[hd_dll_af9827] @ (hd_dll_af982b);
 
@@ -60,12 +81,12 @@ s16 hd_dll_af9850 @ (hd_dll_af96a1 + 0x1c);
 ptr hd_dll_af9854 @ 0x4c;
 
 struct unk_struct_af985f {
-    padding[0x1A]; s16 unk1A;
-    if (unk1A) {
-        ptr unk1C;
-    } else {
-        padding[4];
-    }
+	padding[0x1A]; s16 unk1A;
+	if (unk1A) {
+		ptr unk1C;
+	} else {
+		padding[4];
+	}
 };
 unk_struct_af985f hd_dll_af985f[hd_dll_af9850] @ hd_dll_af9854;
 

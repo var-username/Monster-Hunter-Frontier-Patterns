@@ -1,5 +1,7 @@
 #pragma once
 
+#include <std/mem.pat>
+
 // Read Pointer to String
 fn rPS (u32 p) {
 	return std::mem::read_string(p, 100);

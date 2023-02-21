@@ -1,13 +1,12 @@
 // Very large limits just in case, feel free to make these more sensible
 #pragma pattern_limit 5000000
 #pragma array_limit 200000
-#include <std/mem.pat>
 #include <std/io.pat>
-#include <std/ptr.pat>
-//#include <type/byte.pat>
 #include <misc/s32p.pat>
 
 #include <misc/MonsterIds.hexpat>
+
+//#define __DECOMPILE 1
 
 using itemId;
 // Format ItemID to make it easier to look up on Ferias
@@ -15,6 +14,13 @@ fn fmtItemId(itemId n) {
     return std::format("{:04X}", n);
 };
 using itemId = u16 [[format("fmtItemId")]];
+
+u32 hd_dll_afa411 @ 0x10;
+s16 hd_dll_afa421 @ hd_dll_afa411;
+
+#ifdef __DECOMPILE
+#include <mhfinf/decompile.hexpat>
+#endif
 
 // Known quest objective types
 enum questObjType : u32 {
@@ -98,47 +104,17 @@ struct QuestData {
     s32p successCond;
     s32p failCond;
     padding[0x8];
-};
+} [[inline]];
 
 // Pointer to quest data struct
 struct ptQuestData {
-    QuestData *qd : u32;
-} [[inline]];
+    QuestData *qd : u32 [[inline]];
+} ;
 
-ptQuestData GuildQuestList[95]  @ 0x06bbc4;
-ptQuestData SurveyQuestList1[62]  @ 0x073FE4;
-ptQuestData SurveyQuestList2[99]  @ 0x079624;
-ptQuestData questList4[98]  @ 0x081FE4; //Some servey, gook, and special quests
-ptQuestData questList5[99]  @ 0x08A844; //Removed Hunters quests
-ptQuestData questList6[99]  @ 0x093204; //Removed Hunters quests
-ptQuestData questList7[99]  @ 0x09bbc4; //Removed Hunters quests
-ptQuestData questList8[99]  @ 0x0A4584; //Removed Hunters quests
-ptQuestData questList9[99]  @ 0x0ACF44; //Removed Hunters quests
-ptQuestData questList10[36] @ 0x0B5A84; //Weapon Merits
-ptQuestData questList11[99] @ 0x0B8CA4; //Special daily and superior acquasition quests
-ptQuestData questList12[99] @ 0x0C1244; //Conquest, zenith, and navi armor
-ptQuestData questList13[99] @ 0x0C9104; //Exotic, origin, zenith
-ptQuestData questList14[99] @ 0x0D1964;
-ptQuestData questList15[99] @ 0x0DA1C4;
-ptQuestData questList16[39] @ 0x0E2B14;
-ptQuestData questList17[69] @ 0x0E62E4;
-ptQuestData questList18[99] @ 0x0EBEC4;
-ptQuestData questList19[99] @ 0x0F4720;
-ptQuestData questList20[99] @ 0x0FCF84;
-ptQuestData questList21[99] @ 0x1057E4;
-ptQuestData questList22[99] @ 0x10DD84;
-ptQuestData questList23[99] @ 0x1165F4;
-ptQuestData questList24[95] @ 0x11CBE4;
-ptQuestData questList25[87] @ 0x124544;
-ptQuestData questList26[87] @ 0x129924;
-ptQuestData questList27[99] @ 0x130044;
-ptQuestData questList28[99] @ 0x1388A4;
-ptQuestData questList29[37] @ 0x141264;
-ptQuestData questList30[25] @ 0x1445E0;
-ptQuestData questList31[80] @ 0x1468C4;
-ptQuestData questList32[99] @ 0x14D824;
-ptQuestData questList33[5]  @ 0x155F24;
-ptQuestData questList34[9]  @ 0x156624;
-ptQuestData questList35[87] @ 0x1580E4;
+struct QuestTableEntry {
+    padding[2];
+    u16 count;
+    ptQuestData *ql[count] : u32 [[inline]];
+};
 
-ptQuestData weirdSoloQuest @ 0xE6164;
+QuestTableEntry questTable[hd_dll_afa421] @ 0x6A0A0;
