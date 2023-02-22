@@ -1,5 +1,7 @@
 #pragma once
 
+#include <std/io.pat>
+
 enum MonsterId : u8 {
     // 0x0n
     UNK = 0x00,
@@ -191,3 +193,9 @@ enum MonsterId : u8 {
     // 0xBn
     King_Shakalaka
 } ;
+
+// This seems slow, maybe improve this in future?
+fn getMonsterId (u8 n) {
+    MonsterId tmp = n;
+    return std::format("{}", tmp);
+};

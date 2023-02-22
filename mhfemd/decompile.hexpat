@@ -4,27 +4,27 @@ using ptr = s32
 //[[hidden]]
 ;
 
-ptr hd_dll_af96a1 @ 0x00;
-u8 hd_dll_af96a5 @ (hd_dll_af96a1 + 4);
+//ptr hd_dll_af96a1 @ 0x00;
+//u8 hd_dll_af96a5 @ (hd_dll_af96a1 + 4);
 
 ptr hd_dll_af96ab @ 0x4;
 ptr hd_dll_af96ae[0xC] @ hd_dll_af96ab;
 ptr hd_dll_af96be @ 0x18;
 ptr hd_dll_af96c1[3] @ hd_dll_af96be;
-ptr hd_dll_af96cc @ 0xC;
+//ptr hd_dll_af96cc @ 0xC;
 
-struct unk_struct_af9710 {
+/* struct unk_struct_af9710 {
 	if ((std::mem::read_signed($, 4)) && (std::mem::read_signed($ + 4, 4))) {
 		ptr unk00; padding[4];
 	} else {
 		padding[8];
 	}
-};
+}; */
 
-s16 hd_dll_af96d2 = u16(hd_dll_af96a5);
+/* s16 hd_dll_af96d2 = u16(hd_dll_af96a5);
 
 struct unk_struct_af96d8 {
-	ptr unk00; //af96ec
+	ptr *unk00: u32; //af96ec
 	ptr unk04[0xC]; //af973d
 	ptr unk34[0xC]; //af9748
 	padding[0x44]; // 0x64
@@ -38,7 +38,7 @@ struct unk_struct_af96d8 {
 	padding[0xC];
 }; // size of 0xC0
 
-unk_struct_af96d8 hd_dll_af96d8[hd_dll_af96d2] @ (hd_dll_af96cc + 8);
+unk_struct_af96d8 hd_dll_af96d8[hd_dll_af96d2] @ (hd_dll_af96cc + 8); */
 
 ptr hd_dll_af975c @ 0x08;
 ptr hd_dll_af975f @ 0x10;
