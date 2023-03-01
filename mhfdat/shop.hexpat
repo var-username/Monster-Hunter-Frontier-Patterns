@@ -16,3 +16,28 @@ struct ItemOut {
 };
 
 //ItemOut shopArray[shopItemCount-1] @ 0x01B63326;
+
+struct NPointPrice {
+	// 01 00 01 = NCafe(Gatherables)
+	// 03 02 01 = NCafe(HR5+)(Mats (HR5~7))
+	// 06 06 01 = NCafe(GR1+)(GItems (GR1+))
+	// 04 02 01 = NCafe(HR5+)(Decorations)
+	// 04 01 01 = NCafe(HR3+)(Decorations)
+	// 02 00 01 = NCafe(HR3+)(Mats (HR 1~4))
+	// 02 01 01 = NCafe(Mats (HR 1~4))
+	// 03 03 01 = NCafe(SR Equip)(Mats (HR 5~7))
+	// 05 03 01 = NCafe(SR Equip)(Other Items)
+	// 05 01 01 = NCafe(HR3+)(Other Items)
+	// 05 02 01 = NCafe(HR5+)(Other Items)
+	u8; u8; u8; 
+	
+	padding[1];
+	u16 id [[format("getItemName")]];
+	padding[2];
+	u16 price;
+	padding[2];
+};
+
+// TODO: Figure out where this array actually starts
+// The GCP Exchange is right above it, so figure out how they're separated too
+NPointPrice nCafeShop[100] @ 0x16A3A60;
