@@ -47,11 +47,11 @@ ptr hd_dll_af9778 @ 0x1C;
 ptr hd_dll_af977b @ 0x14;
 
 s16 hd_dll_af9780 @ (hd_dll_af96a1 + 0xC);
-struct unk_struct_af978a{MonsterId id; padding[3]; ptr unk04; padding[3]; u8 threeF;};
+struct unk_struct_af978a{MonsterId id; padding[3]; ptr; float;};
 unk_struct_af978a hd_dll_af978a[hd_dll_af9780] @ hd_dll_af9778;
 
 ptr hd_dll_af97a0 @ 0x24;
-ptr hd_dll_af97a3 @ 0x20;
+float *hd_dll_af97a3[] : u32 @ 0x20;
 s16 hd_dll_af97a6 @ (hd_dll_af96a1 + 0x10);
 ptr hd_dll_af97b2[hd_dll_af97a6] @ hd_dll_af97a0;
 
