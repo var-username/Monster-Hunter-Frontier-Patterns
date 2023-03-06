@@ -13,8 +13,8 @@ u32 header3 @ 0xC [[comment("Must equal 00 00 0B C8")]];
 // base position in memory, implying the program will use these as pointers 
 // to other positions in the file
 
-// Monotony moved to decompile_tmp.hexpat
-#include <mhfdat/decompile/decompile_tmp.hexpat>
+// Monotony moved to decompile_pointers.hexpat
+#include <mhfdat/decompile/decompile_pointers.hexpat>
 
 // Lots of times, the program seems to read elements of an array 
 // in the buffer, but does nothing with them. Maybe it's counting something?
