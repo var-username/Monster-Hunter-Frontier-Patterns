@@ -95,7 +95,7 @@ ptr hd_dll_af507f @ 0xB8;
 ptr hd_dll_af5085 @ 0xBC;
 ptr hd_dll_af508b @ 0xC0;
 
-// Really funky code at [mhfo-hd.dll + 0xaf5091]
+// TODO: Really funky code at [mhfo-hd.dll + 0xaf5091]
 
 ptr hd_dll_af5145 @ 0x13C;
 ptr hd_dll_af5177 @ 0x144;

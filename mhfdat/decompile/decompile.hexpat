@@ -15,8 +15,12 @@ struct u16Padd26 {u16; padding[0x26];};
 struct u16Padd2E {u16; padding[0x2E];};
 struct u16Padd32 {u16; padding[0x32];};
 struct u16Padd3A {u16; padding[0x3A];};
-struct u16Padd46 {u16; padding[0x46];};
 struct u32Padd4 {u32; padding[4];};
+
+struct ptrToStringArray {
+	ptr ptr; 
+	s32p dest[while(std::mem::read_signed($,4))] @ ptr;
+};
 
 // Variables are named after their file and offset as reported by Ghidra's 
 // "Byte Source Offset"
@@ -50,15 +54,11 @@ u32 header3 @ 0xC [[comment("Must equal 00 00 0B C8")]];
 
 	//s32px4 hd_dll_af4966[while(std::mem::read_signed($,4))] @ hd_dll_af4963;
 
-	//u16Padd32 hd_dll_af49a9[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af49a6;
-	//ptr hd_dll_af49d9[(sizeof(hd_dll_af49a9)/sizeof(u16Padd32))] @ hd_dll_af49cd;
 	// Commented out because this is bugged to be put in the wrong place 
-	//s32px4 hd_dll_af49df[(sizeof(hd_dll_af49a9)/sizeof(u16Padd32))] @ hd_dll_af49d3;
+	//s32px4 hd_dll_af49df[(sizeof(meleeData)/sizeof(MeleeWeaponEntry))] @ hd_dll_af49d3;
 
-	//u16Padd3A hd_dll_af4a3a[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4a34;
-	//ptr hd_dll_af4a69[(sizeof(hd_dll_af4a3a)/sizeof(u16Padd3A))] @ hd_dll_af4a5d;
 	// Commented out because this is bugged to be put in the wrong place 
-	//s32px4 hd_dll_af4a6f[(sizeof(hd_dll_af4a3a)/sizeof(u16Padd3A))] @ hd_dll_af4a63;
+	//s32px4 hd_dll_af4a6f[(sizeof(rangedData)/sizeof(RangedWeaponEntry))] @ hd_dll_af4a63;
 
 	// List of pointers to armor stats
 	ptr hd_dll_af4aca[6] @ hd_dll_af4ac4;
@@ -184,6 +184,41 @@ u32 header3 @ 0xC [[comment("Must equal 00 00 0B C8")]];
 
 		n += 1;
 	}
+*/
+
+/* Commented out to reduce clutter
+	// A pointer to an array of u16Padd2's
+	struct struct_af514b {
+		ptr ptr;
+		u16Padd2 unk[while(std::mem::read_signed($,2)!=-1)] @ ptr;
+	};
+
+	// Array of pointers to arrays of u16Padd2's
+	struct_af514b hd_dll_af514b[0xE] @ hd_dll_af5145;
+
+	num hd_dll_af5186 @ (hd_dll_af46a3 + 0x40);
+	struct_af514b hd_dll_af518a[hd_dll_af5186] @ hd_dll_af5177;
+
+	num hd_dll_af51bf @ (hd_dll_af46a3 + 0x42);
+	ptr hd_dll_af51cc[hd_dll_af51bf] @ hd_dll_af51b6;
+
+	// Array of pointers to arrays of pointers
+	ptrToStringArray hd_dll_af51f5[while(std::mem::read_signed($,4))] @ hd_dll_af51e0;
+
+	num hd_dll_af5223 @ (hd_dll_af46a3 + 0x46);
+	struct struct_af5230 {
+		ptr ptr;
+
+		if (ptr != 0) {
+			u16Padd2 dest[while(std::mem::read_signed($,2)!=-1)] @ ptr;
+		}
+	};
+	struct_af5230 hd_dll_af5230[hd_dll_af5223] @ hd_dll_af5214;
+
+	num hd_dll_af526a @ (hd_dll_af46a3 + 0x48);
+	ptr hd_dll_af5277[hd_dll_af526a] @ hd_dll_af5261;
+
+	ptr hd_dll_af52a7[while(std::mem::read_signed($,4))] @ hd_dll_af5298;
 */
 
 /* // [mhfo-hd.dll + 0xaf83cf]
