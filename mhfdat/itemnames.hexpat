@@ -1,5 +1,10 @@
 #pragma once
-s32p itemNames[(eoStringItem-soStringItem)/4] @ soStringItem;
+// [mhfo-hd.dll + 0xaf4dcb]
+s32p itemNames[numItems] @ soStringItem;
 
-s32p itemSources[while(std::mem::read_unsigned($, 4))] @ soStrItemSource;
-s32p itemDescriptions[while(std::mem::read_unsigned($, 4))] @ (soStrItemDesc + 0x60);
+// [mhfo-hd.dll + 0xaf4f06]
+s32p itemSources[numItems] @ soStrItemSource;
+
+// [mhfo-hd.dll + 0xaf4edb]
+// Yes, that +0x18 is hard coded in
+s32p itemDescriptions[numItems + 0x18] @ soStrItemDesc;

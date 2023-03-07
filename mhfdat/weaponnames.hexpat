@@ -2,8 +2,13 @@
 
 #include <misc/s32p.pat>
 
-u32 numMelee = (eoStringMelee - soStringMelee) / 4;
-u32 numRanged = (eoStringRanged - soStringRanged) / 4;
+#ifdef __WEAPONDATA
 
+// [mhfo-hd.dll + 0xaf49d9]
+u32 numMelee = (sizeof(meleeData)/sizeof(MeleeWeaponEntry));
 s32p meleeNames[numMelee] @ soStringMelee;
+
+// [mhfo-hd.dll + 0xaf4a69]
+u32 numRanged = (sizeof(rangedData)/sizeof(RangedWeaponEntry));
 s32p rangedNames[numRanged] @ soStringRanged;
+#endif

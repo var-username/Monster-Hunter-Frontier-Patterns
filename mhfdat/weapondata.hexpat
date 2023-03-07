@@ -2,9 +2,6 @@
 
 #include <misc/s32p.pat>
 
-u32 numMeleeEntries = (eoMelee - soMelee) / 0x34;
-u32 numRangedEntries = (eoRanged - soRanged) / 0x3C;
-
 // Add 1 to n (Used for pattern formatting)
 fn plusone (u8 n) {
 	return n+1;
@@ -15,8 +12,7 @@ fn timesten (u8 n) {
 	return n*10;
 };
 
-using MeleeWeaponEntry;
-fn meleeNameWE (MeleeWeaponEntry n) {
+fn meleeNameWE (auto n) {
 	return rIPPS(soStringMelee, (($-soMelee)/0x34));
 };
 	
@@ -132,6 +128,9 @@ struct RangedWeaponEntry {
 	u32 unk2C [[hidden]]; u32 unk30 [[hidden]];
 	u32 unk34 [[hidden]]; u32 unk38 [[hidden]];
 };
-	
-MeleeWeaponEntry meleeData[numMeleeEntries] @ soMelee;
-RangedWeaponEntry rangedData[numRangedEntries] @ soRanged;
+
+// [mhfo-hd.dll + 0xaf49a9]
+MeleeWeaponEntry meleeData[while(std::mem::read_signed($,2)!=-1)] @ soMelee;
+
+// [mhfo-hd.dll + 0xaf4a3a]
+RangedWeaponEntry rangedData[while(std::mem::read_signed($,2)!=-1)] @ soRanged;

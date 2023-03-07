@@ -6,12 +6,8 @@ namespace itemdata {
 	fn plusone (u8 n) {
 		return n+1;
 	};
-
-	u32 count = (eoItemData - soItemData) / 0x24;
-
-	using Item;
 	
-	fn getItemName(Item i) {
+	fn getItemName(auto i) {
 		return getItemName(($-soItemData)/0x24);
 	};
 
@@ -35,5 +31,5 @@ namespace itemdata {
 	[[format("itemdata::getItemName")]]
 	;
 
-	Item items[count] @ soItemData;
+	Item items[numItems] @ soItemData;
 }

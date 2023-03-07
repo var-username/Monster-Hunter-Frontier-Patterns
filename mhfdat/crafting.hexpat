@@ -41,8 +41,7 @@ fn getEquipName(u32 n) {
     return std::format("{} | {}", getEquipType(equipType), equipName);
 };
 
-using WUpgradePath;
-fn upgradeName (WUpgradePath n) {
+fn upgradeName (auto n) {
 	return rIPPS(soStringMelee, (($-soWUpgradePath)/36));
 };
 
@@ -105,24 +104,12 @@ struct RegAUpgradeRow {
     u16 lv7Upgrade;
 };
 
-struct RegA16Upgrade {
-    RegAUpgradeRow itemsForUpgrade[16];
-    padding[32];
+struct GenericAUpgrade {
+    RegAUpgradeRow itemsForUpgrade[while(std::mem::read_unsigned($,0x10))];
 };
 
-struct ExoticA32Upgrade {
-    RegAUpgradeRow itemsForUpgrade[32];
-    padding[32];
-};
-
-struct ExoticA48Upgrade {
-    RegAUpgradeRow itemsForUpgrade[48];
-    padding[32];
-};
-
-struct ExoticA64Upgrade {
-    RegAUpgradeRow itemsForUpgrade[64];
-    padding[32];
+struct ptGenericAUpgrade {
+    GenericAUpgrade *ptr : u32 [[inline]];
 };
 
 struct UnknownCrafting {
@@ -156,17 +143,13 @@ struct UnknownCrafting {
 WUpgradePath wUpgradePath[17568] @ soWUpgradePath;
 
 g50WUpgrade g50WeaponUpgrades[81914] @ soG50WUpgrades;
-RegA16Upgrade armorUpgrades1[475] @ soRegAUpgrades;
-ExoticA32Upgrade exoticAUpgrade1[2] @ 0x17103C0;
-RegA16Upgrade armorUpgrades2[(0x1763D20 - 0x1710800)/288] @ 0x1710800;
-ExoticA48Upgrade exoticAUpgrade2[1] @ 0x1763D20;
-RegA16Upgrade armorUpgrades3[(0x17DE6E0 - 0x1764040)/288] @ 0x1764040;
-ExoticA64Upgrade exoticAUpgrade3[1] @ 0x17DE6E0;
-RegA16Upgrade armorUpgrades4[(0x1844A40 - 0x17DEB00)/288] @ 0x17DEB00;
 
-UnknownCrafting miscCrafting1[while(std::mem::read_unsigned($, 1)!=0xFF)] @ 0x1848880;
-UnknownCrafting miscCrafting2[while(std::mem::read_unsigned($, 1)!=0xFF)] @ 0x188FD80;
-UnknownCrafting miscCrafting3[while(std::mem::read_unsigned($, 1)!=0xFF)] @ 0x1894CC0;
+// [mhfo-hd.dll + 0xaf47ed]
+ptGenericAUpgrade armorUpgrades[while(std::mem::read_unsigned($,4))] @ hd_dll_af47c9;
+
+UnknownCrafting miscCrafting1[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging1;
+UnknownCrafting miscCrafting2[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging2;
+UnknownCrafting miscCrafting3[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging3;
 UnknownCrafting miscCrafting4[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging4;
 UnknownCrafting miscCrafting5[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging5;
 

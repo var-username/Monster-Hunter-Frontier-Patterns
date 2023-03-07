@@ -1,3 +1,4 @@
+#pragma once
 ptr hd_dll_af469d @ 0x910;
 ptr hd_dll_af46a3 @ 0x10;
 ptr hd_dll_af46c9 @ 0x988; 

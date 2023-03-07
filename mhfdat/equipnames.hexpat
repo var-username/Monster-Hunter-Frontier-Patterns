@@ -2,20 +2,26 @@
 
 #include <misc/s32p.pat>
 
-namespace equipnames {
-	
-	u32 numStringHead = (eoStringHead - soStringHead) / 4;
-	s32p headNames[numStringHead - 6] @ soStringHead;
-	
-	u32 numStringBody = (eoStringBody - soStringBody)/4;
-	s32p bodyNames[numStringBody - 2] @ soStringBody;
-	
-	u32 numStringArm = (eoStringArm - soStringArm)/4;
-	s32p armNames[numStringArm - 4] @ soStringArm;
+#ifdef __EQUIPDATA
+u32 sizeOfArmor = sizeof(ArmorDataEntry);
 
-	u32 numStringWaist = (eoStringWaist - soStringWaist)/4;
-	s32p waistNames[numStringWaist - 4] @ soStringWaist;
+// [mhfo-hd.dll + 0xaf4831]
+u32 numStringHead = (sizeof(headEntries)/sizeOfArmor);
+s32p headNames[numStringHead] @ soStringHead;
 
-	u32 numStringLeg = (eoStringLeg - soStringLeg)/4;
-	s32p legNames[numStringLeg - 6] @ soStringLeg;
-}
+// [mhfo-hd.dll + 0xaf4874]
+u32 numStringBody = (sizeof(bodyEntries)/sizeOfArmor);
+s32p bodyNames[numStringBody] @ soStringBody;
+
+// [mhfo-hd.dll + 0xaf48b5]
+u32 numStringArm = (sizeof(armEntries)/sizeOfArmor);
+s32p armNames[numStringArm] @ soStringArm;
+
+// [mhfo-hd.dll + 0xaf4900]
+u32 numStringWaist = (sizeof(waistEntries)/sizeOfArmor);
+s32p waistNames[numStringWaist] @ soStringWaist;
+
+// [mhfo-hd.dll + 0xaf4944]
+u32 numStringLeg = (sizeof(legEntries)/sizeOfArmor);
+s32p legNames[numStringLeg] @ soStringLeg;
+#endif

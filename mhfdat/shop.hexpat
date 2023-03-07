@@ -1,21 +1,20 @@
 #pragma once
 
-u32 shopItemCount = (eoItemData - soItemData) / 0x24;
+// Shop seems to be pointed to by a list of pointers,
+// pointed to by hd_dll_af4c11.sub[2]
 
-u128 shopInventory; 
+u32 shopInventory; 
 shopInventory = std::mem::find_sequence(0, 0x0F, 01, 01, 00, 00, 00, 00, 00, 03, 01, 01, 00, 00, 00, 00, 00);
 //shopInventory = 0x00C78C40;
 
 u128 shopHeader @ shopInventory;
 
-//u128 shopPointer @ 0x00C78C28;
+//u32 shopPointer @ 0x00C78C28;
 
 struct ItemOut {
 	u16 id [[format("getItemName")]];
 	padding[6];
 };
-
-//ItemOut shopArray[shopItemCount-1] @ 0x01B63326;
 
 struct NPointPrice {
 	// 01 00 01 = NCafe(Gatherables)

@@ -29,13 +29,13 @@ struct PartBreakDrop {
 
 // List of drops from break 
 struct PartBreakDropTable {
-    PartBreakDrop breakDrops [while(std::mem::read_unsigned($,2)!=0xFFFF)];
+    PartBreakDrop breakDrops [while(std::mem::read_unsigned($,2)!=0xFFFF)] [[inline]];
 } [[inline]];
 
 // Pointer to part break drop table
 struct ptPartBreaksDT {
-    PartBreakDropTable *ptPartBreaks : u32;
-} [[inline]];
+    PartBreakDropTable *ptPartBreaks : u32 [[inline]];
+};
 
 using CarveDrop;
 fn carveDropFmt (CarveDrop n) {
@@ -50,16 +50,19 @@ struct CarveDrop {
 
 // Carve drop table
 struct CarveDropTable {
-    CarveDrop carves [while(std::mem::read_unsigned($,2)!=0xFFFF)];
+    CarveDrop carves [while(std::mem::read_unsigned($,2)!=0xFFFF)] [[inline]];
 } [[inline]];
 
 // Pointer to carve drop table
 struct ptCarveDT {
-    CarveDropTable *ptCarveDT : u32;
-} [[inline]];
+    CarveDropTable *ptCarveDT : u32 [[inline]];
+};
 
-ptPartBreaksDT ptPartBreakDTs[(eoPartBreaks-soPartBreaks)/4] @ soPartBreaks;
-ptCarveDT ptCarveDTs[(eoCarves-soCarves)/4] @ soCarves;
+// [mhfo-hd.dll + 0xaf4e98]
+ptPartBreaksDT ptPartBreakDTs[numPartBreakDTs] @ soPartBreaks;
+
+// [mhfo-hd.dll + 0xaf4e70]
+ptCarveDT ptCarveDTs[numCarveDTs] @ soCarves;
 
 struct HC_GR_Carve {
     MonsterId monId;

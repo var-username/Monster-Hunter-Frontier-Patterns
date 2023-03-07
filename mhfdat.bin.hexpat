@@ -9,10 +9,10 @@
 //#define __ITEMNAMES 1
 //#define __ITEMDATA 1
 //#define __SHOP 1
-//#define __WEAPONNAMES 1
 //#define __WEAPONDATA 1
-//#define __EQUIPNAMES 1
+//#define __WEAPONNAMES 1
 //#define __EQUIPDATA 1
+//#define __EQUIPNAMES 1
 //#define __CRAFTING 1
 //#define __PARTBREAKS 1
 
@@ -39,20 +39,20 @@ fn getItemName(u16 n) {
 #include <mhfdat/shop.hexpat>
 #endif
 
-#ifdef __EQUIPNAMES
-#include <mhfdat/equipnames.hexpat>
-#endif
-
 #ifdef __EQUIPDATA
 #include <mhfdat/equipdata.hexpat>
 #endif
 
-#ifdef __WEAPONNAMES
-#include <mhfdat/weaponnames.hexpat>
+#ifdef __EQUIPNAMES
+#include <mhfdat/equipnames.hexpat>
 #endif
 
 #ifdef __WEAPONDATA
 #include <mhfdat/weapondata.hexpat>
+#endif
+
+#ifdef __WEAPONNAMES
+#include <mhfdat/weaponnames.hexpat>
 #endif
 
 #ifdef __CRAFTING
