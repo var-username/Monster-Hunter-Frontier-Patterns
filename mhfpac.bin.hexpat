@@ -4,11 +4,8 @@
 #include <std/io.pat>
 #include <std/ptr.pat>
 //#include <type/byte.pat>
+#include <misc/types.pat>
 #include <misc/s32p.pat>
-
-using ptr = u32 
-//[[hidden]]
-;
 
 ptr soStringSkillPt @ 0xA20;
 ptr eoStringSkillPt @ 0xA1C;

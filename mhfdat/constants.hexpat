@@ -1,13 +1,6 @@
 #pragma once
 
-using ptr = u32 
-[[hidden]]
-;
-
-using num = u16
-[[hidden]]
-;
-
+#include <misc/types.pat>
 #include <mhfdat/decompile/decompile_pointers.hexpat>
 
 

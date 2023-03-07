@@ -1,8 +1,5 @@
 #include <misc/MonsterIds.hexpat>
-
-using ptr = s32
-//[[hidden]]
-;
+#include <misc/types.pat>
 
 //ptr hd_dll_af96a1 @ 0x00;
 //u8 hd_dll_af96a5 @ (hd_dll_af96a1 + 4);

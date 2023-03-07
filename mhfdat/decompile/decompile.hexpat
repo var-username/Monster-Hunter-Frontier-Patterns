@@ -1,5 +1,6 @@
 #pragma once
 
+#include <misc/types.pat>
 #include <std/io.pat>
 
 struct s32px4{s32p unk0[4];};
@@ -26,12 +27,12 @@ u32 header1 @ 0x0 [[comment("Must equal 1A 66 68 6D")]];
 u32 header2 @ 0x4 [[comment("Must equal 00 00 00 59")]];
 u32 header3 @ 0xC [[comment("Must equal 00 00 0B C8")]];
 
-// These variables are all copied into a new buffer, plus the new buffer's 
+// `ptr` variables are all copied into a new buffer, plus the new buffer's 
 // base position in memory, implying the program will use these as pointers 
 // to other positions in the file
 
 // Monotony moved to decompile_pointers.hexpat
-//#include <mhfdat/decompile/decompile_pointers.hexpat>
+#include <mhfdat/decompile/decompile_pointers.hexpat>
 
 // Lots of times, the program seems to read elements of an array 
 // in the buffer, but does nothing with them. Maybe it's counting something?

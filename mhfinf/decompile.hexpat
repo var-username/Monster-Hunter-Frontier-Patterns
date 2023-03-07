@@ -1,9 +1,6 @@
 #include <std/core.pat>
 #include <misc/s32p.pat>
-
-using ptr = s32 
-//[[hidden]]
-;
+#include <misc/types.pat>
 
 u32 header1 @ 0x0 [[comment("Must equal 1A 66 6E 69")]];
 u32 header2 @ 0x4 [[comment("Must equal 00 00 00 06")]];
