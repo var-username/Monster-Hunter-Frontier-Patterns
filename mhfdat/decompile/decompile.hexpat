@@ -221,6 +221,71 @@ u32 header3 @ 0xC [[comment("Must equal 00 00 0B C8")]];
 	ptr hd_dll_af52a7[while(std::mem::read_signed($,4))] @ hd_dll_af5298;
 */
 
+struct struct_af52db {
+	s32p; s32p; padding[0xC];
+};
+num hd_dll_af52c6 @ (hd_dll_af46a3 + 0x4E);
+struct_af52db hd_dll_af52db[hd_dll_af52c6 + 1] @ hd_dll_af52ba;
+
+// NOTE: Possibly incorrect, double check this
+u16 hd_dll_af52ff[while(std::mem::read_signed($,2))] @ hd_dll_af52f3;
+
+struct struct_af5312_1 {
+	// This structure repeats 5 times. I'd make a for loop if I were able
+	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+		ptr; u32;
+	} else {
+		padding[8];
+	}
+
+	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+		ptr; u32;
+	} else {
+		padding[8];
+	}
+
+	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+		ptr; u32;
+	} else {
+		padding[8];
+	}
+
+	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+		ptr; u32;
+	} else {
+		padding[8];
+	}
+
+	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+		ptr; u32;
+	} else {
+		padding[8];
+	}
+};
+
+struct struct_af5312 {
+	ptr ptr;
+
+	if (ptr != 0) {
+		struct_af5312_1 arr[0x28] @ ptr;
+	}
+};
+
+struct_af5312 hd_dll_af5312 [0xB1] @ hd_dll_af530c;
+
+num hd_dll_af53a0 @ (hd_dll_af46a3 + 0x26);
+s32p hd_dll_af53ad[hd_dll_af53a0] @ hd_dll_af5397;
+
+num hd_dll_af53c9 @ (hd_dll_af46a3 + 0x28);
+s32p hd_dll_af53d6[hd_dll_af53c9] @ hd_dll_af53c0;
+
+// TODO: Loop at [mhfo-hd.dll + 0xaf53ff]
+
+num hd_dll_af5436 @ (hd_dll_af46a3 + 0x2a);
+u32 hd_dll_af5443[hd_dll_af5436] @ hd_dll_af542d;
+
+num hd_dll_af435e @ (hd_dll_af46a3 + 0x32);
+
 /* // [mhfo-hd.dll + 0xaf83cf]
 
 	// FUCK POINTERS IT TOOK SO GODDAMN LONG TO UNDERSTAND WHAT THE
