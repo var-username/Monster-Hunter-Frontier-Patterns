@@ -6,7 +6,7 @@
 
 //#define __DECOMPILE 1
 
-u32 unkPtr_at_00000058 @ 0x58; //Modified by comfy to point to new data
+ptr unkPtr_at_00000058 @ 0x58; //Modified by comfy to point to new data
 
 struct unknownData {
 	u32 unk[while(std::mem::read_unsigned($,16))];
@@ -38,12 +38,12 @@ struct monsterStatTable{
 }; //size of 0x18;
 
 struct MonsterStats {
-	monsterStatTable statTable[68];
-}; //size of 0x660
+	monsterStatTable statTable[68] [[inline]];
+} [[inline]]; //size of 0x660
 
 u32 hd_dll_af96a1 @ 0x00;
 u8 hd_dll_af96a5 @ (hd_dll_af96a1 + 4) [[name("Number of monsters")]];
-u32 hd_dll_af96cc @ 0xC;
+ptr hd_dll_af96cc @ 0xC  [[name("Pointer to Monster Stat Block")]];
 
 s16 hd_dll_af96d2 = u16(hd_dll_af96a5);
 
@@ -76,7 +76,8 @@ struct unk_struct_af96d8 {
 	padding[0xC];
 }; // size of 0xC0
 
-unk_struct_af96d8 hd_dll_af96d8[hd_dll_af96d2] @ (hd_dll_af96cc + 8) [[name("Monster Stat Block")]]; 
+unk_struct_af96d8 hd_dll_af96d8[hd_dll_af96d2] @ (hd_dll_af96cc + 8) 
+[[name("Monster Stat Block")]]; 
 
 
 #ifdef __DECOMPILE

@@ -1,41 +1,10 @@
 #include <misc/MonsterIds.hexpat>
 #include <misc/types.pat>
 
-//ptr hd_dll_af96a1 @ 0x00;
-//u8 hd_dll_af96a5 @ (hd_dll_af96a1 + 4);
-
 ptr hd_dll_af96ab @ 0x4;
 ptr hd_dll_af96ae[0xC] @ hd_dll_af96ab;
 ptr hd_dll_af96be @ 0x18;
 ptr hd_dll_af96c1[3] @ hd_dll_af96be;
-//ptr hd_dll_af96cc @ 0xC;
-
-/* struct unk_struct_af9710 {
-	if ((std::mem::read_signed($, 4)) && (std::mem::read_signed($ + 4, 4))) {
-		ptr unk00; padding[4];
-	} else {
-		padding[8];
-	}
-}; */
-
-/* s16 hd_dll_af96d2 = u16(hd_dll_af96a5);
-
-struct unk_struct_af96d8 {
-	ptr *unk00: u32; //af96ec
-	ptr unk04[0xC]; //af973d
-	ptr unk34[0xC]; //af9748
-	padding[0x44]; // 0x64
-	ptr unkA8; //af96dd
-	padding[4];
-	if (std::mem::read_signed($, 4)) {
-		unk_struct_af9710 *unkAC[200]: u32; // af9723
-	} else {
-		padding[4];
-	}
-	padding[0xC];
-}; // size of 0xC0
-
-unk_struct_af96d8 hd_dll_af96d8[hd_dll_af96d2] @ (hd_dll_af96cc + 8); */
 
 ptr hd_dll_af975c @ 0x08;
 ptr hd_dll_af975f @ 0x10;
@@ -43,13 +12,13 @@ ptr hd_dll_af9762[0xC] @ hd_dll_af975f;
 ptr hd_dll_af9778 @ 0x1C;
 ptr hd_dll_af977b @ 0x14;
 
-s16 hd_dll_af9780 @ (hd_dll_af96a1 + 0xC);
+num hd_dll_af9780 @ (hd_dll_af96a1 + 0xC);
 struct unk_struct_af978a{MonsterId id; padding[3]; ptr; float;};
 unk_struct_af978a hd_dll_af978a[hd_dll_af9780] @ hd_dll_af9778;
 
 ptr hd_dll_af97a0 @ 0x24;
 float *hd_dll_af97a3[] : u32 @ 0x20;
-s16 hd_dll_af97a6 @ (hd_dll_af96a1 + 0x10);
+num hd_dll_af97a6 @ (hd_dll_af96a1 + 0x10);
 ptr hd_dll_af97b2[hd_dll_af97a6] @ hd_dll_af97a0;
 
 ptr hd_dll_af97c4 @ 0x28;
@@ -63,9 +32,9 @@ ptr hd_dll_af9800 @ 0x34;
 ptr hd_dll_af9803 @ 0x38;
 ptr hd_dll_af9806 @ 0x3c;
 
-s16 hd_dll_af9809 @ (hd_dll_af96a1 + 0x16);
+num hd_dll_af9809 @ (hd_dll_af96a1 + 0x16);
 ptr hd_dll_af9816[hd_dll_af9809] @ hd_dll_af97f7;
-s16 hd_dll_af9827 @ (hd_dll_af96a1 + 0x18);
+num hd_dll_af9827 @ (hd_dll_af96a1 + 0x18);
 ptr hd_dll_af982b @ 0x44;
 
 struct p4_ptr {
@@ -74,7 +43,7 @@ struct p4_ptr {
 p4_ptr hd_dll_af9834[hd_dll_af9827] @ (hd_dll_af982b);
 
 ptr hd_dll_af984b @ 0x48;
-s16 hd_dll_af9850 @ (hd_dll_af96a1 + 0x1c);
+num hd_dll_af9850 @ (hd_dll_af96a1 + 0x1c);
 ptr hd_dll_af9854 @ 0x4c;
 
 struct unk_struct_af985f {
@@ -93,3 +62,71 @@ ptr hd_dll_af9882 @ 0x58;
 ptr hd_dll_af9885 @ 0x5c;
 
 //u32 hd_dll_0503af[16] @ (hd_dll_af97a0 + 0x7a0);
+
+/* [mhfo-hd.dll + 0x02fb40] FUN_10030740
+	u32 hd_dll_02fbda @ 0x4C;
+	num hd_dll_02fbe4 = hd_dll_af9850;
+*/
+
+/* [mhfo-hd.dll + 0x050360] FUN_10050f60
+
+	// This is messy, but whatever
+	struct struct_0503bb {
+		u32; padding[0xC];
+	};
+
+	ptr hd_dll_0503ac = hd_dll_af97a0;
+	struct_0503bb hd_dll_0503bb[4] @ (hd_dll_0503ac + 0x7a0);
+	struct_0503bb hd_dll_0503df[4] @ (hd_dll_0503ac + 0x7a4);
+	struct_0503bb hd_dll_0503fa[4] @ (hd_dll_0503ac + 0x7a8);
+	struct_0503bb hd_dll_05041e[4] @ (hd_dll_0503ac + 0x7ac);
+*/
+
+/* [mhfo-hd.dll + 0x0508a0] FUN_100514a0
+	u32 hd_dll_050925 = hd_dll_af96cc;
+	//u32 hd_dll_050928 @ (hd_dll_050925 + 0x48 + Function + read(param_1[1] + 3) * 0x30 * 4);
+*/
+
+/* [mhfo-hd.dll + 0x051280] FUN_10051e80
+	u32 hd_dll_0512a9 = hd_dll_af96cc;
+	// u32 hd_dll_0512b2 @ hd_dll_0512a9 + 0xb0 + (read(FUNC_RET + 3) * 0xC0);
+*/
+
+/* [mhfo-hd.dll + 0x052b90] FUN_10053790
+	u32 hd_dll_052c8b = hd_dll_af96cc;
+	// u32 hd_dll_052c94 @ hd_dll_052c8b + 0xB0 + (read(FUNC_RET + 3) * 0xC0);
+*/
+
+/* [mhfo-hd.dll + 0x05df80] FUN_1005eb80
+	u32 hd_dll_05dfaa = hd_dll_af96cc;
+	// u32 hd_dll_05dfb6 @ hd_dll_05dfaa + 0xB0 + (read(param_1[1] + 3) * 0xC0);
+	// u32 hd_dll_05e156 @ hd_dll_05dfaa + 0xB0 + (read((FUNC_RET >> 0x20) + 3) * 0xC0);
+*/
+
+/* [mhfo-hd.dll + 0x05e530] FUN_1005f130
+	u32 hd_dll_05e56d = hd_dll_af96cc;
+	// u32 hd_dll_05e576 @ hd_dll_05e56d + 0xB0 + (read(read(param_1 + 4)) * 0xC0);
+*/
+
+/* [mhfo-hd.dll + 0x05f3d0] FUN_1005ffd0
+	u32 hd_dll_05f3e9 = hd_dll_af96cc;
+	// u32 hd_dll_05f3f2 @ hd_dll_05f3e9 + 0xB0 + (read(param_1 + 3) * 0xC0);
+*/
+
+/* [mhfo-hd.dll + 0x05f550] FUN_10060150
+	u32 hd_dll_05f583 = hd_dll_af96cc;
+	u32 hd_dll_05f592 @ hd_dll_05f583 + 0xB0 + (read(param_1 + 3) * 0xC0);
+*/
+
+/* [mhfo-hd.dll + 0x0dfb50] FUN_100e0750
+	// @ ((@ 0x24) + 0x4C4)
+	// @ ((@ 0x24) + 0x4C8)
+	// @ ((@ 0x24) + 0x4BC)
+	// @ ((@ 0x24) + 0x4C0)
+	// @ ((@ 0x24) + 0x4B4)
+	// @ ((@ 0x24) + 0x4B8)
+*/
+
+/* [mhfo-hd.dll + 0x0e4fe0] FUN_100e5be0
+	// @ ((@ 0x8) + 0x2a + (read(param_1 + 3) * 0x34))
+*/
