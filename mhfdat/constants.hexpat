@@ -5,7 +5,8 @@
 
 
 // [mhfo-hd.dll + 0xaf4fa4]
-num numMonsterDesc @ (hd_dll_af46a3 + 0x22) [[name("Number of monster descriptions")]];
+num numMonsterDesc @ (hd_dll_af46a3 + 0x22) 
+[[name("Number of monster descriptions")]];
 
 ptr soRegularWUpgrades  = 0xB43CC0;         ptr eoRegularWUpgrades = 0xB7B63F;
 ptr soG50WUpgrades      = hd_dll_af6c0e;    ptr eoG50WUpgrades = 0x11D0B7F;
@@ -17,6 +18,7 @@ ptr soForging3          = hd_dll_af8d5a;
 ptr soForging4          = hd_dll_af47cf;
 ptr soForging5          = hd_dll_af47cc;
 ptr soWUpgradePath      = hd_dll_af47d2;
+ptr soEvoUpgrades       = hd_dll_af8726;
 
 // Pointers to start of armor data areas
 ptr soHead              = hd_dll_af480f;
@@ -33,7 +35,8 @@ ptr soStringWaist       = hd_dll_af48fd;
 ptr soStringLeg         = hd_dll_af4941;
 
 // [mhfo-hd.dll + 0xaf4dcb]
-num numItems @ (hd_dll_af46a3 + 0x8) [[name("Number of total Items")]];
+num numItems @ (hd_dll_af46a3 + 0x8) 
+[[name("Number of total Items")]];
 
 // Pointers to start of item data areas
 ptr soItemData          = hd_dll_af4db5;
@@ -60,3 +63,5 @@ num numPartBreakDTs @ (hd_dll_af46a3 + 0x1E);
 // Pointers to start and end of carve and break drop data
 ptr soPartBreaks        = hd_dll_af4e82;
 ptr soCarves            = hd_dll_af4e5a;
+ptr soGRHCCarves        = hd_dll_af774d;
+ptr soHCCarves          = hd_dll_af5bdc;

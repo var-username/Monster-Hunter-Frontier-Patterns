@@ -190,7 +190,7 @@ struct evoUpgrade {
 
 //evoUpgrade testEvo[10] @ 0x0156DB70;
 
-evoUpgrade evoUpgradesHR[100] @ 0x0156BF40;
+evoUpgrade evoUpgradesHR[100] @ soEvoUpgrades;
 evoUpgrade evoUpgradesHR5[100] @ $;
 evoUpgrade evoUpgradesGR[100] @ $;
 evoUpgrade evoUpgradesZR[100] @ $;

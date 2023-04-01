@@ -70,7 +70,7 @@ struct HC_GR_Carve {
     u16 item [[format("getItemName")]];
 };
 
-HC_GR_Carve GRHCCarves[while(std::mem::read_unsigned($,2)!=0xFFFF)] @ 0x1562CC0;
+HC_GR_Carve GRHCCarves[while(std::mem::read_unsigned($,2)!=0xFFFF)] @ soGRHCCarves;
 
 struct HC_Carve {
     MonsterId monId;
@@ -81,4 +81,4 @@ struct HC_Carve {
     u16 item4 [[format("getItemName")]];
 };
 
-HC_Carve HCCarves[while(std::mem::read_unsigned($,2)!=0xFFFF)] @ 0x1562FA0;
+HC_Carve HCCarves[while(std::mem::read_unsigned($,2)!=0xFFFF)] @ soHCCarves;
