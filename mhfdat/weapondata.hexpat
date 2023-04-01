@@ -12,6 +12,7 @@ fn timesten (u8 n) {
 	return n*10;
 };
 
+// 0x34 is the size of MeleeWeaponEntry
 fn meleeNameWE (auto n) {
 	return rIPPS(soStringMelee, (($-soMelee)/0x34));
 };

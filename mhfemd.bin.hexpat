@@ -3,6 +3,7 @@
 #include <std/mem.pat>
 #include <std/core.pat>
 #include <misc/MonsterIds.hexpat>
+#include <misc/types.pat>
 
 //#define __DECOMPILE 1
 

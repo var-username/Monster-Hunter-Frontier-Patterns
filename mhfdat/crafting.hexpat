@@ -176,12 +176,11 @@ struct evoUpgrade {
     u16 unk8C [[comment("Increments with level from 650 to 850")]]; 
     u8 unk8E; padding[1];
     u16 unk90; padding[2];
-    u32 unk94 [[comment("Always 33 33 33 3F??")]]; 
-    padding[2]; u16 unk9A [[comment("Always 80 3F??")]];
-    u32 unk9C [[comment("Always 9A 99 99 3F??")]];
-    padding[2]; 
-    u16 unkA2 [[comment("Always 20 40??")]];
-    u32 unkA4 [[comment("Always 3D 0A B7 3F??")]]; 
+    float unk94 [[comment("Always 0.70??")]]; 
+    float unk98 [[comment("Always 1.00??")]];
+    float unk9C [[comment("Always 1.20??")]];
+    float unkA0 [[comment("Always 2.50??")]];
+    float unkA4 [[comment("Always 1.43??")]]; 
     u16 unkA8 [[comment("Increments")]];
     u16 unkAA [[comment("Increments")]];
     u8 unkAC [[comment("Increments with level. 32 32, 33 33, ... in HR")]];

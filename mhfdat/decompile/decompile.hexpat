@@ -31,15 +31,19 @@ u32 header1 @ 0x0 [[comment("Must equal 1A 66 68 6D")]];
 u32 header2 @ 0x4 [[comment("Must equal 00 00 00 59")]];
 u32 header3 @ 0xC [[comment("Must equal 00 00 0B C8")]];
 
-// `ptr` variables are all copied into a new buffer, plus the new buffer's 
-// base position in memory, implying the program will use these as pointers 
-// to other positions in the file
+/*!	
+	`ptr` variables are all copied into a new buffer, plus the new buffer's 
+ 	base position in memory, implying the program will use these as pointers 
+	to other positions in the file
+*/
 
 // Monotony moved to decompile_pointers.hexpat
 #include <mhfdat/decompile/decompile_pointers.hexpat>
 
-// Lots of times, the program seems to read elements of an array 
-// in the buffer, but does nothing with them. Maybe it's counting something?
+/*	
+	Lots of times, the program seems to read elements of an array 
+	in the buffer, but does nothing with them. Maybe it's counting something?
+*/
 
 /*
 	// I have no idea what these are for but apparently they're stored into ram.
@@ -282,7 +286,7 @@ s32p hd_dll_af53d6[hd_dll_af53c9] @ hd_dll_af53c0;
 // TODO: Loop at [mhfo-hd.dll + 0xaf53ff]
 
 num hd_dll_af5436 @ (hd_dll_af46a3 + 0x2a);
-u32 hd_dll_af5443[hd_dll_af5436] @ hd_dll_af542d;
+ptr hd_dll_af5443[hd_dll_af5436] @ hd_dll_af542d;
 
 num hd_dll_af435e @ (hd_dll_af46a3 + 0x32);
 

@@ -20,7 +20,7 @@ Also, funny
 
 ## Resources
 
-* [imhex Pattern Documentation](https://imhex.werwolv.net/docs/index.html)
+* [imhex Pattern Documentation](https://docs.werwolv.net/pattern-language/)
 * [ReFrontier](https://github.com/mhvuze/ReFrontier)
     * At the moment, this is THE best resource documenting the data structure of Frontier
     * ReFrontier mentions 010 template files made by Fist. The link is dead and I cannot find these templates anywhere. If found, those templates would be INCREDIBLY USEFUL
