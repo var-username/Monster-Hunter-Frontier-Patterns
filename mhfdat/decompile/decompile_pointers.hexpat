@@ -29,23 +29,44 @@ ptr hd_dll_af47e1 @ 0x48;
 
 // DONE: Loop at [mhfo-hd.dll + 0xaf47f6] analyzed. See hd_dll_af47ed
 
-ptr hd_dll_af480f @ 0x50;
-ptr hd_dll_af482e @ 0x64;
-ptr hd_dll_af4852 @ 0x54;
-ptr hd_dll_af4871 @ 0x68;
-ptr hd_dll_af4893 @ 0x58;
-ptr hd_dll_af48b2 @ 0x6C;
-ptr hd_dll_af48d4 @ 0x5C;
-ptr hd_dll_af48fd @ 0x70;
-ptr hd_dll_af4922 @ 0x60;
-ptr hd_dll_af4941 @ 0x74;
-ptr hd_dll_af4963 @ 0x78;
-ptr hd_dll_af49a6 @ 0x7C;
-ptr hd_dll_af49cd @ 0x88;
-ptr hd_dll_af49d3 @ 0x8c;
-ptr hd_dll_af4a34 @ 0x80;
-ptr hd_dll_af4a5d @ 0x84;
-ptr hd_dll_af4a63 @ 0x90;
+ptr hd_dll_af480f @ 0x50
+[[name("Pointer to Head Armor Data")]];
+ptr hd_dll_af482e @ 0x64
+[[name("Pointer to Head Armor Name Pointers")]];
+ptr hd_dll_af4852 @ 0x54
+[[name("Pointer to Body Armor Data")]];
+ptr hd_dll_af4871 @ 0x68
+[[name("Pointer to Body Armor Name Pointers")]];
+ptr hd_dll_af4893 @ 0x58
+[[name("Pointer to Arm Armor Data")]];
+ptr hd_dll_af48b2 @ 0x6C
+[[name("Pointer to Arm Armor Name Pointers")]];
+ptr hd_dll_af48d4 @ 0x5C
+[[name("Pointer to Waist Armor Data")]];
+ptr hd_dll_af48fd @ 0x70
+[[name("Pointer to Waist Armor Name Pointers")]];
+ptr hd_dll_af4922 @ 0x60
+[[name("Pointer to Leg Armor Data")]];
+ptr hd_dll_af4941 @ 0x74
+[[name("Pointer to Leg Armor Name Pointers")]];
+
+ptr hd_dll_af4963 @ 0x78
+[[name("Pointer to Equipment Description Pointers?")]];
+
+ptr hd_dll_af49a6 @ 0x7C
+[[name("Pointer to Melee Weapon Data")]];
+ptr hd_dll_af49cd @ 0x88
+[[name("Pointer to Melee Weapon Name Pointers")]];
+ptr hd_dll_af49d3 @ 0x8c
+[[name("Pointer to Melee Weapon Description Pointers")]];
+
+ptr hd_dll_af4a34 @ 0x80
+[[name("Pointer to Ranged Weapon Data")]];
+ptr hd_dll_af4a5d @ 0x84
+[[name("Pointer to Ranged Weapon Name Pointers")]];
+ptr hd_dll_af4a63 @ 0x90
+[[name("Pointer to Ranged Weapon Description Pointers")]];
+
 ptr hd_dll_af4ac4 @ 0x94;
 ptr hd_dll_af4b16 @ 0x98;
 ptr hd_dll_af4b80 @ 0x9C;
@@ -63,10 +84,12 @@ ptr hd_dll_af4d14 @ 0xDC;
 ptr hd_dll_af4d2d @ 0xEC;
 ptr hd_dll_af4d58 @ 0xF0;
 ptr hd_dll_af4d7b @ 0xF4;
-ptr hd_dll_af4da3 @ 0x100;
+ptr hd_dll_af4da3 @ 0x100
+[[name("Pointer to Item Name Pointers")]];
 ptr hd_dll_af4da9 @ 0x234;
 ptr hd_dll_af4daf @ 0xF8;
-ptr hd_dll_af4db5 @ 0xFC;
+ptr hd_dll_af4db5 @ 0xFC
+[[name("Pointer to Item Data")]];
 ptr hd_dll_af4de0 @ 0x110;
 ptr hd_dll_af4dec @ 0x104;
 ptr hd_dll_af4df2 @ 0x108;
@@ -74,11 +97,15 @@ ptr hd_dll_af4df8 @ 0x10C;
 ptr hd_dll_af4e0f @ 0x118;
 ptr hd_dll_af4e1b @ 0x114;
 ptr hd_dll_af4e3a @ 0x11C;
-ptr hd_dll_af4e5a @ 0x120;
-ptr hd_dll_af4e82 @ 0x124;
-ptr hd_dll_af4eb8 @ 0x12C;
+ptr hd_dll_af4e5a @ 0x120
+[[name("Pointer to Carve Drop Data")]];
+ptr hd_dll_af4e82 @ 0x124
+[[name("Pointer to Part Break Data")]];
+ptr hd_dll_af4eb8 @ 0x12C
+[[name("Pointer to Item Description Pointers")]];
 ptr hd_dll_af4ec1 @ 0x128;
-ptr hd_dll_af4ef0 @ 0xA40;
+ptr hd_dll_af4ef0 @ 0xA40
+[[name("Pointer to Item Source String Pointers")]];
 ptr hd_dll_af4f23 @ 0x130;
 
 // Interesting malloc at [mhfo-hd.dll + 0xaf4f29]
@@ -216,7 +243,8 @@ ptr hd_dll_af5b9d @ 0x318;
 
 ptr hd_dll_af5bd0 @ 0x324;
 ptr hd_dll_af5bd6 @ 0x328;
-ptr hd_dll_af5bdc @ 0x32C;
+ptr hd_dll_af5bdc @ 0x32C
+[[name("Pointer to HC Carve Data")]];
 ptr hd_dll_af5be2 @ 0x2F4;
 ptr hd_dll_af5be8 @ 0x2F8;
 ptr hd_dll_af5bee @ 0x2FC;
@@ -524,7 +552,8 @@ ptr hd_dll_af7735 @ 0x728;
 ptr hd_dll_af773b @ 0x72c;
 ptr hd_dll_af7741 @ 0x730;
 ptr hd_dll_af7747 @ 0x734;
-ptr hd_dll_af774d @ 0x738;
+ptr hd_dll_af774d @ 0x738
+[[name("Pointer to G-Rank HC Carve Data")]];
 ptr hd_dll_af7753 @ 0x73c;
 ptr hd_dll_af7759 @ 0x74c;
 ptr hd_dll_af775f @ 0x750;

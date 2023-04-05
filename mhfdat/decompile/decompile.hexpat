@@ -52,22 +52,37 @@ struct ptrToStringArray {
 
 /* Commented out to reduce clutter
 
-	//s32px4 hd_dll_af4966[while(std::mem::read_signed($,4))] @ hd_dll_af4963;
+	s32px4 hd_dll_af4966[while(std::mem::read_signed($,4))] @ hd_dll_af4963
+	[[name("Pointers to equipment descriptions?")]];
 
-	// Commented out because this is bugged to be put in the wrong place 
-	//s32px4 hd_dll_af49df[(sizeof(meleeData)/sizeof(MeleeWeaponEntry))] @ hd_dll_af49d3;
+	#ifdef __WEAPONNAMES
+	s32px4 hd_dll_af49df[numMelee] @ hd_dll_af49d3
+	[[name("Pointers to Melee Weapon Descriptions")]];
 
-	// Commented out because this is bugged to be put in the wrong place 
-	//s32px4 hd_dll_af4a6f[(sizeof(rangedData)/sizeof(RangedWeaponEntry))] @ hd_dll_af4a63;
+	s32px4 hd_dll_af4a6f[numRanged] @ hd_dll_af4a63
+	[[name("Pointers to Ranged Weapon Descriptions")]];
+	#endif
 
 	// List of pointers to armor stats
-	ptr hd_dll_af4aca[6] @ hd_dll_af4ac4;
+	ptr hd_dll_af4aca[6] @ hd_dll_af4ac4
+	[[
+		name("Pointers to armor stats"), 
+		comment("[0] = Legs, [1] = Head, [2] = Head, [3] = Body, [4] = Arm, [5] = Waist")
+	]];
 	
 	// Lists of pointers to armor/weapon ptString lists
-	ptr hd_dll_af4b1c[8] @ hd_dll_af4b16;
+	ptr hd_dll_af4b1c[8] @ hd_dll_af4b16
+	[[
+		name("Pointers to armor/weapon name pointers"),
+		comment("[0] = Legs, [2] = Head, [3] = Body, [4] = Arm, [5] = Waist, [6] = Melee, [7] = Ranged")
+	]];
 
 	// List of pointers to armor ptString lists
-	ptr hd_dll_af4b86[5] @ hd_dll_af4b80;
+	ptr hd_dll_af4b86[5] @ hd_dll_af4b80
+	[[
+		name("Pointers to armor name pointers"),
+		comment("[0] = Head, [1] = Body, [2] = Arm, [3] = Waist, [4] = Legs")
+	]];
 
 	ptu32x10 hd_dll_af4bcc[while(std::mem::read_signed($,4)!=0)] @ hd_dll_af4bc6;
 	
@@ -125,7 +140,8 @@ struct ptrToStringArray {
 	// Each of these u8s are written to incrementally, 0 to [0xaf4fa4]
 	u8PaddD hd_dll_af4fa8[numMonsterDesc] @ hd_dll_af4f23;
 
-	s32p hd_dll_af4fd7[numMonsterDesc] @ hd_dll_af4fc1 [[name("Monster Descriptions")]];
+	s32p hd_dll_af4fd7[numMonsterDesc] @ hd_dll_af4fc1 
+	[[name("Monster Descriptions")]];
 
 	struct struct_af5001 {
 		ptr unk0; 
