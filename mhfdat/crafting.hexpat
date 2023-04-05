@@ -147,11 +147,16 @@ g50WUpgrade g50WeaponUpgrades[81914] @ soG50WUpgrades;
 // [mhfo-hd.dll + 0xaf47ed]
 ptGenericAUpgrade armorUpgrades[while(std::mem::read_unsigned($,4))] @ hd_dll_af47c9;
 
-UnknownCrafting miscCrafting1[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging1;
-UnknownCrafting miscCrafting2[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging2;
-UnknownCrafting miscCrafting3[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging3;
-UnknownCrafting miscCrafting4[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging4;
-UnknownCrafting miscCrafting5[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging5;
+UnknownCrafting miscCrafting1[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging1
+[[name("Forging Data 1")]];
+UnknownCrafting miscCrafting2[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging2
+[[name("Forging Data 2")]];
+UnknownCrafting miscCrafting3[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging3
+[[name("Forging Data 3")]];
+UnknownCrafting miscCrafting4[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging4
+[[name("Forging Data 4")]];
+UnknownCrafting miscCrafting5[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging5
+[[name("Forging Data 5")]];
 
 
 //Unknown struct starting at 0x0156BF40

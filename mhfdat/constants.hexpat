@@ -5,12 +5,12 @@
 
 
 // [mhfo-hd.dll + 0xaf4fa4]
-num numMonsterDesc @ (hd_dll_af46a3 + 0x22) 
+num numMonsterDesc      @ (hd_dll_af46a3 + 0x22) 
 [[name("Number of monster descriptions")]];
 
-ptr soRegularWUpgrades  = 0xB43CC0;         ptr eoRegularWUpgrades = 0xB7B63F;
-ptr soG50WUpgrades      = hd_dll_af6c0e;    ptr eoG50WUpgrades = 0x11D0B7F;
-ptr soRegAUpgrades      = 0x16EED60;        ptr eoRegAUpgrades = 0x1844A3F;
+ptr soRegularWUpgrades  = 0xB43CC0;
+ptr soG50WUpgrades      = hd_dll_af6c0e;
+ptr soRegAUpgrades      = 0x16EED60;
 
 ptr soForging1          = hd_dll_af8d48;
 ptr soForging2          = hd_dll_af8d54;
@@ -35,7 +35,7 @@ ptr soStringWaist       = hd_dll_af48fd;
 ptr soStringLeg         = hd_dll_af4941;
 
 // [mhfo-hd.dll + 0xaf4dcb]
-num numItems @ (hd_dll_af46a3 + 0x8) 
+num numItems            @ (hd_dll_af46a3 + 0x8) 
 [[name("Number of total Items")]];
 
 // Pointers to start of item data areas
@@ -55,11 +55,11 @@ ptr soStringMelee       = hd_dll_af49cd;
 ptr soStringRanged      = hd_dll_af4a5d;
 
 // [mhfo-hd.dll + 0xaf4e70]
-num numCarveDTs @ (hd_dll_af46a3 + 0x1C)
+num numCarveDTs         @ (hd_dll_af46a3 + 0x1C)
 [[name("Number of Carve Drop Tables")]];
 
 // [mhfo-hd.dll + 0xaf4e98]
-num numPartBreakDTs @ (hd_dll_af46a3 + 0x1E)
+num numPartBreakDTs     @ (hd_dll_af46a3 + 0x1E)
 [[name("Number of Part Breat Drop Tables")]];
 
 
@@ -68,3 +68,10 @@ ptr soPartBreaks        = hd_dll_af4e82;
 ptr soCarves            = hd_dll_af4e5a;
 ptr soGRHCCarves        = hd_dll_af774d;
 ptr soHCCarves          = hd_dll_af5bdc;
+
+/*
+	This information does seem to be accurate, and I'm saving it in case it
+	comes in handy, however as of current I will avoid using it for accuracy
+*/
+num numRangedW          @ (hd_dll_af47af + 0xC);
+num numMeleeW           @ (hd_dll_af47af + 0xE);

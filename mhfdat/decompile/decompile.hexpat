@@ -4,8 +4,8 @@
 #include <std/io.pat>
 
 struct s32px4 {s32p unk0[4];};
-struct u32x10 {u32 unk[0x10];};
-struct ptu32x10 {u32x10 *pointer : u32;};
+struct u32x10 {u32 unk[0x10] [[inline]];};
+struct ptu32x10 {u32x10 *pointer : u32 [[inline]];};
 struct u8PaddD {u8; padding[0xD];};
 struct u16Padd2 {u16; padding[2];};
 struct u16Padd4 {u16; padding[4];};
@@ -57,10 +57,12 @@ struct ptrToStringArray {
 
 	#ifdef __WEAPONNAMES
 	s32px4 hd_dll_af49df[numMelee] @ hd_dll_af49d3
-	[[name("Pointers to Melee Weapon Descriptions")]];
+	//[[name("Pointers to Melee Weapon Descriptions")]]
+	;
 
 	s32px4 hd_dll_af4a6f[numRanged] @ hd_dll_af4a63
-	[[name("Pointers to Ranged Weapon Descriptions")]];
+	//[[name("Pointers to Ranged Weapon Descriptions")]]
+	;
 	#endif
 
 	// List of pointers to armor stats
@@ -289,11 +291,15 @@ struct struct_af5312 {
 
 struct_af5312 hd_dll_af5312 [0xB1] @ hd_dll_af530c;
 
-num hd_dll_af53a0 @ (hd_dll_af46a3 + 0x26);
-s32p hd_dll_af53ad[hd_dll_af53a0] @ hd_dll_af5397;
+num hd_dll_af53a0 @ (hd_dll_af46a3 + 0x26)
+[[name("Number of Hunting Horn Guide Pages?")]];
+s32p hd_dll_af53ad[hd_dll_af53a0] @ hd_dll_af5397
+[[name("Hunting Horn Guide Pages?")]];
 
-num hd_dll_af53c9 @ (hd_dll_af46a3 + 0x28);
-s32p hd_dll_af53d6[hd_dll_af53c9] @ hd_dll_af53c0;
+num hd_dll_af53c9 @ (hd_dll_af46a3 + 0x28)
+[[name("Number of More Hunting Horn Tutorials?")]];
+s32p hd_dll_af53d6[hd_dll_af53c9] @ hd_dll_af53c0
+[[name("More Hunting Horn Tutorial?")]];
 
 // TODO: Loop at [mhfo-hd.dll + 0xaf53ff]
 

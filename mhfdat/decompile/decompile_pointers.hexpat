@@ -19,9 +19,12 @@ ptr hd_dll_af4794 @ 0xB5C;
 ptr hd_dll_af47af @ 0xE8; 
 ptr hd_dll_af47b5 @ 0xE4; 
 ptr hd_dll_af47c9 @ 0x4C; 
-ptr hd_dll_af47cc @ 0x34; 
-ptr hd_dll_af47cf @ 0x38; 
-ptr hd_dll_af47d2 @ 0x3c; 
+ptr hd_dll_af47cc @ 0x34
+[[name("Pointer to Forging Data 5")]]; 
+ptr hd_dll_af47cf @ 0x38
+[[name("Pointer to Forging Data 4")]]; 
+ptr hd_dll_af47d2 @ 0x3c
+[[name("Pointer to Weapon Upgrade Path Data")]]; 
 ptr hd_dll_af47d5 @ 0x40; 
 ptr hd_dll_af47d8 @ 0x44; 
 ptr hd_dll_af47db @ 0xB48; 
@@ -747,7 +750,8 @@ ptr hd_dll_af870e @ 0xa08;
 ptr hd_dll_af8714 @ 0xa0c;
 ptr hd_dll_af871a @ 0xa10;
 ptr hd_dll_af8720 @ 0xa14;
-ptr hd_dll_af8726 @ 0xa18;
+ptr hd_dll_af8726 @ 0xa18
+[[name("Pointer to Evolution Upgrade Data")]];
 ptr hd_dll_af872c @ 0xa1c;
 
 // TODO: Pointers in an array at af8732
@@ -794,10 +798,13 @@ ptr hd_dll_af8d1d @ 0xaa8;
 ptr hd_dll_af8d23 @ 0xaac;
 ptr hd_dll_af8d29 @ 0xab0;
 ptr hd_dll_af8d2f @ 0xab4;
-ptr hd_dll_af8d48 @ 0xab8;
+ptr hd_dll_af8d48 @ 0xab8
+[[name("Pointer to Forging Data 1")]];
 ptr hd_dll_af8d4e @ 0xabc;
-ptr hd_dll_af8d54 @ 0xac0;
-ptr hd_dll_af8d5a @ 0xac4;
+ptr hd_dll_af8d54 @ 0xac0
+[[name("Pointer to Forging Data 2")]];
+ptr hd_dll_af8d5a @ 0xac4
+[[name("Pointer to Forging Data 3")]];
 ptr hd_dll_af8d60 @ 0xad4;
 ptr hd_dll_af8d66 @ 0xac8;
 
