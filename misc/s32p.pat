@@ -5,10 +5,10 @@
 /** 
 	Read a Pointer to a String
 	@param p A u32 pointer
-	@return The string pointed to by p, up to 100 characters long
+	@return The string pointed to by p, up to 255 characters long
 */
 fn rPS (u32 p) {
-	return std::mem::read_string(p, 100);
+	return std::mem::read_string(p, 255);
 };
 
 /** 

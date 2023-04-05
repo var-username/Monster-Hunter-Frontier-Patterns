@@ -3,7 +3,7 @@
 #include <misc/types.pat>
 #include <std/io.pat>
 
-struct s32px4{s32p unk0[4];};
+struct s32px4 {s32p unk0[4];};
 struct u32x10 {u32 unk[0x10];};
 struct ptu32x10 {u32x10 *pointer : u32;};
 struct u8PaddD {u8; padding[0xD];};
@@ -26,10 +26,6 @@ struct ptrToStringArray {
 // "Byte Source Offset"
 
 // [mhfo-hd.dll + 0xaf4690]
-
-u32 header1 @ 0x0 [[comment("Must equal 1A 66 68 6D")]];
-u32 header2 @ 0x4 [[comment("Must equal 00 00 00 59")]];
-u32 header3 @ 0xC [[comment("Must equal 00 00 0B C8")]];
 
 /*!	
 	`ptr` variables are all copied into a new buffer, plus the new buffer's 

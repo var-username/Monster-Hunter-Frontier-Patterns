@@ -55,10 +55,13 @@ ptr soStringMelee       = hd_dll_af49cd;
 ptr soStringRanged      = hd_dll_af4a5d;
 
 // [mhfo-hd.dll + 0xaf4e70]
-num numCarveDTs @ (hd_dll_af46a3 + 0x1C);
+num numCarveDTs @ (hd_dll_af46a3 + 0x1C)
+[[name("Number of Carve Drop Tables")]];
 
 // [mhfo-hd.dll + 0xaf4e98]
-num numPartBreakDTs @ (hd_dll_af46a3 + 0x1E);
+num numPartBreakDTs @ (hd_dll_af46a3 + 0x1E)
+[[name("Number of Part Breat Drop Tables")]];
+
 
 // Pointers to start and end of carve and break drop data
 ptr soPartBreaks        = hd_dll_af4e82;

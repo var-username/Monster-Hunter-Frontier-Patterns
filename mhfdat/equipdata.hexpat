@@ -41,16 +41,21 @@ struct ArmorDataEntry {
 };
 
 // [mhfo-hd.dll + 0xaf4812]
-ArmorDataEntry headEntries[while(std::mem::read_signed($,2)!=-1)] @ soHead;
+ArmorDataEntry headEntries[while(std::mem::read_signed($,2)!=-1)] @ soHead
+[[name("Head Armor Data")]];
 
 // [mhfo-hd.dll + 0xaf4855]
-ArmorDataEntry bodyEntries[while(std::mem::read_signed($,2)!=-1)] @ soBody;
+ArmorDataEntry bodyEntries[while(std::mem::read_signed($,2)!=-1)] @ soBody
+[[name("Body Armor Data")]];
 
 // [mhfo-hd.dll + 0xaf4896]
-ArmorDataEntry armEntries[while(std::mem::read_signed($,2)!=-1)] @ soArm;
+ArmorDataEntry armEntries[while(std::mem::read_signed($,2)!=-1)] @ soArm
+[[name("Arm Armor Data")]];
 
 // [mhfo-hd.dll + 0xaf48d7]
-ArmorDataEntry waistEntries[while(std::mem::read_signed($,2)!=-1)] @ soWaist;
+ArmorDataEntry waistEntries[while(std::mem::read_signed($,2)!=-1)] @ soWaist
+[[name("Waist Armor Data")]];
 
 // [mhfo-hd.dll + 0xaf4925]
-ArmorDataEntry legEntries[while(std::mem::read_signed($,2)!=-1)] @ soLeg;
+ArmorDataEntry legEntries[while(std::mem::read_signed($,2)!=-1)] @ soLeg
+[[name("Leg Armor Data")]];

@@ -131,7 +131,9 @@ struct RangedWeaponEntry {
 };
 
 // [mhfo-hd.dll + 0xaf49a9]
-MeleeWeaponEntry meleeData[while(std::mem::read_signed($,2)!=-1)] @ soMelee;
+MeleeWeaponEntry meleeData[while(std::mem::read_signed($,2)!=-1)] @ soMelee
+[[name("Melee Weapon Data")]];
 
 // [mhfo-hd.dll + 0xaf4a3a]
-RangedWeaponEntry rangedData[while(std::mem::read_signed($,2)!=-1)] @ soRanged;
+RangedWeaponEntry rangedData[while(std::mem::read_signed($,2)!=-1)] @ soRanged
+[[name("Ranged Weapon Data")]];
