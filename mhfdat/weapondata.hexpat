@@ -18,63 +18,83 @@ fn meleeNameWE (auto n) {
 };
 	
 fn className (u8 n) {
-		 if (n==0x00) return "Great Sword";
-	else if (n==0x01) return "Heavy Bowgun";
-	else if (n==0x02) return "Hammer";
-	else if (n==0x03) return "Lance";
-	else if (n==0x04) return "Sword and Shield";
-	else if (n==0x05) return "Light Bowgun";
-	else if (n==0x06) return "Dual Blades";
-	else if (n==0x07) return "Long Sword";
-	else if (n==0x08) return "Hunting Horn";
-	else if (n==0x09) return "Gunlance";
-	else if (n==0x0A) return "Bow";
-	else if (n==0x0B) return "Tonfa";
-	else if (n==0x0C) return "Switch Axe F";
-	else if (n==0x0D) return "Magnet Spike";
-	else 			  return "!!!ERROR!!!";
+	str ret = "!!Unknown!!";
+
+	match (n) {
+		(0x00): ret = "Great Sword";
+		(0x01): ret = "Heavy Bowgun";
+		(0x02): ret = "Hammer";
+		(0x03): ret = "Lance";
+		(0x04): ret = "Sword and Shield";
+		(0x05): ret = "Light Bowgun";
+		(0x06): ret = "Dual Blades";
+		(0x07): ret = "Long Sword";
+		(0x08): ret = "Hunting Horn";
+		(0x09): ret = "Gunlance";
+		(0x0A): ret = "Bow";
+		(0x0B): ret = "Tonfa";
+		(0x0C): ret = "Switch Axe F";
+		(0x0D): ret = "Magnet Spike";
+	}
+
+	return ret;
 };
 	
 fn elementName (u8 n) {
-		 if (n==0x00) return "None";
-	else if (n==0x01) return "Fire";
-	else if (n==0x02) return "Water";
-	else if (n==0x03) return "Thunder";
-	else if (n==0x04) return "Dragon";
-	else if (n==0x05) return "Ice";
-	else if (n==0x06) return "Flame";
-	else if (n==0x07) return "Light";
-	else if (n==0x08) return "Thunder Pole";
-	else if (n==0x09) return "Tenshou";
-	else if (n==0x0A) return "Okiko";
-	else if (n==0x0B) return "Black Flame";
-	else if (n==0x0C) return "Kanade";
-	else if (n==0x0D) return "Darkness";
-	else if (n==0x0E) return "Crimson Demon";
-	else if (n==0x0F) return "Wind";
-	else if (n==0x10) return "Sound";
-	else if (n==0x11) return "Burning Zero";
-	else if (n==0x12) return "Emperor's Roar";
-	else 			  return "!!!ERROR!!!";
+	str ret = "!!Unknown!!";
+
+	match (n) {
+		(0x00): ret = "None";
+		(0x01): ret = "Fire";
+		(0x02): ret = "Water";
+		(0x03): ret = "Thunder";
+		(0x04): ret = "Dragon";
+		(0x05): ret = "Ice";
+		(0x06): ret = "Flame";
+		(0x07): ret = "Light";
+		(0x08): ret = "Thunder Pole";
+		(0x09): ret = "Tenshou";
+		(0x0A): ret = "Okiko";
+		(0x0B): ret = "Black Flame";
+		(0x0C): ret = "Kanade";
+		(0x0D): ret = "Darkness";
+		(0x0E): ret = "Crimson Demon";
+		(0x0F): ret = "Wind";
+		(0x10): ret = "Sound";
+		(0x11): ret = "Burning Zero";
+		(0x12): ret = "Emperor's Roar";
+	}
+	
+	return ret;
 };
 	
 fn ailmentName (u8 n) {
-		 if (n==0x00) return "None";
-	else if (n==0x01) return "Poison";
-	else if (n==0x02) return "Paralysis";
-	else if (n==0x03) return "Sleep";
-	else if (n==0x04) return "Blast";
-	else 			  return "!!!ERROR!!!";
+	str ret = "!!Unknown!!";
+
+	match (n) {
+		(0x00): ret = "None";
+		(0x01): ret = "Poison";
+		(0x02): ret = "Paralysis";
+		(0x03): ret = "Sleep";
+		(0x04): ret = "Blast";
+	}
+
+	return ret;
 };
 	
 fn eqType (u8 n) {
-		 if (n==0x00) return "General";
-	else if (n==0x01) return "SP";
-	else if (n==0x02) return "Gou";
-	else if (n==0x04) return "Evolution";
-	else if (n==0x08) return "HC";
-	else if (n==0x24) return "Ravi";
-	else 			  return "!!!ERROR!!!";
+	str ret = "!!Unknown!!";
+
+	match (n) {
+		(0x00): ret = "General";
+		(0x01): ret = "SP";
+		(0x02): ret = "Gou";
+		(0x04): ret = "Evolution";
+		(0x08): ret = "HC";
+		(0x24): ret = "Ravi";
+	}
+	
+	return ret;
 };
 	
 struct MeleeWeaponEntry {
