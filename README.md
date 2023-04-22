@@ -30,4 +30,4 @@ Also, funny
 
 
 ## Credits
-* Thanks to Malckyor for giving me access to prior work he did with Chakratos!
+* Thanks to [@Malckyor](https://github.com/Malckyor) for giving me access to prior work he did with [@Chakratos](https://github.com/Chakratos)!
