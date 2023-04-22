@@ -3,6 +3,7 @@
 #pragma array_limit 200000
 #include <std/io.pat>
 #include <misc/s32p.pat>
+#include <misc/types.pat>
 
 #include <misc/MonsterIds.hexpat>
 
@@ -79,10 +80,10 @@ struct QuestData {
     u32 zennyKO;
     u32 zennySubA;
     u32 zennySubB;
-    padding[4];
-    u8 rank; // Maybe? Compare to https://github.com/ricochhet/MHF-Quest-Resources/blob/main/FrontierTools/Utils/RankDictionary.cs
-    padding[9];
-    //padding[0xE];
+    u32 questTime [[comment("Timing in frames (30Hz)")]];
+    u32 mapID;
+    ptr questStringptr;
+    u16 questRestrictions;
     u16 questID;
     
     QuestObj mainGoal;
@@ -91,19 +92,42 @@ struct QuestData {
 
     QuestObj subBGoal;
     
-    padding[0x5C];
+    // Based on https://github.com/ricochhet/MHF-Quest-Resources/blob/main/FrontierTools/Tools/QuestTool/QuestReader.cs#L101
+    u32 rank; 
+    u16 joinMinRank;
+    u16 joinMaxRank;
+    u16 postMinRank;
+    u16 postMaxRank;
+
+    padding[8];
+
+    // Forced equipment section (size 0x30)
+    u16 legsAndAttach[4];
+    u16 weaponAndAttach[4];
+    u16 headAndAttach[4];
+    u16 chestAndAttach[4];
+    u16 armsAndAttach[4];
+    u16 waistAndAttach[4];
+
+    u32 [[hidden]];
+
+    padding[20];
+
     u32 hrMainReward;
     u32 hrSubAReward;
     u32 hrSubBReward;
     itemId mainRewardList[3];
-    padding[0x8A];
+    padding[3];
+    MonsterId;
+    padding[0x86];
     s32p title;
     s32p textMain;
     s32p textSubA;
     s32p testSubB;
     s32p successCond;
     s32p failCond;
-    padding[0x8];
+    s32p contractor;
+    s32p description;
 } [[inline]];
 
 // Pointer to quest data struct

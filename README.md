@@ -27,3 +27,7 @@ Also, funny
 * [ricochhet/MHF-Quest-Resources](https://github.com/ricochhet/MHF-Quest-Resources)
 * [Yuvi-App/MHF-QuestEditor](https://github.com/Yuvi-App/MHF-QuestEditor)
 * [suzaku01's repositories](https://github.com/suzaku01)
+
+
+## Credits
+* Thanks to Malckyor for giving me access to prior work he did with Chakratos!

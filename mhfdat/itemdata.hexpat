@@ -2,13 +2,15 @@
 
 namespace itemdata {
 
+	u32 __sizeof_Item = 0x24;
+
 	// Add 1 to n (Used for pattern formatting)
 	fn plusone (u8 n) {
 		return n+1;
 	};
 	
 	fn getItemName(auto i) {
-		return getItemName(($-soItemData)/0x24);
+		return getItemName(($-soItemData)/__sizeof_Item);
 	};
 
 	struct Item {
@@ -16,17 +18,30 @@ namespace itemdata {
 		u8 rarity [[format("itemdata::plusone")]];
 		u8 maxStack;
 		u8 unk04;
-		u8 icon [[comment("Item Icon??")]];
-		u8 iconColor [[comment("Icon color??")]]; // 00 = White, 01 = Red, 02 = Green, 03 = Blue
-		u8 unk07 [[hidden]];
-		u32 unk08 [[hidden]];
+		u8 icon [[comment("Item Icon")]];
+
+		/* TODO: Malckyor's code puts this as a u32, but 
+			I think it'd be more accurate as a u16 or so. 
+		*/
+
+		/* TODO: I remember seeing an image showing the different 
+			color codes in frontier. Find it and link it somewhere.
+		*/
+		u32 iconColor [[comment("Icon color")]]; 
+
+		u16 unk08 [[hidden]];
+		
 		u32 buyPrice;
 		u32 sellPrice;
-		u8 unk14 [[name("Related to item type?")]]; // 04 = Consumable, 05 = Placeable
-		u8 unk15 [[hidden]];
+		u16 type [[comment("Item Type")]]; // 04 = Consumable, 05 = Placeable
+		
 		u16 unk16 [[hidden]];
-		u32 unk18 [[hidden]];
-		padding[8];
+		u16 unk18 [[hidden]];
+		u16 unk1A [[hidden]];
+		u16 unk1C [[hidden]]; // itemVar
+		u16 unk1E [[hidden]];
+		u16 unk20 [[hidden]]; // itemVari
+		u16 unk22 [[hidden]];
 	} 
 	[[format("itemdata::getItemName")]]
 	;

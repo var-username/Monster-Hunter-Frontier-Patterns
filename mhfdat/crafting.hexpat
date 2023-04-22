@@ -7,15 +7,17 @@ fn meleeName (u16 n) {
 };
 
 fn getEquipType(u8 n) {
-		 if (n==0x00) return "Legs";
-	else if (n==0x01) return "";
-	else if (n==0x02) return "Head";
-	else if (n==0x03) return "Chest";
-	else if (n==0x04) return "Arms";
-    else if (n==0x05) return "Waist";
-	else if (n==0x06) return "Melee";
-	else if (n==0x07) return "Ranged";
-	else 			  return "!!!ERROR!!!";
+    str ret = "!!Unknown!!";
+    match (n) {
+        (0x00): ret = "Legs";
+        (0x02): ret = "Head";
+        (0x03): ret = "Chest";
+        (0x04): ret = "Arms";
+        (0x05): ret = "Waist";
+        (0x06): ret = "Melee";
+        (0x07): ret = "Ranged";
+    }
+	return ret;
 };
 
 fn getEquipName(u32 n) {
@@ -35,7 +37,7 @@ fn getEquipName(u32 n) {
         equipName = rIPPS(soStringWaist, equipID);
     else if (equipType == 6) 
         equipName = rIPPS(soStringMelee, equipID);
-    else if (equipName == 7) 
+    else if (equipType == 7) 
         equipName = rIPPS(soStringRanged, equipID);
 
     return std::format("{} | {}", getEquipType(equipType), equipName);
@@ -112,7 +114,7 @@ struct ptGenericAUpgrade {
     GenericAUpgrade *ptr : u32 [[inline]];
 };
 
-struct UnknownCrafting {
+struct CraftMatReq {
     u32 equipID [[color("0088FF"), format("getEquipName")]];
     bool purchaseable @ $-0x03;
 	u16 materialID1 [[color("22FF22"), format("getItemName"), comment("Item ID")]];
@@ -139,6 +141,10 @@ struct UnknownCrafting {
     padding[3];
 } [[color("660066")]];
 
+struct CraftMatTable {
+    CraftMatReq entry[while(std::mem::read_unsigned($, 1)!=0xFF)] [[inline]];
+};
+
 //WUpgradePath wUpgradePath1[13] @ 0xAE0DC4;
 WUpgradePath wUpgradePath[17568] @ soWUpgradePath;
 
@@ -147,16 +153,27 @@ g50WUpgrade g50WeaponUpgrades[81914] @ soG50WUpgrades;
 // [mhfo-hd.dll + 0xaf47ed]
 ptGenericAUpgrade armorUpgrades[while(std::mem::read_unsigned($,4))] @ hd_dll_af47c9;
 
-UnknownCrafting miscCrafting1[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging1
-[[name("Forging Data 1")]];
-UnknownCrafting miscCrafting2[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging2
-[[name("Forging Data 2")]];
-UnknownCrafting miscCrafting3[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging3
-[[name("Forging Data 3")]];
-UnknownCrafting miscCrafting4[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging4
-[[name("Forging Data 4")]];
-UnknownCrafting miscCrafting5[while(std::mem::read_unsigned($, 1)!=0xFF)] @ soForging5
-[[name("Forging Data 5")]];
+CraftMatTable towerArmorCraftingTable @ soTowerAForging
+[[name("Tower Armor Forging Data")]];
+CraftMatTable towerWeaponCraftingTable @ soTowerWForging
+[[name("Tower Weapon Forging Data")]];
+CraftMatTable specialWeaponCraftingTable @ soSpecialWForging
+[[name("Special Weapon Forging Data??")]];
+CraftMatTable armorGCraftingTable @ soGArmorForging
+[[name("G-Rank Armor Forging Data")]];
+CraftMatTable weaponGCraftingTable @ soGWeaponForging
+[[name("G-Rank Weapon Forging Data")]];
+
+CraftMatTable transmogCraftingTable @ soTransmogForging
+[[name("Transmog Forging Data")]];
+CraftMatTable weaponCraftingTable @ soWeaponForging
+[[name("Weapon Forging Data")]];
+CraftMatTable zArmorCraftingTable @ soZArmorForging
+[[name("Zenith Armor Forging Data")]];
+CraftMatTable armorCraftingTable @ soArmorForging
+[[name("Armor Forging Data")]];
+CraftMatTable miscCrafting5 @ soForging5
+[[name("Other Weapon Forging Data")]];
 
 
 //Unknown struct starting at 0x0156BF40

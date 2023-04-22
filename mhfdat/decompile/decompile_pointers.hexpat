@@ -20,9 +20,9 @@ ptr hd_dll_af47af @ 0xE8;
 ptr hd_dll_af47b5 @ 0xE4; 
 ptr hd_dll_af47c9 @ 0x4C; 
 ptr hd_dll_af47cc @ 0x34
-[[name("Pointer to Forging Data 5")]]; 
+[[name("Pointer to Other Weapon Forging Data")]]; 
 ptr hd_dll_af47cf @ 0x38
-[[name("Pointer to Forging Data 4")]]; 
+[[name("Pointer to Armor Forging Data")]]; 
 ptr hd_dll_af47d2 @ 0x3c
 [[name("Pointer to Weapon Upgrade Path Data")]]; 
 ptr hd_dll_af47d5 @ 0x40; 
@@ -456,8 +456,10 @@ ptr hd_dll_af6adc @ 0x5E4;
 ptr hd_dll_af6b3c @ 0x5E8;
 ptr hd_dll_af6b9c @ 0x5EC;
 
-ptr hd_dll_af6bfc @ 0x5f0;
-ptr hd_dll_af6c02 @ 0x5f4;
+ptr hd_dll_af6bfc @ 0x5f0
+[[name("Pointer to G-Rank Weapon Forging Data")]];
+ptr hd_dll_af6c02 @ 0x5f4
+[[name("Pointer to G-Rank Armor Forging Data")]];
 ptr hd_dll_af6c08 @ 0x5f8;
 ptr hd_dll_af6c0e @ 0x5fc;
 ptr hd_dll_af6c14 @ 0x600;
@@ -584,7 +586,8 @@ ptr hd_dll_af781f @ 0x7a4;
 ptr hd_dll_af7825 @ 0x7a8;
 
 ptr hd_dll_af786f @ 0x7b0;
-ptr hd_dll_af7875 @ 0x7ac;
+ptr hd_dll_af7875 @ 0x7ac
+[[name("Pointer to Special Weapon Forging Data")]];
 ptr hd_dll_af787b @ 0x7b4;
 ptr hd_dll_af7881 @ 0x7b8;
 ptr hd_dll_af7887 @ 0x7bc;
@@ -701,7 +704,8 @@ ptr hd_dll_af82ca @ 0x934;
 ptr hd_dll_af82d0 @ 0x938;
 ptr hd_dll_af82d6 @ 0x93c;
 
-ptr hd_dll_af831a @ 0x940;
+ptr hd_dll_af831a @ 0x940
+[[name("Pointer to Tower Weapon Forging Data")]];
 ptr hd_dll_af8320 @ 0x944;
 ptr hd_dll_af8326 @ 0x948;
 ptr hd_dll_af832c @ 0x94c;
@@ -723,7 +727,8 @@ ptr hd_dll_af8380 @ 0x984;
 ptr hd_dll_af839f @ 0x98c;
 ptr hd_dll_af83a5 @ 0x990;
 ptr hd_dll_af83ab @ 0x994;
-ptr hd_dll_af83b1 @ 0x998;
+ptr hd_dll_af83b1 @ 0x998
+[[name("Pointer to Tower Armor Forging Data")]];
 ptr hd_dll_af83b7 @ 0x99c;
 ptr hd_dll_af83bd @ 0x9a4;
 ptr hd_dll_af83c3 @ 0x9ac;
@@ -799,12 +804,12 @@ ptr hd_dll_af8d23 @ 0xaac;
 ptr hd_dll_af8d29 @ 0xab0;
 ptr hd_dll_af8d2f @ 0xab4;
 ptr hd_dll_af8d48 @ 0xab8
-[[name("Pointer to Forging Data 1")]];
+[[name("Pointer to Transmog Forging Data")]];
 ptr hd_dll_af8d4e @ 0xabc;
 ptr hd_dll_af8d54 @ 0xac0
-[[name("Pointer to Forging Data 2")]];
+[[name("Pointer to Weapon Forging Data")]];
 ptr hd_dll_af8d5a @ 0xac4
-[[name("Pointer to Forging Data 3")]];
+[[name("Pointer to Zenith Armor Forging Data")]];
 ptr hd_dll_af8d60 @ 0xad4;
 ptr hd_dll_af8d66 @ 0xac8;
 
