@@ -1,6 +1,7 @@
 // Very large limits just in case, feel free to make these more sensible
 #pragma pattern_limit 5000000
 #pragma array_limit 200000
+#include <std/sys.pat>
 #include <std/io.pat>
 #include <misc/s32p.pat>
 #include <misc/types.pat>
@@ -9,8 +10,17 @@
 
 //#define __DECOMPILE 1
 
+str __header_fail_msg = "File header does not match expected mhfinf header";
+u32 header1 @ 0x0 [[comment("Must equal 1A 66 6E 69")]];
+u32 header2 @ 0x4 [[comment("Must equal 00 00 00 06")]];
+u32 header3 @ 0xC [[comment("Must equal 00 00 00 88")]];
+
+std::assert_warn(header1 == 0x1A666E69, __header_fail_msg);
+std::assert_warn(header2 == 0x00000006, __header_fail_msg);
+std::assert_warn(header3 == 0x00000088, __header_fail_msg);
+
 using itemId;
-// Format ItemID to make it easier to look up on Ferias
+/// Format ItemID to make it easier to look up on Ferias
 fn fmtItemId(itemId n) {
     return std::format("{:04X}", n);
 };
@@ -19,11 +29,13 @@ using itemId = u16 [[format("fmtItemId")]];
 u32 hd_dll_afa411 @ 0x10;
 s16 hd_dll_afa421 @ hd_dll_afa411;
 
+ptr ptQuestTable @ 0x14;
+
 #ifdef __DECOMPILE
 #include <mhfinf/decompile.hexpat>
 #endif
 
-// Known quest objective types
+/// Known quest objective types
 enum questObjType : u32 {
     None = 0x00000000,
     Hunt = 0x00000001,
@@ -130,10 +142,10 @@ struct QuestData {
     s32p description;
 } [[inline]];
 
-// Pointer to quest data struct
+/// Pointer to quest data struct
 struct ptQuestData {
     QuestData *qd : u32 [[inline]];
-} ;
+};
 
 struct QuestTableEntry {
     padding[2];
@@ -141,4 +153,4 @@ struct QuestTableEntry {
     ptQuestData *ql[count] : u32 [[inline]];
 };
 
-QuestTableEntry questTable[hd_dll_afa421] @ 0x6A0A0;
+QuestTableEntry questTable[hd_dll_afa421] @ ptQuestTable;

@@ -54,7 +54,7 @@ ptr hd_dll_af4941 @ 0x74
 [[name("Pointer to Leg Armor Name Pointers")]];
 
 ptr hd_dll_af4963 @ 0x78
-[[name("Pointer to Equipment Description Pointers?")]];
+[[name("Pointer to Equipment Description Pointers")]];
 
 ptr hd_dll_af49a6 @ 0x7C
 [[name("Pointer to Melee Weapon Data")]];
@@ -794,7 +794,8 @@ ptr hd_dll_af88c7 @ 0xa84;
 ptr hd_dll_af88f2 @ 0xa88;
 
 ptr hd_dll_af8cac @ 0xa94;
-ptr hd_dll_af8cb2 @ 0xa98;
+ptr hd_dll_af8cb2 @ 0xa98
+[[name("Pointer to Quest List Struct")]];
 
 ptr hd_dll_af8cf8 @ 0xa9c;
 ptr hd_dll_af8cfe @ 0xaa0;

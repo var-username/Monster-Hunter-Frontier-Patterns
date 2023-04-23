@@ -74,6 +74,8 @@ ptr soCarves            = hd_dll_af4e5a;
 ptr soGRHCCarves        = hd_dll_af774d;
 ptr soHCCarves          = hd_dll_af5bdc;
 
+ptr soQuestLists		= hd_dll_af8cb2;
+
 /*
 	This information does seem to be accurate, and I'm saving it in case it
 	comes in handy, however as of current I will avoid using it for accuracy

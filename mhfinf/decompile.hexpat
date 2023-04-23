@@ -2,10 +2,6 @@
 #include <misc/s32p.pat>
 #include <misc/types.pat>
 
-u32 header1 @ 0x0 [[comment("Must equal 1A 66 6E 69")]];
-u32 header2 @ 0x4 [[comment("Must equal 00 00 00 06")]];
-u32 header3 @ 0xC [[comment("Must equal 00 00 00 88")]];
-
 //ptr hd_dll_afa411 @ 0x10;
 ptr hd_dll_afa414 @ 0x14;
 

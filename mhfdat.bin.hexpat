@@ -15,6 +15,7 @@
 //#define __EQUIPNAMES 1
 //#define __CRAFTING 1
 //#define __PARTBREAKS 1
+//#define __QUESTLIST 1
 
 //#define __DECOMPILE 1
 
@@ -33,7 +34,7 @@ std::assert_warn(header3 == 0x00000BC8, __header_fail_msg);
 #include <mhfdat/itemnames.hexpat>
 #endif
 
-/*!
+/**
     @param n The item ID
     @return The item ID, formatted as expected by Ferias /sozai/sozai.htm?{ID}
     Optionally also returns the item name, comment out the first return
@@ -74,6 +75,10 @@ fn getItemName(u16 n) {
 
 #ifdef __PARTBREAKS
 #include <mhfdat/partbreaks.hexpat>
+#endif
+
+#ifdef __QUESTLIST
+#include <mhfdat/questlist.hexpat>
 #endif
 
 #ifdef __DECOMPILE
