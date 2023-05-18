@@ -23,7 +23,7 @@ Also, funny
 * [imhex Pattern Documentation](https://docs.werwolv.net/pattern-language/)
 * [ReFrontier](https://github.com/mhvuze/ReFrontier)
     * At the moment, this is THE best resource documenting the data structure of Frontier
-    * ReFrontier mentions 010 template files made by Fist. The link is dead and I cannot find these templates anywhere. If found, those templates would be INCREDIBLY USEFUL
+    * ReFrontier mentions 010 template files made by Fist. The link is dead and I cannot find these templates anywhere. If found, those templates could be INCREDIBLY USEFUL
 * [ricochhet/MHF-Quest-Resources](https://github.com/ricochhet/MHF-Quest-Resources)
 * [Yuvi-App/MHF-QuestEditor](https://github.com/Yuvi-App/MHF-QuestEditor)
 * [suzaku01's repositories](https://github.com/suzaku01)
@@ -31,3 +31,4 @@ Also, funny
 
 ## Credits
 * Thanks to [@Malckyor](https://github.com/Malckyor) for giving me access to prior work he did with [@Chakratos](https://github.com/Chakratos)!
+* Thanks to [@DorielRivalet](https://github.com/DorielRivalet) for sending me the 010 templates they had access to!
