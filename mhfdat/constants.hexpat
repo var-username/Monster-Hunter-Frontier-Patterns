@@ -76,6 +76,13 @@ ptr soHCCarves          = hd_dll_af5bdc;
 
 ptr soQuestLists		= hd_dll_af8cb2;
 
+// TODO: Add an entry for `hd_dll_af5214` and `hd_dll_af5261` once I figure out
+// what the data at those pointers describes
+ptr soArenaEquipment 	= hd_dll_af51b6;
+ptr soArenaItems		= hd_dll_af5177;
+ptr soArenaStageChunk0 	= hd_dll_af521a;
+ptr soArenaStageChunk1 	= hd_dll_af51ec;
+
 /*
 	This information does seem to be accurate, and I'm saving it in case it
 	comes in handy, however as of current I will avoid using it for accuracy

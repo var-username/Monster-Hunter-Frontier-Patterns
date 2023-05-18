@@ -128,13 +128,18 @@ ptr hd_dll_af508b @ 0xC0;
 // TODO: Really funky code at [mhfo-hd.dll + 0xaf5091]
 
 ptr hd_dll_af5145 @ 0x13C;
-ptr hd_dll_af5177 @ 0x144;
+ptr hd_dll_af5177 @ 0x144
+[[name("Pointer to Arena Item data")]];
 ptr hd_dll_af517d @ 0x140;
-ptr hd_dll_af51b6 @ 0x148;
+ptr hd_dll_af51b6 @ 0x148
+[[name("Pointer to Arena Equipment data")]]; 
 ptr hd_dll_af51e0 @ 0x150;
-ptr hd_dll_af51ec @ 0x14C;
-ptr hd_dll_af5214 @ 0x158;
-ptr hd_dll_af521a @ 0x154;
+ptr hd_dll_af51ec @ 0x14C
+[[name("Pointer to Arena Stage ID Chunk 1")]];
+ptr hd_dll_af5214 @ 0x158
+[[name("Maybe pointer to Ammo added to Arena?")]];
+ptr hd_dll_af521a @ 0x154
+[[name("Pointer to Arena Stage ID Chunk 0")]];
 ptr hd_dll_af5261 @ 0x15C;
 ptr hd_dll_af5298 @ 0x160;
 ptr hd_dll_af52ba @ 0x168;

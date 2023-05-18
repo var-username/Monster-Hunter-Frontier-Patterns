@@ -16,6 +16,7 @@
 //#define __CRAFTING 1
 //#define __PARTBREAKS 1
 //#define __QUESTLIST 1
+//#define __ARENA 1
 
 //#define __DECOMPILE 1
 
@@ -79,6 +80,10 @@ fn getItemName(u16 n) {
 
 #ifdef __QUESTLIST
 #include <mhfdat/questlist.hexpat>
+#endif
+
+#ifdef __ARENA
+#include <mhfdat/arena.hexpat>
 #endif
 
 #ifdef __DECOMPILE
