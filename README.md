@@ -12,6 +12,8 @@ To properly utilize these patterns, they should be placed in one of the imhex "p
 
 I personally recommend making a Project, as imhex will look for a folder named "patterns" adjacent to the project file.
 
+Some more information is available on our [Introduction Wiki page](https://github.com/var-username/Monster-Hunter-Frontier-Patterns/wiki/Introduction)
+
 ## Why did I make this?
 
 In short I wanted to reverse engineer how Frontier stores data for the purposes of modding and simple exploration. Since there is very little public data on the matter, I started my own project.
