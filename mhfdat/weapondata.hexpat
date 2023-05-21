@@ -2,10 +2,12 @@
 
 #include <misc/s32p.pat>
 
+#ifndef __ITEMDATA
 // Add 1 to n (Used for pattern formatting)
 fn plusone (u8 n) {
 	return n+1;
 };
+#endif
 
 // Multiply n by 10 (Used for pattern formatting)
 fn timesten (u8 n) {
