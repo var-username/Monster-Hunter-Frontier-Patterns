@@ -20,8 +20,8 @@ ptr soGWeaponForging	= hd_dll_af6bfc;
 ptr soTransmogForging   = hd_dll_af8d48;
 ptr soWeaponForging     = hd_dll_af8d54;
 ptr soZArmorForging     = hd_dll_af8d5a;
-ptr soArmorForging      = hd_dll_af47cf;
-ptr soForging5          = hd_dll_af47cc;
+ptr soArmorForging      = hd_dll_af47cc;
+ptr soForging5          = hd_dll_af47cf;
 ptr soWUpgradePath      = hd_dll_af47d2;
 ptr soEvoUpgrades       = hd_dll_af8726;
 

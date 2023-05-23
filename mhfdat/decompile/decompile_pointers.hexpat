@@ -1,6 +1,7 @@
 #pragma once
 ptr hd_dll_af469d @ 0x910;
-ptr hd_dll_af46a3 @ 0x10;
+ptr hd_dll_af46a3 @ 0x10
+[[name("Pointer to Important Nums")]];
 ptr hd_dll_af46c9 @ 0x988; 
 ptr hd_dll_af46e9 @ 0xAF0; 
 ptr hd_dll_af4709 @ 0xB04; 
@@ -18,11 +19,12 @@ ptr hd_dll_af4794 @ 0xB5C;
 
 ptr hd_dll_af47af @ 0xE8; 
 ptr hd_dll_af47b5 @ 0xE4; 
-ptr hd_dll_af47c9 @ 0x4C; 
+ptr hd_dll_af47c9 @ 0x4C
+[[name("Pointer to Armor Upgrade Material Data")]]; 
 ptr hd_dll_af47cc @ 0x34
-[[name("Pointer to Other Weapon Forging Data")]]; 
-ptr hd_dll_af47cf @ 0x38
 [[name("Pointer to Armor Forging Data")]]; 
+ptr hd_dll_af47cf @ 0x38
+[[name("Pointer to Other Weapon Forging Data")]]; 
 ptr hd_dll_af47d2 @ 0x3c
 [[name("Pointer to Weapon Upgrade Path Data")]]; 
 ptr hd_dll_af47d5 @ 0x40; 
