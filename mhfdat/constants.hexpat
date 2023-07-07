@@ -83,6 +83,7 @@ ptr soArenaItems		= hd_dll_af5177;
 ptr soArenaStageChunk0 	= hd_dll_af521a;
 ptr soArenaStageChunk1 	= hd_dll_af51ec;
 
+ptr soSpecialShops 		= hd_dll_af8f43;
 /*
 	This information does seem to be accurate, and I'm saving it in case it
 	comes in handy, however as of current I will avoid using it for accuracy

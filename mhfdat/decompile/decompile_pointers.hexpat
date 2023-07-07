@@ -842,7 +842,8 @@ ptr hd_dll_af8f2b @ 0xb24;
 ptr hd_dll_af8f31 @ 0xb28;
 ptr hd_dll_af8f37 @ 0xb7c;
 ptr hd_dll_af8f3d @ 0xb80;
-ptr hd_dll_af8f43 @ 0xb2c;
+ptr hd_dll_af8f43 @ 0xb2c
+[[name("Pointer to Special Shops")]];
 
 ptr hd_dll_af8f80 @ 0xb38;
 

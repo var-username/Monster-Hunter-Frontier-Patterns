@@ -16,7 +16,28 @@ struct ItemOut {
 	padding[6];
 };
 
-struct NPointPrice {
+struct SpecialShopHeader {
+	ptr ptRoadShop;
+	ptr ptFestiShop;
+	ptr ptNCafe;
+	ptr ptSpecialItemShop;
+	ptr ptSpecialItemShopSR1;
+	ptr ptGCPExchange;
+	ptr ptDojoGeneral;
+	ptr ptDojoHR5;
+	ptr ptDojoDoneComps;
+	ptr unk[3] 
+	[[comment("Same contents as previous dojo shops, unknown purpose")]];
+};
+
+SpecialShopHeader sShopHeader @ soSpecialShops;
+
+struct CategorizedPrice {
+	u16 id [[format("getItemName")]];
+	padding[2];
+	u16 price;
+	padding[2];
+
 	// 01 00 01 = NCafe(Gatherables)
 	// 03 02 01 = NCafe(HR5+)(Mats (HR5~7))
 	// 06 06 01 = NCafe(GR1+)(GItems (GR1+))
@@ -31,12 +52,8 @@ struct NPointPrice {
 	u8; u8; u8; 
 	
 	padding[1];
-	u16 id [[format("getItemName")]];
-	padding[2];
-	u16 price;
-	padding[2];
 };
 
-// TODO: Figure out where this array actually starts
-// The GCP Exchange is right above it, so figure out how they're separated too
-NPointPrice nCafeShop[100] @ 0x16A3A60;
+CategorizedPrice festiShop[while(std::mem::read_unsigned($,4))] @ sShopHeader.ptFestiShop;
+CategorizedPrice nCafeShop[while(std::mem::read_unsigned($,4))] @ sShopHeader.ptNCafe;
+CategorizedPrice gcpShop[while(std::mem::read_unsigned($,4))] @ sShopHeader.ptGCPExchange;
