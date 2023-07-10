@@ -72,9 +72,12 @@ ptr hd_dll_af4a5d @ 0x84
 ptr hd_dll_af4a63 @ 0x90
 [[name("Pointer to Ranged Weapon Description Pointers")]];
 
-ptr hd_dll_af4ac4 @ 0x94;
-ptr hd_dll_af4b16 @ 0x98;
-ptr hd_dll_af4b80 @ 0x9C;
+ptr hd_dll_af4ac4 @ 0x94
+[[name("Pointer to Pointers to armor stats")]];
+ptr hd_dll_af4b16 @ 0x98
+[[name("Pointer to Pointers to armor/weapon name pointers")]];
+ptr hd_dll_af4b80 @ 0x9C
+[[name("Pointer to Pointers to armor name pointers")]];
 ptr hd_dll_af4bc6 @ 0xC4;
 ptr hd_dll_af4bf5 @ 0xC8;
 ptr hd_dll_af4bfb @ 0xCC;
@@ -87,7 +90,8 @@ ptr hd_dll_af4cd7 @ 0xD4;
 ptr hd_dll_af4d08 @ 0xE0;
 ptr hd_dll_af4d14 @ 0xDC;
 ptr hd_dll_af4d2d @ 0xEC;
-ptr hd_dll_af4d58 @ 0xF0;
+ptr hd_dll_af4d58 @ 0xF0
+[[name("Pointer to Hunter Pearl Skills?")]];
 ptr hd_dll_af4d7b @ 0xF4;
 ptr hd_dll_af4da3 @ 0x100
 [[name("Pointer to Item Name Pointers")]];
@@ -115,7 +119,8 @@ ptr hd_dll_af4f23 @ 0x130;
 
 // Interesting malloc at [mhfo-hd.dll + 0xaf4f29]
 
-ptr hd_dll_af4fc1 @ 0x134;
+ptr hd_dll_af4fc1 @ 0x134
+[[name("Pointer to Monster Description Pointers")]];
 ptr hd_dll_af4ff0 @ 0x138;
 ptr hd_dll_af5038 @ 0xA0;
 ptr hd_dll_af503e @ 0xA4;
@@ -143,7 +148,8 @@ ptr hd_dll_af5214 @ 0x158
 ptr hd_dll_af521a @ 0x154
 [[name("Pointer to Arena Stage ID Chunk 0")]];
 ptr hd_dll_af5261 @ 0x15C;
-ptr hd_dll_af5298 @ 0x160;
+ptr hd_dll_af5298 @ 0x160
+[[name("Pointer to Macha Pot Rewards")]];
 ptr hd_dll_af52ba @ 0x168;
 ptr hd_dll_af52c0 @ 0x164;
 ptr hd_dll_af52f3 @ 0x16C;

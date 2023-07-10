@@ -88,5 +88,14 @@ ptr soSpecialShops 		= hd_dll_af8f43;
 	This information does seem to be accurate, and I'm saving it in case it
 	comes in handy, however as of current I will avoid using it for accuracy
 */
+num numLegA				@ (hd_dll_af47af + 0x0);
+num numUnk				@ (hd_dll_af47af + 0x2);
+num numHeadA			@ (hd_dll_af47af + 0x4);
+num numBodyA			@ (hd_dll_af47af + 0x6);
+num numArmA				@ (hd_dll_af47af + 0x8);
+num numWaistA			@ (hd_dll_af47af + 0xA);
+
+// Ghidra labels this _DAT_1e714f8
 num numRangedW          @ (hd_dll_af47af + 0xC);
+// Ghidra labels this _DAT_1e7414fc
 num numMeleeW           @ (hd_dll_af47af + 0xE);

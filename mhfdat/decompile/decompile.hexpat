@@ -41,14 +41,6 @@ struct ptrToStringArray {
 	in the buffer, but does nothing with them. Maybe it's counting something?
 */
 
-/*
-	// I have no idea what these are for but apparently they're stored into ram.
-	// Ghidra labels these as _DAT_1e7414f8 and _DAT_1e7414fc respectively
-	u16 hd_dll_af47c1_1 @ (hd_dll_af47af + 0xe8);
-	u32 hd_dll_af47c1 = u32 (hd_dll_af47c1_1);
-	u16 hd_dll_af47c5_1 @ (hd_dll_af47b5 + 0xe4);
-	u32 hd_dll_af47c5 = u32 (hd_dll_af47c5_1);
-*/
 
 /* Commented out to reduce clutter
 
@@ -108,11 +100,16 @@ struct ptrToStringArray {
 		} if (sub[1] != 0) {
 			u32Padd4 unk1[count] @ (sub[1] + 4);
 		} if (sub[2] != 0) {
+			// Seems to be that sub[2] points to a shop section
 			struct_af4c11_2 unk2[count] @ sub[2];
+
+			//unk2[5] points to the primary shop inventory ReFrontier's
+			// cheat shop modifies
 		}
 	};
 
-	struct_af4c11 hd_dll_af4c11[0xE] @ hd_dll_af4bf5;
+	struct_af4c11 hd_dll_af4c11[0xE] @ hd_dll_af4bf5
+	[[name("Equipment Description Pointers")]];
 	ptr hd_dll_af4c01[0xE] @ hd_dll_af4bfb;
  
 	// [mhfo-hd.dll + 0xaf4ce0]
@@ -130,7 +127,8 @@ struct ptrToStringArray {
 	// Some function is called, parameter is hd_dll_af4d2d
 
 	// Refrontier calls this array Hunter Pearl Skill unlocks
-	u16Padd2E hd_dll_af4d6f[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4d58;
+	u16Padd2E hd_dll_af4d6f[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4d58
+	[[name("Hunter Pearl Skill unlocks")]];
 
 	// Could probably just make this while(read_signed), but whatever
 	ptr hd_dll_af4d91[std::mem::read_signed(hd_dll_af46a3 + 0x5E,2)] @ hd_dll_af4d7b;
@@ -204,109 +202,112 @@ struct ptrToStringArray {
 	}
 */
 
-/* Commented out to reduce clutter
-	// A pointer to an array of u16Padd2's
-	struct struct_af514b {
-		ptr ptr;
-		u16Padd2 unk[while(std::mem::read_signed($,2)!=-1)] @ ptr;
+// Commented out to reduce clutter
+	struct item_num_pair {
+		u16 id [[format("getItemName")]];
+		u16 num;
+	};
+	
+	struct num_item_pair {
+		u16 num;
+		u16 id [[format("getItemName")]];
 	};
 
-	// Array of pointers to arrays of u16Padd2's
-	struct_af514b hd_dll_af514b[0xE] @ hd_dll_af5145;
-
-	num hd_dll_af5186 @ (hd_dll_af46a3 + 0x40);
-	struct_af514b hd_dll_af518a[hd_dll_af5186] @ hd_dll_af5177;
-
-	num hd_dll_af51bf @ (hd_dll_af46a3 + 0x42);
-	ptr hd_dll_af51cc[hd_dll_af51bf] @ hd_dll_af51b6;
-
-	// Array of pointers to arrays of pointers
-	ptrToStringArray hd_dll_af51f5[while(std::mem::read_signed($,4))] @ hd_dll_af51e0;
-
-	num hd_dll_af5223 @ (hd_dll_af46a3 + 0x46);
-	struct struct_af5230 {
+	// A pointer to an array of num_item_pair's
+	struct ptrToNumItemPair {
 		ptr ptr;
 
 		if (ptr != 0) {
-			u16Padd2 dest[while(std::mem::read_signed($,2)!=-1)] @ ptr;
+			num_item_pair dest[while(std::mem::read_signed($,2)!=-1)] @ ptr;
 		}
 	};
-	struct_af5230 hd_dll_af5230[hd_dll_af5223] @ hd_dll_af5214;
+
+	// Array of pointers to arrays of num_item_pairs's
+	ptrToNumItemPair hd_dll_af514b[0xE] @ hd_dll_af5145;
 
 	num hd_dll_af526a @ (hd_dll_af46a3 + 0x48);
 	ptr hd_dll_af5277[hd_dll_af526a] @ hd_dll_af5261;
 
-	ptr hd_dll_af52a7[while(std::mem::read_signed($,4))] @ hd_dll_af5298;
-*/
+	struct macha_pot_rewards {
+		item_num_pair items[6] [[inline]];
+	} [[single_color, inline]];
 
-struct struct_af52db {
-	s32p; s32p; padding[0xC];
-};
-num hd_dll_af52c6 @ (hd_dll_af46a3 + 0x4E);
-struct_af52db hd_dll_af52db[hd_dll_af52c6 + 1] @ hd_dll_af52ba;
+	struct ptMacha {
+		macha_pot_rewards *ptr : ptr [[inline]];
+	};
 
-// NOTE: Possibly incorrect, double check this
-u16 hd_dll_af52ff[while(std::mem::read_signed($,2))] @ hd_dll_af52f3;
+	ptMacha hd_dll_af52a7[while(std::mem::read_signed($,4))] @ hd_dll_af5298
+	[[name("Macha Pot Rewards")]];
 
-struct struct_af5312_1 {
-	// This structure repeats 5 times. I'd make a for loop if I were able
-	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
-		ptr; u32;
-	} else {
-		padding[8];
-	}
+	struct struct_af52db {
+		s32p; s32p; padding[0xC];
+	};
+	num hd_dll_af52c6 @ (hd_dll_af46a3 + 0x4E);
+	struct_af52db hd_dll_af52db[hd_dll_af52c6 + 1] @ hd_dll_af52ba;
 
-	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
-		ptr; u32;
-	} else {
-		padding[8];
-	}
+	// NOTE: Possibly incorrect, double check this
+	u16 hd_dll_af52ff[while(std::mem::read_signed($,2))] @ hd_dll_af52f3;
 
-	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
-		ptr; u32;
-	} else {
-		padding[8];
-	}
+	struct struct_af5312_1 {
+		// This structure repeats 5 times. I'd make a for loop if I were able
+		if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+			ptr; u32;
+		} else {
+			padding[8];
+		}
 
-	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
-		ptr; u32;
-	} else {
-		padding[8];
-	}
+		if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+			ptr; u32;
+		} else {
+			padding[8];
+		}
 
-	if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
-		ptr; u32;
-	} else {
-		padding[8];
-	}
-};
+		if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+			ptr; u32;
+		} else {
+			padding[8];
+		}
 
-struct struct_af5312 {
-	ptr ptr;
+		if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+			ptr; u32;
+		} else {
+			padding[8];
+		}
 
-	if (ptr != 0) {
-		struct_af5312_1 arr[0x28] @ ptr;
-	}
-};
+		if (std::mem::read_signed($,4) && std::mem::read_signed($+4,4)) {
+			ptr; u32;
+		} else {
+			padding[8];
+		}
+	};
 
-struct_af5312 hd_dll_af5312 [0xB1] @ hd_dll_af530c;
+	struct struct_af5312 {
+		ptr ptr;
 
-num hd_dll_af53a0 @ (hd_dll_af46a3 + 0x26)
-[[name("Number of Hunting Horn Guide Pages?")]];
-s32p hd_dll_af53ad[hd_dll_af53a0] @ hd_dll_af5397
-[[name("Hunting Horn Guide Pages?")]];
+		if (ptr != 0) {
+			struct_af5312_1 arr[0x28] @ ptr;
+		}
+	};
 
-num hd_dll_af53c9 @ (hd_dll_af46a3 + 0x28)
-[[name("Number of More Hunting Horn Tutorials?")]];
-s32p hd_dll_af53d6[hd_dll_af53c9] @ hd_dll_af53c0
-[[name("More Hunting Horn Tutorial?")]];
+	struct_af5312 hd_dll_af5312 [0xB1] @ hd_dll_af530c;
 
-// TODO: Loop at [mhfo-hd.dll + 0xaf53ff]
+	num hd_dll_af53a0 @ (hd_dll_af46a3 + 0x26)
+	[[name("Number of Hunting Horn Guide Pages?")]];
+	s32p hd_dll_af53ad[hd_dll_af53a0] @ hd_dll_af5397
+	[[name("Hunting Horn Guide Pages?")]];
 
-num hd_dll_af5436 @ (hd_dll_af46a3 + 0x2a);
-ptr hd_dll_af5443[hd_dll_af5436] @ hd_dll_af542d;
+	num hd_dll_af53c9 @ (hd_dll_af46a3 + 0x28)
+	[[name("Number of More Hunting Horn Tutorials?")]];
+	s32p hd_dll_af53d6[hd_dll_af53c9] @ hd_dll_af53c0
+	[[name("More Hunting Horn Tutorial?")]];
 
-num hd_dll_af435e @ (hd_dll_af46a3 + 0x32);
+	// TODO: Loop at [mhfo-hd.dll + 0xaf53ff]
+
+	num hd_dll_af5436 @ (hd_dll_af46a3 + 0x2a);
+	ptr hd_dll_af5443[hd_dll_af5436] @ hd_dll_af542d;
+
+	num hd_dll_af435e @ (hd_dll_af46a3 + 0x32);
+//
 
 /* // [mhfo-hd.dll + 0xaf83cf]
 
