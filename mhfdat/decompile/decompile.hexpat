@@ -41,8 +41,10 @@ struct ptrToStringArray {
 	in the buffer, but does nothing with them. Maybe it's counting something?
 */
 
+u16 hd_dll_af4753 @ (header.ptrs.important_nums + 0x400); 
+u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 
-/* Commented out to reduce clutter
+// Commented out to reduce clutter
 
 	s32px4 hd_dll_af4966[while(std::mem::read_signed($,4))] @ hd_dll_af4963
 	[[name("Pointers to equipment descriptions?")]];
@@ -131,7 +133,7 @@ struct ptrToStringArray {
 	[[name("Hunter Pearl Skill unlocks")]];
 
 	// Could probably just make this while(read_signed), but whatever
-	ptr hd_dll_af4d91[std::mem::read_signed(hd_dll_af46a3 + 0x5E,2)] @ hd_dll_af4d7b;
+	ptr hd_dll_af4d91[std::mem::read_signed(header.ptrs.important_nums + 0x5E,2)] @ hd_dll_af4d7b;
 
 	u16Padd2 hd_dll_af4e03[while(std::mem::read_signed($,2))] @ hd_dll_af4de0;
 	u16Padd2 hd_dll_af4e29[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4e0f;
@@ -156,12 +158,12 @@ struct ptrToStringArray {
 	struct_af5001 hd_dll_af5001[0xB1] @ hd_dll_af4ff0;
 
 	ptr hd_dll_af505b[0xE] @ hd_dll_af504a;
-*/
+//
 
 /* Yeah I have no idea how this works 
 	// [mhfo-hd.dll + 0xaf5091]
 
-	u16 max @ (hd_dll_af46a3 + 0x1A);
+	u16 max @ (header.ptrs.important_nums + 0x1A);
 	u16 n = 1;
 
 	struct struct_af5091 {
@@ -225,7 +227,7 @@ struct ptrToStringArray {
 	// Array of pointers to arrays of num_item_pairs's
 	ptrToNumItemPair hd_dll_af514b[0xE] @ hd_dll_af5145;
 
-	num hd_dll_af526a @ (hd_dll_af46a3 + 0x48);
+	num hd_dll_af526a @ (header.ptrs.important_nums + 0x48);
 	ptr hd_dll_af5277[hd_dll_af526a] @ hd_dll_af5261;
 
 	struct macha_pot_rewards {
@@ -242,7 +244,7 @@ struct ptrToStringArray {
 	struct struct_af52db {
 		s32p; s32p; padding[0xC];
 	};
-	num hd_dll_af52c6 @ (hd_dll_af46a3 + 0x4E);
+	num hd_dll_af52c6 @ (header.ptrs.important_nums + 0x4E);
 	struct_af52db hd_dll_af52db[hd_dll_af52c6 + 1] @ hd_dll_af52ba;
 
 	// NOTE: Possibly incorrect, double check this
@@ -291,22 +293,22 @@ struct ptrToStringArray {
 
 	struct_af5312 hd_dll_af5312 [0xB1] @ hd_dll_af530c;
 
-	num hd_dll_af53a0 @ (hd_dll_af46a3 + 0x26)
+	num hd_dll_af53a0 @ (header.ptrs.important_nums + 0x26)
 	[[name("Number of Hunting Horn Guide Pages?")]];
 	s32p hd_dll_af53ad[hd_dll_af53a0] @ hd_dll_af5397
 	[[name("Hunting Horn Guide Pages?")]];
 
-	num hd_dll_af53c9 @ (hd_dll_af46a3 + 0x28)
+	num hd_dll_af53c9 @ (header.ptrs.important_nums + 0x28)
 	[[name("Number of More Hunting Horn Tutorials?")]];
 	s32p hd_dll_af53d6[hd_dll_af53c9] @ hd_dll_af53c0
 	[[name("More Hunting Horn Tutorial?")]];
 
 	// TODO: Loop at [mhfo-hd.dll + 0xaf53ff]
 
-	num hd_dll_af5436 @ (hd_dll_af46a3 + 0x2a);
+	num hd_dll_af5436 @ (header.ptrs.important_nums + 0x2a);
 	ptr hd_dll_af5443[hd_dll_af5436] @ hd_dll_af542d;
 
-	num hd_dll_af435e @ (hd_dll_af46a3 + 0x32);
+	num hd_dll_af435e @ (header.ptrs.important_nums + 0x32);
 //
 
 /* // [mhfo-hd.dll + 0xaf83cf]

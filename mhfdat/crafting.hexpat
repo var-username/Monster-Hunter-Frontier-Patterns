@@ -44,7 +44,9 @@ fn getEquipName(u32 n) {
 };
 
 fn upgradeName (auto n) {
-	return rIPPS(soStringMelee, (($-soWUpgradePath)/36));
+    //                                         sizeof(WUpgradePath) = 36 
+    //                                                                \/
+	return rIPPS(soStringMelee, ( ($-header.ptrs.weaponUpgradePath) / 36));
 };
 
 struct RegWUpgrade {
@@ -146,12 +148,13 @@ struct CraftMatTable {
 };
 
 //WUpgradePath wUpgradePath1[13] @ 0xAE0DC4;
-WUpgradePath wUpgradePath[17568] @ soWUpgradePath;
+WUpgradePath wUpgradePath[17568] @ header.ptrs.weaponUpgradePath;
 
 g50WUpgrade g50WeaponUpgrades[81914] @ soG50WUpgrades;
 
 // [mhfo-hd.dll + 0xaf47ed]
-ptGenericAUpgrade armorUpgrades[while(std::mem::read_unsigned($,4))] @ hd_dll_af47c9;
+ptGenericAUpgrade armorUpgrades[while(std::mem::read_unsigned($,4))] 
+        @ header.ptrs.armorUpgradeMats;
 
 CraftMatTable towerArmorCraftingTable @ soTowerAForging
 [[name("Tower Armor Forging Data")]];
@@ -170,9 +173,9 @@ CraftMatTable weaponCraftingTable @ soWeaponForging
 [[name("Weapon Forging Data")]];
 CraftMatTable zArmorCraftingTable @ soZArmorForging
 [[name("Zenith Armor Forging Data")]];
-CraftMatTable armorCraftingTable @ soArmorForging
+CraftMatTable armorCraftingTable @ header.ptrs.armorForging
 [[name("Armor Forging Data")]];
-CraftMatTable miscCrafting5 @ soForging5
+CraftMatTable miscCrafting5 @ header.ptrs.otherWeaponForging
 [[name("Other Weapon Forging Data")]];
 
 

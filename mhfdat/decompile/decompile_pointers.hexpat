@@ -1,7 +1,5 @@
 #pragma once
 ptr hd_dll_af469d @ 0x910;
-ptr hd_dll_af46a3 @ 0x10
-[[name("Pointer to Important Nums")]];
 ptr hd_dll_af46c9 @ 0x988; 
 ptr hd_dll_af46e9 @ 0xAF0; 
 ptr hd_dll_af4709 @ 0xB04; 
@@ -19,39 +17,18 @@ ptr hd_dll_af4794 @ 0xB5C;
 
 ptr hd_dll_af47af @ 0xE8; 
 ptr hd_dll_af47b5 @ 0xE4; 
-ptr hd_dll_af47c9 @ 0x4C
-[[name("Pointer to Armor Upgrade Material Data")]]; 
-ptr hd_dll_af47cc @ 0x34
-[[name("Pointer to Armor Forging Data")]]; 
-ptr hd_dll_af47cf @ 0x38
-[[name("Pointer to Other Weapon Forging Data")]]; 
-ptr hd_dll_af47d2 @ 0x3c
-[[name("Pointer to Weapon Upgrade Path Data")]]; 
-ptr hd_dll_af47d5 @ 0x40; 
-ptr hd_dll_af47d8 @ 0x44; 
 ptr hd_dll_af47db @ 0xB48; 
-ptr hd_dll_af47e1 @ 0x48; 
 
 // DONE: Loop at [mhfo-hd.dll + 0xaf47f6] analyzed. See hd_dll_af47ed
 
-ptr hd_dll_af480f @ 0x50
-[[name("Pointer to Head Armor Data")]];
 ptr hd_dll_af482e @ 0x64
 [[name("Pointer to Head Armor Name Pointers")]];
-ptr hd_dll_af4852 @ 0x54
-[[name("Pointer to Body Armor Data")]];
 ptr hd_dll_af4871 @ 0x68
 [[name("Pointer to Body Armor Name Pointers")]];
-ptr hd_dll_af4893 @ 0x58
-[[name("Pointer to Arm Armor Data")]];
 ptr hd_dll_af48b2 @ 0x6C
 [[name("Pointer to Arm Armor Name Pointers")]];
-ptr hd_dll_af48d4 @ 0x5C
-[[name("Pointer to Waist Armor Data")]];
 ptr hd_dll_af48fd @ 0x70
 [[name("Pointer to Waist Armor Name Pointers")]];
-ptr hd_dll_af4922 @ 0x60
-[[name("Pointer to Leg Armor Data")]];
 ptr hd_dll_af4941 @ 0x74
 [[name("Pointer to Leg Armor Name Pointers")]];
 
@@ -338,7 +315,6 @@ ptr hd_dll_af5f83 @ 0x418;
 ptr hd_dll_af5f89 @ 0x41C;
 ptr hd_dll_af5f8f @ 0x420;
 ptr hd_dll_af5f95 @ 0x424;
-ptr hd_dll_af5f9b @ 0x28;
 ptr hd_dll_af5fa1 @ 0x42C;
 ptr hd_dll_af5fa7 @ 0x430;
 ptr hd_dll_af5fad @ 0x434;

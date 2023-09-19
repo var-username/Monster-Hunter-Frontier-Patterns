@@ -40,22 +40,28 @@ struct ArmorDataEntry {
 	u16 unk44 [[hidden]]; u16 unk46 [[hidden]];
 };
 
+/* 	Yes, we have the number of each armor type as a variable.
+	Yes, we could use those numbers instead of just reading until we hit a -1.
+	No, we will not use that method, as this is what mhf does
+	and we're emulating that.
+ */
+
 // [mhfo-hd.dll + 0xaf4812]
-ArmorDataEntry headEntries[while(std::mem::read_signed($,2)!=-1)] @ soHead
-[[name("Head Armor Data")]];
+ArmorDataEntry headEntries[while(std::mem::read_signed($,2)!=-1)] 
+	@ header.ptrs.headArmor [[name("Head Armor Data")]];
 
 // [mhfo-hd.dll + 0xaf4855]
-ArmorDataEntry bodyEntries[while(std::mem::read_signed($,2)!=-1)] @ soBody
-[[name("Body Armor Data")]];
+ArmorDataEntry bodyEntries[while(std::mem::read_signed($,2)!=-1)] 
+	@ header.ptrs.bodyArmor [[name("Body Armor Data")]];
 
 // [mhfo-hd.dll + 0xaf4896]
-ArmorDataEntry armEntries[while(std::mem::read_signed($,2)!=-1)] @ soArm
-[[name("Arm Armor Data")]];
+ArmorDataEntry armEntries[while(std::mem::read_signed($,2)!=-1)] 
+	@ header.ptrs.armArmor [[name("Arm Armor Data")]];
 
 // [mhfo-hd.dll + 0xaf48d7]
-ArmorDataEntry waistEntries[while(std::mem::read_signed($,2)!=-1)] @ soWaist
-[[name("Waist Armor Data")]];
+ArmorDataEntry waistEntries[while(std::mem::read_signed($,2)!=-1)] 
+	@ header.ptrs.waistArmor [[name("Waist Armor Data")]];
 
 // [mhfo-hd.dll + 0xaf4925]
-ArmorDataEntry legEntries[while(std::mem::read_signed($,2)!=-1)] @ soLeg
-[[name("Leg Armor Data")]];
+ArmorDataEntry legEntries[while(std::mem::read_signed($,2)!=-1)] 
+	@ header.ptrs.legArmor [[name("Leg Armor Data")]];

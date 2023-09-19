@@ -20,16 +20,8 @@
 
 //#define __DECOMPILE 1
 
+#include <mhfdat/header.hexpat>
 #include <mhfdat/constants.hexpat>
-
-str __header_fail_msg = "File header does not match expected mhfdat header";
-u32 header1 @ 0x0 [[comment("Must equal 1A 66 68 6D")]];
-u32 header2 @ 0x4 [[comment("Must equal 00 00 00 59")]];
-u32 header3 @ 0xC [[comment("Must equal 00 00 0B C8")]];
-
-std::assert_warn(header1 == 0x1A66686D, __header_fail_msg);
-std::assert_warn(header2 == 0x00000059, __header_fail_msg);
-std::assert_warn(header3 == 0x00000BC8, __header_fail_msg);
 
 #ifdef __ITEMNAMES
 #include <mhfdat/itemnames.hexpat>
