@@ -110,7 +110,7 @@ fn plusone (u8 n) {
 };
 	
 fn getStructItemName(auto i) {
-	return getItemName(($-soItemData)/__sizeof_Item);
+	return getItemName(($-header.ptrs.itemData)/__sizeof_Item);
 };
 
 struct Item {
@@ -147,4 +147,4 @@ struct Item {
 [[format("getStructItemName")]]
 ;
 
-Item items[numItems] @ soItemData;
+Item items[numItems] @ header.ptrs.itemData;

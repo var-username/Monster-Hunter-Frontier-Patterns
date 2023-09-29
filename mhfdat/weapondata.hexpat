@@ -16,7 +16,8 @@ fn timesten (u8 n) {
 
 // 0x34 is the size of MeleeWeaponEntry
 fn meleeNameWE (auto n) {
-	return rIPPS(soStringMelee, (($-soMelee)/0x34));
+	return rIPPS(header.ptrs.meleeWeaponNames, 
+	(($-header.ptrs.meleeWeapons) / 0x34));
 };
 	
 fn className (u8 n) {
@@ -153,9 +154,9 @@ struct RangedWeaponEntry {
 };
 
 // [mhfo-hd.dll + 0xaf49a9]
-MeleeWeaponEntry meleeData[while(std::mem::read_signed($,2)!=-1)] @ soMelee
-[[name("Melee Weapon Data")]];
+MeleeWeaponEntry meleeData [while(std::mem::read_signed($,2)!=-1)] 
+	@ header.ptrs.meleeWeapons [[name("Melee Weapon Data")]];
 
 // [mhfo-hd.dll + 0xaf4a3a]
-RangedWeaponEntry rangedData[while(std::mem::read_signed($,2)!=-1)] @ soRanged
-[[name("Ranged Weapon Data")]];
+RangedWeaponEntry rangedData [while(std::mem::read_signed($,2)!=-1)] 
+	@ header.ptrs.rangedWeapons [[name("Ranged Weapon Data")]];

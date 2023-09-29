@@ -34,7 +34,7 @@
     to disable.
 */
 fn getItemName(u16 n) {
-    return std::format("{:04X} | {}", n, rIPPS(soStringItem, n));
+    return std::format("{:04X} | {}", n, rIPPS(header.ptrs.itemNames, n));
 	return std::format("{:04X}", n);
 };
 

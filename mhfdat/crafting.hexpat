@@ -3,7 +3,7 @@
 #include <misc/s32p.pat>
 
 fn meleeName (u16 n) {
-    return rIPPS(soStringMelee, n);
+    return rIPPS(header.ptrs.meleeWeaponNames, n);
 };
 
 fn getEquipType(u8 n) {
@@ -26,27 +26,28 @@ fn getEquipName(u32 n) {
     
     str equipName = std::format("{:04X}", equipID);
          if (equipType == 0) 
-        equipName = rIPPS(soStringLeg, equipID);
+        equipName = rIPPS(header.ptrs.legArmorNames, equipID);
     else if (equipType == 2) 
-        equipName = rIPPS(soStringHead, equipID);
+        equipName = rIPPS(header.ptrs.headArmorNames, equipID);
     else if (equipType == 3)
-        equipName = rIPPS(soStringBody, equipID);
+        equipName = rIPPS(header.ptrs.bodyArmorNames, equipID);
     else if (equipType == 4)
-        equipName = rIPPS(soStringArm, equipID);
+        equipName = rIPPS(header.ptrs.armArmorNames, equipID);
     else if (equipType == 5)
-        equipName = rIPPS(soStringWaist, equipID);
+        equipName = rIPPS(header.ptrs.waistArmorNames, equipID);
     else if (equipType == 6) 
-        equipName = rIPPS(soStringMelee, equipID);
+        equipName = rIPPS(header.ptrs.meleeWeaponNames, equipID);
     else if (equipType == 7) 
-        equipName = rIPPS(soStringRanged, equipID);
+        equipName = rIPPS(header.ptrs.rangedWeaponNames, equipID);
 
     return std::format("{} | {}", getEquipType(equipType), equipName);
 };
 
 fn upgradeName (auto n) {
-    //                                         sizeof(WUpgradePath) = 36 
-    //                                                                \/
-	return rIPPS(soStringMelee, ( ($-header.ptrs.weaponUpgradePath) / 36));
+    //             sizeof(WUpgradePath) = 36 
+    //                                    \/
+	return rIPPS(header.ptrs.meleeWeaponNames, 
+    ( ($-header.ptrs.weaponUpgradePath) / 36));
 };
 
 struct RegWUpgrade {

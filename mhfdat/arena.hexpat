@@ -23,7 +23,7 @@ struct ptArenaEquipment {
     ArenaEquips *ptEquip : ptr [[inline]];
 };
 
-ptArenaEquipment ArenaEquipment[17] @ soArenaEquipment;
+ptArenaEquipment ArenaEquipment[17] @ header.ptrs.arenaEquipment;
 
 // ***** Arena Item Block ***** //
 
@@ -49,15 +49,15 @@ struct ptItemBlock {
     }
 };
 
-ptItemBlock ArenaItems[68] @ soArenaItems;
+ptItemBlock ArenaItems[68] @ header.ptrs.arenaItems;
 
-ptItemBlock unkPointers[23] @ hd_dll_af5214
+ptItemBlock unkPointers[23] @ header.ptrs.arenaAmmo
 [[comment("Maybe items to add as ammo for ranged weapons?")]];
 
 /* I have no idea what these are, they're just referenced in a pattern
     Doriel sent to me */
-u16 stageIDChunk0[28] @ soArenaStageChunk0;
-u16 stageIDChunk1[34] @ soArenaStageChunk1;
+u16 stageIDChunk0[28] @ header.ptrs.arenaStageIDC0;
+u16 stageIDChunk1[34] @ header.ptrs.arenaStageIDC1;
 
 /* I have no idea what these are either, again referenced in a pattern
     sent to me by Doriel */
@@ -74,4 +74,4 @@ struct ptUnkChunk {
     }
 };
 
-ptUnkChunk moreMysteryPointers[23] @ hd_dll_af5261;
+ptUnkChunk moreMysteryPointers[23] @ header.ptrs.hd_dll_af5261;
