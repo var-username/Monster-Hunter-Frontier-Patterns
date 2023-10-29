@@ -30,7 +30,7 @@ struct SpecialShopHeader {
 	[[comment("Same contents as previous dojo shops, unknown purpose")]];
 };
 
-SpecialShopHeader sShopHeader @ soSpecialShops;
+SpecialShopHeader sShopHeader @ header.ptrs.specialShops;
 
 struct CategorizedPrice {
 	u16 id [[format("getItemName")]];

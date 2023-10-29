@@ -33,9 +33,6 @@ struct ptrToStringArray {
 	to other positions in the file
 */
 
-// Monotony moved to decompile_pointers.hexpat
-#include <mhfdat/decompile/decompile_pointers.hexpat>
-
 /*	
 	Lots of times, the program seems to read elements of an array 
 	in the buffer, but does nothing with them. Maybe it's counting something?
@@ -46,41 +43,42 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 
 // Commented out to reduce clutter
 
-	s32px4 hd_dll_af4966[while(std::mem::read_signed($,4))] @ hd_dll_af4963
-	[[name("Pointers to equipment descriptions?")]];
+	s32px4 hd_dll_af4966 [while(std::mem::read_signed($,4))] @ 
+		header.ptrs.equipDesc [[name("Pointers to equipment descriptions?")]];
 
 	#ifdef __WEAPONNAMES
-	s32px4 hd_dll_af49df[numMelee] @ hd_dll_af49d3
+	s32px4 hd_dll_af49df[numMelee] @ header.ptrs.meleeWeaponDesc
 	//[[name("Pointers to Melee Weapon Descriptions")]]
 	;
 
-	s32px4 hd_dll_af4a6f[numRanged] @ hd_dll_af4a63
+	s32px4 hd_dll_af4a6f[numRanged] @ header.ptrs.rangedWeaponDesc
 	//[[name("Pointers to Ranged Weapon Descriptions")]]
 	;
 	#endif
 
 	// List of pointers to armor stats
-	ptr hd_dll_af4aca[6] @ hd_dll_af4ac4
+	ptr hd_dll_af4aca[6] @ header.ptrs.armorStatArray
 	[[
 		name("Pointers to armor stats"), 
 		comment("[0] = Legs, [1] = Head, [2] = Head, [3] = Body, [4] = Arm, [5] = Waist")
 	]];
 	
 	// Lists of pointers to armor/weapon ptString lists
-	ptr hd_dll_af4b1c[8] @ hd_dll_af4b16
+	ptr hd_dll_af4b1c[8] @ header.ptrs.armorWeaponStatArray
 	[[
 		name("Pointers to armor/weapon name pointers"),
 		comment("[0] = Legs, [2] = Head, [3] = Body, [4] = Arm, [5] = Waist, [6] = Melee, [7] = Ranged")
 	]];
 
 	// List of pointers to armor ptString lists
-	ptr hd_dll_af4b86[5] @ hd_dll_af4b80
+	ptr hd_dll_af4b86[5] @ header.ptrs.armorNameArray
 	[[
 		name("Pointers to armor name pointers"),
 		comment("[0] = Head, [1] = Body, [2] = Arm, [3] = Waist, [4] = Legs")
 	]];
 
-	ptu32x10 hd_dll_af4bcc[while(std::mem::read_signed($,4)!=0)] @ hd_dll_af4bc6;
+	ptu32x10 hd_dll_af4bcc[while(std::mem::read_signed($,4)!=0)] 
+		@ header.ptrs.hd_dll_af4bc6;
 	
 	// [mhfo-hd.dll + 0xaf4c01]
 
@@ -110,9 +108,9 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		}
 	};
 
-	struct_af4c11 hd_dll_af4c11[0xE] @ hd_dll_af4bf5
-	[[name("Equipment Description Pointers")]];
-	ptr hd_dll_af4c01[0xE] @ hd_dll_af4bfb;
+	struct_af4c11 hd_dll_af4c11[0xE] @ header.ptrs.hd_dll_af4bf5
+		[[name("Equipment Description Pointers")]];
+	ptr hd_dll_af4c01[0xE] @ header.ptrs.hd_dll_af4bfb;
  
 	// [mhfo-hd.dll + 0xaf4ce0]
 
@@ -121,29 +119,37 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		u16Padd26 unk[while(std::mem::read_signed($,2)!=-1)] @ ptr;
 	};
 
-	struct_af4ce0 hd_dll_af4ce0[while(std::mem::read_signed($,4))] @ hd_dll_af4cc5;
+	struct_af4ce0 hd_dll_af4ce0[while(std::mem::read_signed($,4))] 
+		@ header.ptrs.hd_dll_af4cc5;
 
-	u16Padd2 hd_dll_af4d20[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4d08;
-	u16Padd20 hd_dll_af4d43[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4d2d;
+	u16Padd2 hd_dll_af4d20[while(std::mem::read_signed($,2)!=-1)] 
+		@ header.ptrs.hd_dll_af4d08;
+	u16Padd20 hd_dll_af4d43[while(std::mem::read_signed($,2)!=-1)] 
+		@ header.ptrs.hd_dll_af4d2d;
 
 	// Some function is called, parameter is hd_dll_af4d2d
 
 	// Refrontier calls this array Hunter Pearl Skill unlocks
-	u16Padd2E hd_dll_af4d6f[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4d58
-	[[name("Hunter Pearl Skill unlocks")]];
+	u16Padd2E hd_dll_af4d6f[while(std::mem::read_signed($,2)!=-1)] 
+		@ header.ptrs.hunterPearlSkills 
+		[[name("Hunter Pearl Skill unlocks")]];
 
 	// Could probably just make this while(read_signed), but whatever
-	ptr hd_dll_af4d91[std::mem::read_signed(header.ptrs.important_nums + 0x5E,2)] @ hd_dll_af4d7b;
+	ptr hd_dll_af4d91[std::mem::read_signed(header.ptrs.important_nums + 0x5E,2)] 
+		@ header.ptrs.hd_dll_af4d7b;
 
-	u16Padd2 hd_dll_af4e03[while(std::mem::read_signed($,2))] @ hd_dll_af4de0;
-	u16Padd2 hd_dll_af4e29[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4e0f;
-	u16Padd4 hd_dll_af4e49[while(std::mem::read_signed($,2)!=-1)] @ hd_dll_af4e3a;
+	u16Padd2 hd_dll_af4e03[while(std::mem::read_signed($,2))] 
+		@ header.ptrs.hd_dll_af4de0;
+	u16Padd2 hd_dll_af4e29[while(std::mem::read_signed($,2)!=-1)] 
+		@ header.ptrs.hd_dll_af4e0f;
+	u16Padd4 hd_dll_af4e49[while(std::mem::read_signed($,2)!=-1)] 
+		@ header.ptrs.hd_dll_af4e3a;
 
 	// Each of these u8s are written to incrementally, 0 to [0xaf4fa4]
-	u8PaddD hd_dll_af4fa8[numMonsterDesc] @ hd_dll_af4f23;
+	u8PaddD hd_dll_af4fa8[numMonsterDesc] @ header.ptrs.hd_dll_af4f23;
 
-	s32p hd_dll_af4fd7[numMonsterDesc] @ hd_dll_af4fc1 
-	[[name("Monster Descriptions")]];
+	s32p hd_dll_af4fd7[numMonsterDesc] @ header.ptrs.monsterDesc 
+		[[name("Monster Descriptions")]];
 
 	struct struct_af5001 {
 		ptr unk0; 
@@ -151,13 +157,14 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		padding[4];
 
 		if (unk0!=0) {
-			u16Padd26 unk[while(std::mem::read_unsigned($,2)!=0x8000)] @ (unk0 + 0x1E);
+			u16Padd26 unk[while(std::mem::read_unsigned($,2)!=0x8000)] 
+				@ (unk0 + 0x1E);
 		}
 	};
 
-	struct_af5001 hd_dll_af5001[0xB1] @ hd_dll_af4ff0;
+	struct_af5001 hd_dll_af5001[0xB1] @ header.ptrs.hd_dll_af4ff0;
 
-	ptr hd_dll_af505b[0xE] @ hd_dll_af504a;
+	ptr hd_dll_af505b[0xE] @ header.ptrs.hd_dll_af504a;
 //
 
 /* Yeah I have no idea how this works 
@@ -225,10 +232,10 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 	};
 
 	// Array of pointers to arrays of num_item_pairs's
-	ptrToNumItemPair hd_dll_af514b[0xE] @ hd_dll_af5145;
+	ptrToNumItemPair hd_dll_af514b[0xE] @ header.ptrs.hd_dll_af5145;
 
 	num hd_dll_af526a @ (header.ptrs.important_nums + 0x48);
-	ptr hd_dll_af5277[hd_dll_af526a] @ hd_dll_af5261;
+	ptr hd_dll_af5277[hd_dll_af526a] @ header.ptrs.hd_dll_af5261;
 
 	struct macha_pot_rewards {
 		item_num_pair items[6] [[inline]];
@@ -238,17 +245,19 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		macha_pot_rewards *ptr : ptr [[inline]];
 	};
 
-	ptMacha hd_dll_af52a7[while(std::mem::read_signed($,4))] @ hd_dll_af5298
-	[[name("Macha Pot Rewards")]];
+	ptMacha hd_dll_af52a7[while(std::mem::read_signed($,4))] 
+		@ header.ptrs.machaPotRewards [[name("Macha Pot Rewards")]];
 
 	struct struct_af52db {
 		s32p; s32p; padding[0xC];
 	};
 	num hd_dll_af52c6 @ (header.ptrs.important_nums + 0x4E);
-	struct_af52db hd_dll_af52db[hd_dll_af52c6 + 1] @ hd_dll_af52ba;
+	struct_af52db hd_dll_af52db[hd_dll_af52c6 + 1] 
+		@ header.ptrs.hd_dll_af52ba;
 
 	// NOTE: Possibly incorrect, double check this
-	u16 hd_dll_af52ff[while(std::mem::read_signed($,2))] @ hd_dll_af52f3;
+	u16 hd_dll_af52ff[while(std::mem::read_signed($,2))] 
+		@ header.ptrs.hd_dll_af52f3;
 
 	struct struct_af5312_1 {
 		// This structure repeats 5 times. I'd make a for loop if I were able
@@ -291,22 +300,22 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		}
 	};
 
-	struct_af5312 hd_dll_af5312 [0xB1] @ hd_dll_af530c;
+	struct_af5312 hd_dll_af5312 [0xB1] @ header.ptrs.hd_dll_af530c;
 
 	num hd_dll_af53a0 @ (header.ptrs.important_nums + 0x26)
-	[[name("Number of Hunting Horn Guide Pages?")]];
-	s32p hd_dll_af53ad[hd_dll_af53a0] @ hd_dll_af5397
-	[[name("Hunting Horn Guide Pages?")]];
+		[[name("Number of Hunting Horn Guide Pages?")]];
+	s32p hd_dll_af53ad[hd_dll_af53a0] 
+		@ header.ptrs.hd_dll_af5397 [[name("Hunting Horn Guide Pages?")]];
 
 	num hd_dll_af53c9 @ (header.ptrs.important_nums + 0x28)
-	[[name("Number of More Hunting Horn Tutorials?")]];
-	s32p hd_dll_af53d6[hd_dll_af53c9] @ hd_dll_af53c0
-	[[name("More Hunting Horn Tutorial?")]];
+		[[name("Number of More Hunting Horn Tutorials?")]];
+	s32p hd_dll_af53d6[hd_dll_af53c9] 
+		@ header.ptrs.hd_dll_af53c0 [[name("More Hunting Horn Tutorial?")]];
 
 	// TODO: Loop at [mhfo-hd.dll + 0xaf53ff]
 
 	num hd_dll_af5436 @ (header.ptrs.important_nums + 0x2a);
-	ptr hd_dll_af5443[hd_dll_af5436] @ hd_dll_af542d;
+	ptr hd_dll_af5443[hd_dll_af5436] @ header.ptrs.hd_dll_af542d;
 
 	num hd_dll_af435e @ (header.ptrs.important_nums + 0x32);
 //

@@ -151,28 +151,28 @@ struct CraftMatTable {
 //WUpgradePath wUpgradePath1[13] @ 0xAE0DC4;
 WUpgradePath wUpgradePath[17568] @ header.ptrs.weaponUpgradePath;
 
-g50WUpgrade g50WeaponUpgrades[81914] @ soG50WUpgrades;
+g50WUpgrade g50WeaponUpgrades[81914] @ header.ptrs.weaponG50Forging;
 
 // [mhfo-hd.dll + 0xaf47ed]
 ptGenericAUpgrade armorUpgrades[while(std::mem::read_unsigned($,4))] 
         @ header.ptrs.armorUpgradeMats;
 
-CraftMatTable towerArmorCraftingTable @ soTowerAForging
+CraftMatTable towerArmorCraftingTable @ header.ptrs.armorTowerForging
 [[name("Tower Armor Forging Data")]];
-CraftMatTable towerWeaponCraftingTable @ soTowerWForging
+CraftMatTable towerWeaponCraftingTable @ header.ptrs.weaponTowerForging
 [[name("Tower Weapon Forging Data")]];
-CraftMatTable specialWeaponCraftingTable @ soSpecialWForging
+CraftMatTable specialWeaponCraftingTable @ header.ptrs.weaponSpecialForging
 [[name("Special Weapon Forging Data??")]];
-CraftMatTable armorGCraftingTable @ soGArmorForging
+CraftMatTable armorGCraftingTable @ header.ptrs.armorGRForging
 [[name("G-Rank Armor Forging Data")]];
-CraftMatTable weaponGCraftingTable @ soGWeaponForging
+CraftMatTable weaponGCraftingTable @ header.ptrs.weaponGRForging
 [[name("G-Rank Weapon Forging Data")]];
 
-CraftMatTable transmogCraftingTable @ soTransmogForging
+CraftMatTable transmogCraftingTable @ header.ptrs.transmogForging
 [[name("Transmog Forging Data")]];
-CraftMatTable weaponCraftingTable @ soWeaponForging
+CraftMatTable weaponCraftingTable @ header.ptrs.weaponForging
 [[name("Weapon Forging Data")]];
-CraftMatTable zArmorCraftingTable @ soZArmorForging
+CraftMatTable zArmorCraftingTable @ header.ptrs.armorZenithForging
 [[name("Zenith Armor Forging Data")]];
 CraftMatTable armorCraftingTable @ header.ptrs.armorForging
 [[name("Armor Forging Data")]];
@@ -216,7 +216,7 @@ struct evoUpgrade {
 
 //evoUpgrade testEvo[10] @ 0x0156DB70;
 
-evoUpgrade evoUpgradesHR[100] @ soEvoUpgrades;
+evoUpgrade evoUpgradesHR[100] @ header.ptrs.evoUpgrades;
 evoUpgrade evoUpgradesHR5[100] @ $;
 evoUpgrade evoUpgradesGR[100] @ $;
 evoUpgrade evoUpgradesZR[100] @ $;
