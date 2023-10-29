@@ -124,7 +124,7 @@ struct ptr_table {
     ptr arenaAmmo               [[name("Arena Ammo Pointer??")]];
     unk_ptr hd_dll_af5261;
 
-    // + 0x140
+    // + 0x160
     ptr machaPotRewards         [[name("Macha Pot Rewards Pointer")]];
 
     unk_ptr hd_dll_af52c0;
