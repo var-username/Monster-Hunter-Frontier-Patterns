@@ -72,28 +72,29 @@ struct RewardItem {
     u16 rate;
     itemId item;
     u16 quantity;
-};
+} [[single_color]];
 
 struct SupplyItem {
     itemId item;
     u16 quantity;
-};
+} [[single_color]];
 
 struct GatherItem {
     u16 rate;
     itemId item;
-};
+} [[single_color]];
 
 struct RewardTable {
     u8 tableId;
     u8;
     u16;
     u32 tableOffset;
-    RewardItem items[while(std::mem::read_unsigned($,2)!=0xFFFF)];
-};
+    RewardItem items[while(std::mem::read_unsigned($,2)!=0xFFFF)] @ tableOffset;
+} [[single_color]];
 
 struct LargeMonsterSpawn {
     MonsterId monster;
+    if(monster == 0xFF) {continue;}
     padding[3];
     u32 spawnAmount;
     u32 spawnStage;
@@ -102,6 +103,7 @@ struct LargeMonsterSpawn {
     float xPos;
     float yPos;
     float zPos;
+    padding[0x10];
 };
 
 struct MinionSpawn {
@@ -118,36 +120,124 @@ struct MinionSpawn {
     padding[0x10];
 };
 
-ptr questTypeFlagsPtr @ 0x0;
-ptr loadedStagesPtr @ 0x4;
-ptr supplyBoxPtr @ 0x8;
-ptr rewardPtr @ 0xC;
-u16 subSupplyBoxPtr @ 0x10;
-u8 unk0 @ 0x12 [[hidden]];
-u8 subSupplyBoxLen @ 0x13;
-ptr questAreaPtr @ 0x14;
-ptr largeMonsterPtr @ 0x18;
-ptr areaFloats @ 0x1C;
-ptr unkFloats1 @ 0x20;
-ptr baseCampPtr @ 0x24;
-ptr unkPtr4 @ 0x28 [[hidden]];
-ptr unkPtr5 @ 0x2C [[hidden]];
-ptr unkPtr6 @ 0x30 [[hidden]];
-ptr unkPtr7 @ 0x34 [[hidden]];
-ptr gatheringPointers @ 0x38;
-ptr unkPtr8 @ 0x3C [[hidden]];
-ptr unkPtr9 @ 0x40 [[hidden]];
+struct Stage {
+    u32 stageID;
+    padding[12];
+};
 
-u16 questSizeMulti @ 0x44;
-u16 unk46 @ 0x46 [[hidden]];
-u32 statTable1 @ 0x48;
-u32 mainRankPoints @ 0x4C;
-u32 unk50 @ 0x50 [[hidden]];
+struct monIDPadd3 {
+    MonsterId;
+    padding[3];
+};
+
+struct mapSection {
+    u32 loadedStage;
+    u32;
+    ptr spawnTypes;
+    ptr spawnStats;
+
+    monIDPadd3 monsterSpawns[while(std::mem::read_unsigned($,2)!=0xFFFF)]
+        @ spawnTypes;
+
+    MinionSpawn minionSpawns[while(std::mem::read_unsigned($,2)!=0xFFFF)]
+        @ spawnStats;
+};
+
+struct ptMapSection {
+    ptr ptr;
+    mapSection section[while(std::mem::read_unsigned($,4)!=0)] @ ptr;
+    u16 unk @ (addressof(section) + sizeof(section) + 4);
+};
+
+struct MapZones {
+    ptMapSection mapSections[while(std::mem::read_unsigned($,4)!=0)];
+};
+
+struct largeMonsterPointers{
+    padding[8];
+    ptr largeMonsterIds;
+    ptr largeMonsterSpawns;
+
+    monIDPadd3 monsterIds[5] @ largeMonsterIds;
+    LargeMonsterSpawn monsterSpawns[5] @ largeMonsterSpawns;
+};
+
+struct floatSet {
+    u32 targetStageId1;
+    if (targetStageId1 == 0xFFFFFFFF) {
+        break;
+    }
+    float This_xPos;
+    float This_yPos;
+    float This_zPos;
+    float kn[5];
+    float Target_xPos;
+    float Target_yPos;
+    float Target_zPos;
+    u32 direction;
+};
+
+struct playerAreaChange {
+    ptr floatsPtr;
+    floatSet floats[while(std::mem::read_unsigned($,4)!=0xFFFFFFFF)] @ floatsPtr;
+};
+
+struct QuestFileHeader {
+    ptr questTypeFlagsPtr;
+    ptr loadedStagesPtr;
+    ptr supplyBoxPtr;
+    ptr rewardPtr;
+    u16 subSupplyBoxPtr;
+    u8 [[hidden]];
+    u8 subSupplyBoxLen;
+    ptr questAreaPtr;
+    ptr largeMonsterPtr;
+    ptr areaFloats; // areaChange
+    unk_ptr unkFloats1; //AreaMapping
+    ptr baseCampPtr; //MapInfo
+    unk_ptr unk28; //gatherPoints
+    unk_ptr unk2C; //BaseCampInf
+    unk_ptr unk30; //someStrings
+    unk_ptr unk34; //FixedCords1
+    ptr gatheringPointers; 
+    unk_ptr unk3C; //fixedCords2
+    unk_ptr unk40; //FixedInf
+};
+
+QuestFileHeader header @ 0x0;
+
+// 1.1 General Quest Properties
+// genQuestProp
+u16 questSizeMulti @ 0x44
+[[name("Quest Monster size multiplier"),
+  comment("% of normal size. Decimal 100 = 100%")]];
+u16 unk46 @ 0x46 [[hidden]]; //SizeRange
+u32 statTable1 @ 0x48; //MonsStatTable1
+u32 mainRankPoints @ 0x4C; 
+u32 unk50 @ 0x50 [[hidden]]; //kn
 u32 subARankPoints @ 0x54;
 u32 subBRankPoints @ 0x58;
-u32 unk5C @ 0x5C [[hidden]];
+u32 unk5C @ 0x5C [[hidden]]; //QuestTypeID MonsterClassID
+// padding[1];
 u8 statTable2 @ 0x61;
 
+u8 questKn1 @ 0x73;
+u16 questKn2 @ 0x74;
+u16 questKn3 @ 0x76;
+
+// qua
+u16 gatheringTablesQty @ 0x78;
+u16 unk7A @ 0x7A [[hidden]];
+u8 area1zones @ 0x7C;
+u8 area2zones @ 0x7D;
+u8 area3zones @ 0x7E;
+u8 area4zones @ 0x7F;
+
+u16 unk80 @ 0x80 [[hidden]];
+u16 unk82 @ 0x82 [[hidden]];
+u16 unk84 @ 0x84 [[hidden]];
+
+// 1.2 Main Quest Properties
 u8 unkC0 @ 0xC0 [[hidden]];
 u8 MusicModeFlag @ 0xC1;
 u8 QuestLocaleFlags @ 0xC2;
@@ -156,22 +246,22 @@ u8 RankingID @ 0xC4;
 u8 unkC5 @ 0xC5 [[hidden]];
 u16 unkC6 @ 0xC6 [[hidden]];
 u16 RankBand0 @ 0xC8;
-u16 unkCA @ 0xCA [[hidden]];
+u16 unkCA @ 0xCA [[hidden]]; //QuestTypeID untatID
 u32 QuestFee @ 0xCC;
 u32 RewardMain @ 0xD0;
 u32 CartsOrRewardReduction @ 0xD4;
 u16 RewardA @ 0xD8;
-u16 RewardB @ 0xDA;
+//padding[4]
+u16 rewardB @ 0xDC;
 
 u16 HardHunterRankReq @ 0xDE;
 u32 QuestTime @ 0xE0;
-u32 QuestMap @ 0xE4;
+u32 QuestMap @ 0xE4; //qMapID QuestMap_onlyMonitor
 ptr QuestStringsPtr @ 0xE8;
-QuestText questText @ QuestStringsPtr;
-
+u16 unkEC @ 0xEC [[hidden]];
 u16 QuestID @ 0xEE;
 QuestObj QuestObjectives[3] @ 0xF0;
-u16 questAutomaticSkill @ 0xF2;
+//u16 questAutomaticSkill @ 0xF2;
 u8 unk108 @ 0x108 [[hidden]]; 
 u8 unk109 @ 0x109 [[hidden]];
 u16 JoinRankMin @ 0x10C;
@@ -179,22 +269,19 @@ u16 JoinRankMax @ 0x10E;
 u16 PostRankMin @ 0x110;
 u16 PostRankMax @ 0x112;
 
-u16 gatheringTablesQty @ 0x16C;
-u16 unk16E @ 0x16E [[hidden]];
-u8 area1zones @ 0x170;
-u8 area2zones @ 0x171;
-u8 area3zones @ 0x172;
-u8 area4zones @ 0x173;
+// 1.4 Forced Equipment
+// Forced equipment section (size 0x30)
+// Attachments are +0x80 for some reason
+u16 legsAndAttach[4] @ 0x11C;
+u16 weaponAndAttach[4] @ 0x124;
+u16 headAndAttach[4] @ 0x12C;
+u16 chestAndAttach[4] @ 0x134;
+u16 armsAndAttach[4] @ 0x13C;
+u16 waistAndAttach[4] @ 0x144;
 
-// Interception Settings
-if (QuestObjectives[0].goalType == questObjType::SlayAll) {
-    u8 monsterVariant1 @ 0x176;
-    u8 monsterVariant2 @ 0x177;
-    u8 monsterVariant3 @ 0x178;
-    MonsterId monsters[5] @ 0x179;
-}
+u32 unk14C @ 0x14C [[hidden]];
 
-// Quest and Monster Variations
+// 1.3 Quest and Monster Variations
 u8 monsterVariants[3] @ 0x150;
 u8 mapVariant @ 0x153;
 itemId requiredItemType @ 0x154;
@@ -204,18 +291,56 @@ u8 questVariant2 @ 0x158;
 u8 questVariant3 @ 0x159;
 u8 questVariant4 @ 0x15A;
 
-u32 questClearsAllowed @ 0x184;
-MonsterId questMonsterIcon @ 0x188;
-
-// Forced equipment section (size 0x30)
-// Attachments are +0x80 for some reason
-u16 legsAndAttach[4] @ 0x11C;
-u16 weaponAndAttach[4] @ $;
-u16 headAndAttach[4] @ $;
-u16 chestAndAttach[4] @ $;
-u16 armsAndAttach[4] @ $;
-u16 waistAndAttach[4] @ $;
-
-u32 unk14C @ 0x14C [[hidden]];
-
 u32 allowedEquipBitmask @ 0x160;
+
+// Rewards Focus
+u32 mainPoints @ 0x164;
+u32 subAPoints @ 0x168;
+u32 subBPoints @ 0x16C;
+
+itemId items[3] @ 0x170;
+// padding[3];
+MonsterId monsterId179 @ 0x179;
+
+// Interception Settings
+if (QuestObjectives[0].goalType == questObjType::SlayAll) {
+    u8 monsterVariant1 @ 0x176;
+    u8 monsterVariant2 @ 0x177;
+    u8 monsterVariant3 @ 0x178;
+    MonsterId monsters[5] @ 0x179;
+}
+
+u32 questClearsAllowed @ 0x184;
+//MonsterId questMonsterIcon @ 0x188; // I think this is wrong
+
+QuestText questText @ QuestStringsPtr;
+
+// 2.0 Loaded Stages
+Stage loadedStages[while($ < header.unk34)] @ header.loadedStagesPtr;
+
+// 3.0 Supply Box
+SupplyItem supplies[while(std::mem::read_unsigned($,2))] 
+    @ header.supplyBoxPtr;
+
+// 4.0 Reward
+RewardTable rewards[while(std::mem::read_unsigned($,2)!=0xFFFF)] 
+    @ header.rewardPtr;
+
+// 5.0 Sub Supply Box
+/*
+    /*  This is incorrect. The real subSupplies are appended to the end 
+        of the normal suppies. Looking into how the game knows how they're
+        separate
+    */
+    SupplyItem subSupplies[while($ < header.subSupplyBoxPtr + header.subSupplyBoxLen)]
+        @ header.subSupplyBoxPtr;
+*/
+
+// 6.0 Quest Area
+MapZones mapZones @ header.questAreaPtr;
+
+// 7.0 Large Monster
+largeMonsterPointers largeMonsterPointers @ header.largeMonsterPtr;
+
+// 8.0 Area Change
+playerAreaChange PlayerAreaChange[area1zones] @ header.areaFloats;
