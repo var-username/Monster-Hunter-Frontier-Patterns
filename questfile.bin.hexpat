@@ -89,7 +89,7 @@ struct RewardTable {
     u8;
     u16;
     u32 tableOffset;
-    RewardItem items[while(std::mem::read_unsigned($,2)!=0xFFFF)] @ tableOffset;
+    RewardItem items[while(std::mem::read_signed($,2)!=-1)] @ tableOffset;
 } [[single_color]];
 
 struct LargeMonsterSpawn {
@@ -136,10 +136,10 @@ struct mapSection {
     ptr spawnTypes;
     ptr spawnStats;
 
-    monIDPadd3 monsterSpawns[while(std::mem::read_unsigned($,2)!=0xFFFF)]
+    monIDPadd3 monsterSpawns[while(std::mem::read_signed($,2)!=-1)]
         @ spawnTypes;
 
-    MinionSpawn minionSpawns[while(std::mem::read_unsigned($,2)!=0xFFFF)]
+    MinionSpawn minionSpawns[while(std::mem::read_signed($,2)!=-1)]
         @ spawnStats;
 };
 
@@ -163,8 +163,8 @@ struct largeMonsterPointers{
 };
 
 struct floatSet {
-    u32 targetStageId1;
-    if (targetStageId1 == 0xFFFFFFFF) {
+    s32 targetStageId1;
+    if (targetStageId1 == -1) {
         break;
     }
     float This_xPos;
@@ -179,7 +179,7 @@ struct floatSet {
 
 struct playerAreaChange {
     ptr floatsPtr;
-    floatSet floats[while(std::mem::read_unsigned($,4)!=0xFFFFFFFF)] @ floatsPtr;
+    floatSet floats[while(std::mem::read_signed($,4)!=-1)] @ floatsPtr;
 };
 
 struct QuestFileHeader {
@@ -323,7 +323,7 @@ SupplyItem supplies[while(std::mem::read_unsigned($,2))]
     @ header.supplyBoxPtr;
 
 // 4.0 Reward
-RewardTable rewards[while(std::mem::read_unsigned($,2)!=0xFFFF)] 
+RewardTable rewards[while(std::mem::read_signed($,2)!=-1)] 
     @ header.rewardPtr;
 
 // 5.0 Sub Supply Box

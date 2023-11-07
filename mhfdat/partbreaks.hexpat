@@ -30,7 +30,7 @@ struct PartBreakDrop {
 
 // List of drops from break 
 struct PartBreakDropTable {
-    PartBreakDrop breakDrops [while(std::mem::read_unsigned($,2)!=0xFFFF)] 
+    PartBreakDrop breakDrops [while(std::mem::read_signed($,2)!=-1)] 
         [[inline]];
 } [[inline]];
 
@@ -52,7 +52,7 @@ struct CarveDrop {
 
 // Carve drop table
 struct CarveDropTable {
-    CarveDrop carves [while(std::mem::read_unsigned($,2)!=0xFFFF)] [[inline]];
+    CarveDrop carves [while(std::mem::read_signed($,2)!=-1)] [[inline]];
 } [[inline]];
 
 // Pointer to carve drop table
@@ -74,7 +74,7 @@ struct HC_GR_Carve {
     u16 item [[format("getItemName")]];
 };
 
-HC_GR_Carve GRHCCarves[while(std::mem::read_unsigned($,2)!=0xFFFF)] 
+HC_GR_Carve GRHCCarves[while(std::mem::read_signed($,2)!=-1)] 
     @ header.ptrs.carveGRHCItemDrops;
 
 struct HC_Carve {
@@ -86,5 +86,5 @@ struct HC_Carve {
     u16 item4 [[format("getItemName")]];
 };
 
-HC_Carve HCCarves[while(std::mem::read_unsigned($,2)!=0xFFFF)] 
+HC_Carve HCCarves[while(std::mem::read_signed($,2)!=-1)] 
     @ header.ptrs.carveHCItemDrops;

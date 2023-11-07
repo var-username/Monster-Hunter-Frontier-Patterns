@@ -26,10 +26,13 @@ fn fmtItemId(itemId n) {
 };
 using itemId = u16 [[format("fmtItemId")]];
 
-u32 hd_dll_afa411 @ 0x10;
-s16 hd_dll_afa421 @ hd_dll_afa411;
+u32 hd_dll_afa411 @ 0x10 
+[[name("Inf Quantities")]];
+num hd_dll_afa421 @ hd_dll_afa411
+[[name("Number of quest table entries")]];
 
-ptr ptQuestTable @ 0x14;
+ptr ptQuestTable @ 0x14
+[[name("Pointer to quest table")]];
 
 #ifdef __DECOMPILE
 #include <mhfinf/decompile.hexpat>
@@ -50,6 +53,17 @@ enum questObjType : u32 {
     DeliverFlag = 0x00001002,
     Esoteric_Action = 0x00000010
 } ;
+
+struct QuestText {
+    s32p title;
+    s32p textMain;
+    s32p textSubA;
+    s32p testSubB;
+    s32p successCond;
+    s32p failCond;
+    s32p contractor;
+    s32p description;
+};
 
 struct QuestObj {
     questObjType goalType;
@@ -87,14 +101,16 @@ struct QuestData {
     // If current address is 0x0, we read a bad pointer, skip to next
     if($==0x00000000) continue;
 
-    padding[0x10];
+    padding[0x0B];
+    u8 playerQty;
+    u32 questFee;
     u32 zennyReward;
     u32 zennyKO;
     u32 zennySubA;
     u32 zennySubB;
     u32 questTime [[comment("Timing in frames (30Hz)")]];
     u32 mapID;
-    ptr questStringptr;
+    QuestText *questStringptr : ptr;
     u16 questRestrictions;
     u16 questID;
     
@@ -114,6 +130,7 @@ struct QuestData {
     padding[8];
 
     // Forced equipment section (size 0x30)
+    // Attachments are +0x80 for some reason
     u16 legsAndAttach[4];
     u16 weaponAndAttach[4];
     u16 headAndAttach[4];
@@ -132,14 +149,6 @@ struct QuestData {
     padding[3];
     MonsterId;
     padding[0x86];
-    s32p title;
-    s32p textMain;
-    s32p textSubA;
-    s32p testSubB;
-    s32p successCond;
-    s32p failCond;
-    s32p contractor;
-    s32p description;
 } [[inline]];
 
 /// Pointer to quest data struct
@@ -148,7 +157,7 @@ struct ptQuestData {
 };
 
 struct QuestTableEntry {
-    padding[2];
+    u16 endID;
     u16 count;
     ptQuestData *ql[count] : u32 [[inline]];
 };

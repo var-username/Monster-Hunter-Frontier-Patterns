@@ -81,5 +81,3 @@ fn getItemName(u16 n) {
 #ifdef __DECOMPILE
 #include <mhfdat/decompile/decompile.hexpat>
 #endif
-
-//s32p CreatureDescriptions [142] @ 0x16AAC20;

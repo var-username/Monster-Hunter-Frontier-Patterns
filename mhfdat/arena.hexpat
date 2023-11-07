@@ -38,7 +38,7 @@ struct ItemBlock {
 } [[sealed, format("itemBlockFmt")]];
 
 struct ItemTable {
-    ItemBlock items[while(std::mem::read_unsigned($, 2) != 0xFFFF)];
+    ItemBlock items[while(std::mem::read_signed($, 2) != -1)];
 } [[inline]];
 
 struct ptItemBlock {

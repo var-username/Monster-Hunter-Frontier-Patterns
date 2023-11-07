@@ -145,7 +145,7 @@ struct CraftMatReq {
 } [[color("660066")]];
 
 struct CraftMatTable {
-    CraftMatReq entry[while(std::mem::read_unsigned($, 1)!=0xFF)] [[inline]];
+    CraftMatReq entry[while(std::mem::read_signed($, 1)!=-1)] [[inline]];
 };
 
 //WUpgradePath wUpgradePath1[13] @ 0xAE0DC4;
