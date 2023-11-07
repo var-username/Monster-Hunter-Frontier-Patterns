@@ -1,3 +1,4 @@
+#include <misc/MapIds.hexpat>
 #include <misc/MonsterIds.hexpat>
 #include <misc/types.pat>
 #include <misc/s32p.pat>
@@ -163,23 +164,64 @@ struct largeMonsterPointers{
 };
 
 struct floatSet {
-    s32 targetStageId1;
+    s16 targetStageId1;
     if (targetStageId1 == -1) {
         break;
     }
+    s16 stageVariant;
     float This_xPos;
     float This_yPos;
     float This_zPos;
-    float kn[5];
+    float transitionBox[5];
     float Target_xPos;
     float Target_yPos;
     float Target_zPos;
-    u32 direction;
+    // It's definitely a rotation, but the datatype is unknown
+    s16 Target_rotation[2];
 };
 
 struct playerAreaChange {
     ptr floatsPtr;
-    floatSet floats[while(std::mem::read_signed($,4)!=-1)] @ floatsPtr;
+    
+    // Don't place floats if pointer is null
+    if (floatsPtr) {
+        floatSet floats[while(std::mem::read_signed($,4)!=-1)] @ floatsPtr;
+    }
+};
+
+struct AreaMappings {
+    float Area_xPos;
+    float Area_zPos;
+    padding[8];
+    float Base_xPos;
+    float Base_zPos;
+    float kn_Pos;
+    padding[4];
+};
+
+struct gatheringPoint{
+    // I'm not aware of another way of reading a float without placing a pat
+    // If xPos would be float(-1.0), don't place anything
+    if (std::mem::read_unsigned($,4) == 0xBF800000) {
+        return;
+    } 
+    float xPos;
+    float yPos;
+    float zPos;
+    float scope;
+    u16 gatheringID;
+    u16 maxCount;
+    padding[2];
+    u16 minCount;
+};
+
+struct ptGatheringPoint {
+    ptr ptr;
+
+    // Ignore null pointers
+    if (ptr) {
+        gatheringPoint inf[4] @ ptr;
+    }
 };
 
 struct QuestFileHeader {
@@ -256,7 +298,7 @@ u16 rewardB @ 0xDC;
 
 u16 HardHunterRankReq @ 0xDE;
 u32 QuestTime @ 0xE0;
-u32 QuestMap @ 0xE4; //qMapID QuestMap_onlyMonitor
+qMapID QuestMap @ 0xE4; //qMapID QuestMap_onlyMonitor
 ptr QuestStringsPtr @ 0xE8;
 u16 unkEC @ 0xEC [[hidden]];
 u16 QuestID @ 0xEE;
@@ -328,10 +370,9 @@ RewardTable rewards[while(std::mem::read_signed($,2)!=-1)]
 
 // 5.0 Sub Supply Box
 /*
-    /*  This is incorrect. The real subSupplies are appended to the end 
-        of the normal suppies. Looking into how the game knows how they're
-        separate
-    */
+    //  This is incorrect. The real subSupplies are appended to the end 
+    //  of the normal suppies. Looking into how the game knows how they're
+    //  separate
     SupplyItem subSupplies[while($ < header.subSupplyBoxPtr + header.subSupplyBoxLen)]
         @ header.subSupplyBoxPtr;
 */
@@ -344,3 +385,18 @@ largeMonsterPointers largeMonsterPointers @ header.largeMonsterPtr;
 
 // 8.0 Area Change
 playerAreaChange PlayerAreaChange[area1zones] @ header.areaFloats;
+
+// 9.0 AreaMappingFloats
+
+// This while loop probably isn't the best way to do this,
+// but it's what the 010 pattern does.
+AreaMappings areaMappings[while($<header.areaFloats)] @ header.unkFloats1;
+
+// 10.0 Map Information
+qMapID mapID @ header.baseCampPtr;
+u32 returnBC_ID @ header.baseCampPtr + sizeof(qMapID);
+
+// 11.0 Gathering Points per Area
+
+// The area1zones length is an assumption, just looks better than a loop
+ptGatheringPoint gatheringPerArea[area1zones] @ header.unk28;
