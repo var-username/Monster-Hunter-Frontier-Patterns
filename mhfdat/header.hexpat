@@ -668,6 +668,7 @@ struct ptr_table {
     unk_ptr hd_dll_af83b7;
     padding[4];                 // @ 0x9A0
     unk_ptr hd_dll_af83bd;
+    padding[4];
     unk_ptr hd_dll_af83c3;
     padding[4];                 // @ 0x9B0
     unk_ptr hd_dll_af84a9;
@@ -713,6 +714,7 @@ struct ptr_table {
 
     unk_ptr hd_dll_af8774;
     unk_ptr hd_dll_af877a;
+    padding[4];
     unk_ptr hd_dll_af8780;      // @ 0xA50
     unk_ptr hd_dll_af87bb;
     unk_ptr hd_dll_af87c1;
