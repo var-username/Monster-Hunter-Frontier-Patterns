@@ -2,7 +2,7 @@
 
 #include <std/io.pat>
 
-enum MonsterId : u8 {
+enum MonsterID : u8 {
     // 0x0n
     UNK = 0x00,
     Rathian,
@@ -195,7 +195,7 @@ enum MonsterId : u8 {
 } ;
 
 // This seems slow, maybe improve this in future?
-fn getMonsterId (u8 n) {
-    MonsterId tmp = n;
+fn getMonsterID (u8 n) {
+    MonsterID tmp = n;
     return std::format("{}", tmp);
 };

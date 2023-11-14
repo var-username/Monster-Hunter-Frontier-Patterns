@@ -1,62 +1,10 @@
-#include <misc/MapIds.hexpat>
-#include <misc/MonsterIds.hexpat>
+#include <misc/MapIDs.hexpat>
+#include <misc/MonsterIDs.hexpat>
+#include <misc/ItemIDs.hexpat>
 #include <misc/types.pat>
 #include <misc/s32p.pat>
 
-/// Known quest objective types
-enum questObjType : u32 {
-    None = 0x00000000,
-    Hunt = 0x00000001,
-    Capture = 0x00000101,
-    Slay = 0x00000201,
-    Damage = 0x00008004,
-    SlayOrDamage = 0x00018004,
-    SlayAll = 0x00040000,
-    SlayTotal = 0x00020000,
-    Deliver = 0x00000002,
-    BreakPart = 0x00004004,
-    DeliverFlag = 0x00001002,
-    Esoteric_Action = 0x00000010
-};
-
-using itemId;
-/// Format ItemID to make it easier to look up on Ferias
-fn fmtItemId(itemId n) {
-    return std::format("{:04X}", n);
-};
-using itemId = u16 [[format("fmtItemId")]];
-
-struct QuestObj {
-    questObjType goalType;
-    if (goalType == questObjType::None) {
-        padding[4];
-    } else {
-        if (goalType == questObjType::Hunt || 
-            goalType == questObjType::Capture || 
-            goalType == questObjType::Slay || 
-            goalType == questObjType::Damage ||
-            goalType == questObjType::BreakPart
-        ) {
-            // Goal target is a monster, reference enum
-            MonsterId goalTarget;
-            padding[1];
-        } else if (goalType == questObjType::Deliver) {
-            // Goal target is an item, format as such
-            itemId goalTarget;
-        } else {
-            u16 goalTarget;
-        }
-
-        if(goalType == questObjType::BreakPart) {
-            // Refers to a part of the monster
-            // ID -> Part mapping varies with monster skeleton
-            u16 goalPart;
-        } else {
-            // How many items to deliver or monsters to hunt or whatever
-            u16 goalCount;
-        }
-    }
-};
+#include <quest/objective.hexpat>
 
 struct QuestText {
     s32p title;
@@ -71,18 +19,18 @@ struct QuestText {
 
 struct RewardItem {
     u16 rate;
-    itemId item;
+    ItemID item;
     u16 quantity;
 } [[single_color]];
 
 struct SupplyItem {
-    itemId item;
+    ItemID item;
     u16 quantity;
 } [[single_color]];
 
 struct GatherItem {
     u16 rate;
-    itemId item;
+    ItemID item;
 } [[single_color]];
 
 struct RewardTable {
@@ -94,7 +42,7 @@ struct RewardTable {
 } [[single_color]];
 
 struct LargeMonsterSpawn {
-    MonsterId monster;
+    MonsterID monster;
     if(monster == 0xFF) {continue;}
     padding[3];
     u32 spawnAmount;
@@ -108,7 +56,7 @@ struct LargeMonsterSpawn {
 };
 
 struct MinionSpawn {
-    MonsterId monster;
+    MonsterID monster;
     padding[1];
     u16 spawnToggle;
     u32 spawnAmount;
@@ -127,7 +75,7 @@ struct Stage {
 };
 
 struct monIDPadd3 {
-    MonsterId;
+    MonsterID;
     padding[3];
 };
 
@@ -156,10 +104,10 @@ struct MapZones {
 
 struct largeMonsterPointers{
     padding[8];
-    ptr largeMonsterIds;
+    ptr largeMonsterIDs;
     ptr largeMonsterSpawns;
 
-    monIDPadd3 monsterIds[5] @ largeMonsterIds;
+    monIDPadd3 monsterIDs[5] @ largeMonsterIDs;
     LargeMonsterSpawn monsterSpawns[5] @ largeMonsterSpawns;
 };
 
@@ -235,15 +183,15 @@ struct QuestFileHeader {
     ptr questAreaPtr;
     ptr largeMonsterPtr;
     ptr areaFloats; // areaChange
-    unk_ptr unkFloats1; //AreaMapping
+    ptr unkFloats1; //AreaMapping
     ptr baseCampPtr; //MapInfo
-    unk_ptr unk28; //gatherPoints
-    unk_ptr unk2C; //BaseCampInf
-    unk_ptr unk30; //someStrings
-    unk_ptr unk34; //FixedCords1
+    ptr unk28; //gatherPoints
+    ptr unk2C; //BaseCampInf
+    ptr unk30; //someStrings
+    ptr unk34; //FixedCords1
     ptr gatheringPointers; 
-    unk_ptr unk3C; //fixedCords2
-    unk_ptr unk40; //FixedInf
+    ptr unk3C; //fixedCords2
+    ptr unk40; //FixedInf
 };
 
 QuestFileHeader header @ 0x0;
@@ -298,7 +246,7 @@ u16 rewardB @ 0xDC;
 
 u16 HardHunterRankReq @ 0xDE;
 u32 QuestTime @ 0xE0;
-qMapID QuestMap @ 0xE4; //qMapID QuestMap_onlyMonitor
+qMapID QuestMap @ 0xE4;
 ptr QuestStringsPtr @ 0xE8;
 u16 unkEC @ 0xEC [[hidden]];
 u16 QuestID @ 0xEE;
@@ -326,7 +274,7 @@ u32 unk14C @ 0x14C [[hidden]];
 // 1.3 Quest and Monster Variations
 u8 monsterVariants[3] @ 0x150;
 u8 mapVariant @ 0x153;
-itemId requiredItemType @ 0x154;
+ItemID requiredItemType @ 0x154;
 u8 requiredItemCount @ 0x156;
 u8 questVariant1 @ 0x157;
 u8 questVariant2 @ 0x158;
@@ -340,20 +288,20 @@ u32 mainPoints @ 0x164;
 u32 subAPoints @ 0x168;
 u32 subBPoints @ 0x16C;
 
-itemId items[3] @ 0x170;
+ItemID items[3] @ 0x170;
 // padding[3];
-MonsterId monsterId179 @ 0x179;
+MonsterID monsterID179 @ 0x179;
 
 // Interception Settings
 if (QuestObjectives[0].goalType == questObjType::SlayAll) {
     u8 monsterVariant1 @ 0x176;
     u8 monsterVariant2 @ 0x177;
     u8 monsterVariant3 @ 0x178;
-    MonsterId monsters[5] @ 0x179;
+    MonsterID monsters[5] @ 0x179;
 }
 
 u32 questClearsAllowed @ 0x184;
-//MonsterId questMonsterIcon @ 0x188; // I think this is wrong
+//MonsterID questMonsterIcon @ 0x188; // I think this is wrong
 
 QuestText questText @ QuestStringsPtr;
 

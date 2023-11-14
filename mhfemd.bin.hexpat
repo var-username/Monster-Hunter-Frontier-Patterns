@@ -2,7 +2,7 @@
 
 #include <std/mem.pat>
 #include <std/core.pat>
-#include <misc/MonsterIds.hexpat>
+#include <misc/MonsterIDs.hexpat>
 #include <misc/types.pat>
 
 //#define __DECOMPILE 1
@@ -20,7 +20,7 @@ struct unknownDatap {
 //unknownDatap ptrArray[0x15] @ 0x04;
 
 struct maybeMonsterData {
-	MonsterId id;
+	MonsterID id;
 	padding[3];
 
 	float unk[6];

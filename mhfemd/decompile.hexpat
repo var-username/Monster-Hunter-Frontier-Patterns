@@ -1,4 +1,4 @@
-#include <misc/MonsterIds.hexpat>
+#include <misc/MonsterIDs.hexpat>
 #include <misc/types.pat>
 
 ptr hd_dll_af96ab @ 0x4;
@@ -13,7 +13,7 @@ ptr hd_dll_af9778 @ 0x1C;
 ptr hd_dll_af977b @ 0x14;
 
 num hd_dll_af9780 @ (hd_dll_af96a1 + 0xC);
-struct unk_struct_af978a{MonsterId id; padding[3]; ptr; float;};
+struct unk_struct_af978a{MonsterID id; padding[3]; ptr; float;};
 unk_struct_af978a hd_dll_af978a[hd_dll_af9780] @ hd_dll_af9778;
 
 ptr hd_dll_af97a0 @ 0x24;
@@ -115,7 +115,7 @@ ptr hd_dll_af9885 @ 0x5c;
 
 /* [mhfo-hd.dll + 0x05f550] FUN_10060150
 	u32 hd_dll_05f583 = hd_dll_af96cc;
-	u32 hd_dll_05f592 @ hd_dll_05f583 + 0xB0 + (read(param_1 + 3) * 0xC0);
+	// u32 hd_dll_05f592 @ hd_dll_05f583 + 0xB0 + (read(param_1 + 3) * 0xC0);
 */
 
 /* [mhfo-hd.dll + 0x0dfb50] FUN_100e0750
@@ -128,5 +128,9 @@ ptr hd_dll_af9885 @ 0x5c;
 */
 
 /* [mhfo-hd.dll + 0x0e4fe0] FUN_100e5be0
+	// @ ((@ 0x8) + 0x2a + (read(param_1 + 3) * 0x34))
+*/
+
+/* [mhfo-hd.dll + 0x0a0e70] FUN_100a1a70
 	// @ ((@ 0x8) + 0x2a + (read(param_1 + 3) * 0x34))
 */

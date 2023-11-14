@@ -6,7 +6,11 @@
 #include <misc/s32p.pat>
 #include <misc/types.pat>
 
-#include <misc/MonsterIds.hexpat>
+#include <misc/ItemIDs.hexpat>
+#include <misc/MonsterIDs.hexpat>
+#include <misc/MapIDs.hexpat>
+
+#include <quest/objective.hexpat>
 
 //#define __DECOMPILE 1
 
@@ -18,13 +22,6 @@ u32 header3 @ 0xC [[comment("Must equal 00 00 00 88")]];
 std::assert_warn(header1 == 0x1A666E69, __header_fail_msg);
 std::assert_warn(header2 == 0x00000006, __header_fail_msg);
 std::assert_warn(header3 == 0x00000088, __header_fail_msg);
-
-using itemId;
-/// Format ItemID to make it easier to look up on Ferias
-fn fmtItemId(itemId n) {
-    return std::format("{:04X}", n);
-};
-using itemId = u16 [[format("fmtItemId")]];
 
 u32 hd_dll_afa411 @ 0x10 
 [[name("Inf Quantities")]];
@@ -38,22 +35,6 @@ ptr ptQuestTable @ 0x14
 #include <mhfinf/decompile.hexpat>
 #endif
 
-/// Known quest objective types
-enum questObjType : u32 {
-    None = 0x00000000,
-    Hunt = 0x00000001,
-    Capture = 0x00000101,
-    Slay = 0x00000201,
-    Damage = 0x00008004,
-    SlayOrDamage = 0x00018004,
-    SlayAll = 0x00040000,
-    SlayTotal = 0x00020000,
-    Deliver = 0x00000002,
-    BreakPart = 0x00004004,
-    DeliverFlag = 0x00001002,
-    Esoteric_Action = 0x00000010
-} ;
-
 struct QuestText {
     s32p title;
     s32p textMain;
@@ -63,38 +44,6 @@ struct QuestText {
     s32p failCond;
     s32p contractor;
     s32p description;
-};
-
-struct QuestObj {
-    questObjType goalType;
-    if (goalType == questObjType::None) {
-        padding[4];
-    } else {
-        if (goalType == questObjType::Hunt || 
-            goalType == questObjType::Capture || 
-            goalType == questObjType::Slay || 
-            goalType == questObjType::Damage ||
-            goalType == questObjType::BreakPart
-        ) {
-            // Goal target is a monster, reference enum
-            MonsterId goalTarget;
-            padding[1];
-        } else if (goalType == questObjType::Deliver) {
-            // Goal target is an item, format as such
-            itemId goalTarget;
-        } else {
-            u16 goalTarget;
-        }
-
-        if(goalType == questObjType::BreakPart) {
-            // Refers to a part of the monster
-            // ID -> Part mapping varies with monster skeleton
-            u16 goalPart;
-        } else {
-            // How many items to deliver or monsters to hunt or whatever
-            u16 goalCount;
-        }
-    }
 };
 
 struct QuestData {
@@ -145,9 +94,9 @@ struct QuestData {
     u32 hrMainReward;
     u32 hrSubAReward;
     u32 hrSubBReward;
-    itemId mainRewardList[3];
+    ItemID mainRewardList[3];
     padding[3];
-    MonsterId;
+    MonsterID;
     padding[0x86];
 } [[inline]];
 
