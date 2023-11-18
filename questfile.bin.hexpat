@@ -172,6 +172,52 @@ struct ptGatheringPoint {
     }
 };
 
+enum SpecAc : u16 {
+    cooking = 1,
+    fishing = 2,
+    bluebox = 3,
+    digging = 4,
+    bed = 5,
+    kn6 = 6,
+    redbox = 7,
+    kn8 = 8
+};
+
+struct facPoint {
+    padding[2];
+    SpecAc type;
+    float xPos;
+    float yPos;
+    float zPos;
+    u16 kn2;
+    u16 kn3;
+    u16 kn4;
+    padding[2];
+};
+
+struct facPointBlock {
+    facPoint points [while(std::mem::read_unsigned($+4,4) != 0xBF800000)] 
+        [[inline]];
+    padding[0xC];
+    float;
+    float;
+} [[inline]];
+
+struct facilityPoints {
+    ptr ptr;
+    if (ptr) {
+        facPointBlock points @ ptr;
+    }
+};
+
+struct gatheringTable {
+    GatherItem items[while(std::mem::read_signed($,2)!=-1)];
+} [[inline]];
+
+struct ptGatheringTable {
+    gatheringTable *ptr : u32 [[inline]];
+};
+
 struct QuestFileHeader {
     ptr questTypeFlagsPtr;
     ptr loadedStagesPtr;
@@ -348,3 +394,20 @@ u32 returnBC_ID @ header.baseCampPtr + sizeof(qMapID);
 
 // The area1zones length is an assumption, just looks better than a loop
 ptGatheringPoint gatheringPerArea[area1zones] @ header.unk28;
+
+// 12.0 Base Camp Facilities
+
+// The area1zones length is an assumption, and 
+// I liked it better than looping
+facilityPoints facilities[area1zones] @ header.unk2C;
+
+// 13.0 Some Strings
+ptr someStringPtr @ header.unk30;
+ptr questTypePtr @ header.unk30 + 4;
+
+// 14.0 
+
+// 15.0 Gathering Tables
+
+ptGatheringTable gatheringTables[gatheringTablesQty] 
+    @ header.gatheringPointers;
