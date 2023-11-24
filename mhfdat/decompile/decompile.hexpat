@@ -3,19 +3,10 @@
 #include <misc/types.pat>
 #include <std/io.pat>
 
+struct varPaddT<T, auto pad> {T; padding[pad];};
 struct s32px4 {s32p unk0[4];};
 struct u32x10 {u32 unk[0x10] [[inline]];};
 struct ptu32x10 {u32x10 *pointer : u32 [[inline]];};
-struct u8PaddD {u8; padding[0xD];};
-struct u16Padd2 {u16; padding[2];};
-struct u16Padd4 {u16; padding[4];};
-struct u16Padd6 {u16; padding[6];};
-struct u16Padd20 {u16; padding[0x20];};
-struct u16Padd26 {u16; padding[0x26];};
-struct u16Padd2E {u16; padding[0x2E];};
-struct u16Padd32 {u16; padding[0x32];};
-struct u16Padd3A {u16; padding[0x3A];};
-struct u32Padd4 {u32; padding[4];};
 
 struct ptrToStringArray {
 	ptr ptr; 
@@ -86,7 +77,7 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		ptr ptr;
 
 		if (ptr != 0) {
-			u16Padd6 unk[while(std::mem::read_signed($,2))] @ ptr;
+			varPaddT<u16, 0x6> unk[while(std::mem::read_signed($,2))] @ ptr;
 		}
 	};
 
@@ -98,7 +89,7 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		if (sub[0] != 0) {
 			ptr unk0[count] @ sub[0];
 		} if (sub[1] != 0) {
-			u32Padd4 unk1[count] @ (sub[1] + 4);
+			varPaddT<u32, 0x4> unk1[count] @ (sub[1] + 4);
 		} if (sub[2] != 0) {
 			// Seems to be that sub[2] points to a shop section
 			struct_af4c11_2 unk2[count] @ sub[2];
@@ -116,21 +107,21 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 
 	struct struct_af4ce0 {
 		ptr ptr;
-		u16Padd26 unk[while(std::mem::read_signed($,2)!=-1)] @ ptr;
+		varPaddT<u16, 0x26> unk[while(std::mem::read_signed($,2)!=-1)] @ ptr;
 	};
 
 	struct_af4ce0 hd_dll_af4ce0[while(std::mem::read_signed($,4))] 
 		@ header.ptrs.hd_dll_af4cc5;
 
-	u16Padd2 hd_dll_af4d20[while(std::mem::read_signed($,2)!=-1)] 
+	varPaddT<u16, 0x2> hd_dll_af4d20[while(std::mem::read_signed($,2)!=-1)] 
 		@ header.ptrs.hd_dll_af4d08;
-	u16Padd20 hd_dll_af4d43[while(std::mem::read_signed($,2)!=-1)] 
+	varPaddT<u16, 0x20> hd_dll_af4d43[while(std::mem::read_signed($,2)!=-1)] 
 		@ header.ptrs.hd_dll_af4d2d;
 
 	// Some function is called, parameter is hd_dll_af4d2d
 
 	// Refrontier calls this array Hunter Pearl Skill unlocks
-	u16Padd2E hd_dll_af4d6f[while(std::mem::read_signed($,2)!=-1)] 
+	varPaddT<u16, 0x2E> hd_dll_af4d6f[while(std::mem::read_signed($,2)!=-1)] 
 		@ header.ptrs.hunterPearlSkills 
 		[[name("Hunter Pearl Skill unlocks")]];
 
@@ -138,15 +129,15 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 	ptr hd_dll_af4d91[std::mem::read_signed(header.ptrs.important_nums + 0x5E,2)] 
 		@ header.ptrs.hd_dll_af4d7b;
 
-	u16Padd2 hd_dll_af4e03[while(std::mem::read_signed($,2))] 
+	varPaddT<u16, 0x2> hd_dll_af4e03[while(std::mem::read_signed($,2))] 
 		@ header.ptrs.hd_dll_af4de0;
-	u16Padd2 hd_dll_af4e29[while(std::mem::read_signed($,2)!=-1)] 
+	varPaddT<u16, 0x2> hd_dll_af4e29[while(std::mem::read_signed($,2)!=-1)] 
 		@ header.ptrs.hd_dll_af4e0f;
-	u16Padd4 hd_dll_af4e49[while(std::mem::read_signed($,2)!=-1)] 
+	varPaddT<u16, 0x4> hd_dll_af4e49[while(std::mem::read_signed($,2)!=-1)] 
 		@ header.ptrs.hd_dll_af4e3a;
 
 	// Each of these u8s are written to incrementally, 0 to [0xaf4fa4]
-	u8PaddD hd_dll_af4fa8[numMonsterDesc] @ header.ptrs.hd_dll_af4f23;
+	varPaddT<u8, 0xD> hd_dll_af4fa8[numMonsterDesc] @ header.ptrs.hd_dll_af4f23;
 
 	s32p hd_dll_af4fd7[numMonsterDesc] @ header.ptrs.monsterDesc 
 		[[name("Monster Descriptions")]];
@@ -157,7 +148,7 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		padding[4];
 
 		if (unk0!=0) {
-			u16Padd26 unk[while(std::mem::read_unsigned($,2)!=0x8000)] 
+			varPaddT<u16, 0x26> unk[while(std::mem::read_unsigned($,2)!=0x8000)] 
 				@ (unk0 + 0x1E);
 		}
 	};

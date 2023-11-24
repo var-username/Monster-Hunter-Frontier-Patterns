@@ -1,6 +1,7 @@
 #include <std/mem.pat>
 #include <misc/types.pat>
 
+struct varPaddT<T, auto pad> {T; padding[pad];};
 struct s32pxT<auto Size> {
     s_s32p data[Size] [[inline]];
 };
@@ -89,23 +90,20 @@ ptr hd_dll_afb39e @ 0x5C;
 
 ptr hd_dll_afb3ee @ 0x60;
 num hd_dll_afb3f7 @ (hd_dll_afaf5e + 0x22);
-struct struct_afb3fb {
-    s_s32p;
-    padding[0xC];
-};
-struct_afb3fb hd_dll_afb3fb[hd_dll_afb3f7] @ hd_dll_afb3ee;
+
+varPaddT<s_s32p, 0xC> hd_dll_afb3fb[hd_dll_afb3f7] @ hd_dll_afb3ee;
 
 ptr hd_dll_afb410 @ 0x64;
 num hd_dll_afb419 @ (hd_dll_afaf5e + 0x24);
-struct_afb3fb hd_dll_afb420[hd_dll_afb419] @ hd_dll_afb410;
+varPaddT<s_s32p, 0xC> hd_dll_afb420[hd_dll_afb419] @ hd_dll_afb410;
 
 ptr hd_dll_afb430 @ 0x68;
 num hd_dll_afb439 @ (hd_dll_afaf5e + 0x26);
-struct_afb3fb hd_dll_afb440[hd_dll_afb439] @ hd_dll_afb430;
+varPaddT<s_s32p, 0xC> hd_dll_afb440[hd_dll_afb439] @ hd_dll_afb430;
 
 ptr hd_dll_afb450 @ 0x6c;
 num hd_dll_afb459 @ (hd_dll_afaf5e + 0x28);
-struct_afb3fb hd_dll_afb460[hd_dll_afb459] @ hd_dll_afb450;
+varPaddT<s_s32p, 0xC> hd_dll_afb460[hd_dll_afb459] @ hd_dll_afb450;
 
 ptr hd_dll_afb473 @ 0x74;
 ptr hd_dll_afb476 @ 0x70;
@@ -139,23 +137,19 @@ ptr hd_dll_afb538 @ 0xC4;
 
 ptr hd_dll_afb595 @ 0xC8;
 num hd_dll_afb5a4 @ (hd_dll_afaf5e + 0x52);
-struct struct_afb5b0 {
-    s_s32p;
-    padding[0x8];
-};
-struct_afb5b0 hd_dll_afb5b0[hd_dll_afb5a4] @ hd_dll_afb595;
+varPaddT<s_s32p, 0x8> hd_dll_afb5b0[hd_dll_afb5a4] @ hd_dll_afb595;
 
 ptr hd_dll_afb5c0 @ 0xCC;
 num hd_dll_afb5cf @ (hd_dll_afaf5e + 0x54);
-struct_afb5b0 hd_dll_afb5d3[hd_dll_afb5cf] @ hd_dll_afb5c0;
+varPaddT<s_s32p, 0x8> hd_dll_afb5d3[hd_dll_afb5cf] @ hd_dll_afb5c0;
 
 ptr hd_dll_afb5e3 @ 0xD0;
 num hd_dll_afb5f2 @ (hd_dll_afaf5e + 0x5A);
-struct_afb5b0 hd_dll_afb600[hd_dll_afb5f2] @ hd_dll_afb5e3;
+varPaddT<s_s32p, 0x8> hd_dll_afb600[hd_dll_afb5f2] @ hd_dll_afb5e3;
 
 ptr hd_dll_afb610 @ 0xD4;
 num hd_dll_afb61f @ (hd_dll_afaf5e + 0x5C);
-struct_afb5b0 hd_dll_afb623[hd_dll_afb61f] @ hd_dll_afb610;
+varPaddT<s_s32p, 0x8> hd_dll_afb623[hd_dll_afb61f] @ hd_dll_afb610;
 
 ptr hd_dll_afb633 @ 0x84;
 num hd_dll_afb642 @ (hd_dll_afaf5e + 0x34);
