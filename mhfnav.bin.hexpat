@@ -16,7 +16,7 @@ u16 unk_shorts_lst [unk_shorts_len] @ ptr_at_0x10;
 
 using ItemQuantity;
 fn itemQuantityFmt (ItemQuantity n) {
-    return std::format("{:02}x {}", n.quantity, n.item);
+    return std::format("{:02}x {:04X}", n.quantity, n.item);
 };
 
 struct ItemQuantity {
