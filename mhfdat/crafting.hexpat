@@ -113,10 +113,6 @@ struct GenericAUpgrade {
     RegAUpgradeRow itemsForUpgrade[while(std::mem::read_unsigned($,0x10))];
 };
 
-struct ptGenericAUpgrade {
-    GenericAUpgrade *ptr : u32 [[inline]];
-};
-
 struct CraftMatReq {
     u32 equipID [[color("0088FF"), format("getEquipName")]];
     bool purchaseable @ $-0x03;
@@ -154,7 +150,7 @@ WUpgradePath wUpgradePath[17568] @ header.ptrs.weaponUpgradePath;
 g50WUpgrade g50WeaponUpgrades[81914] @ header.ptrs.weaponG50Forging;
 
 // [mhfo-hd.dll + 0xaf47ed]
-ptGenericAUpgrade armorUpgrades[while(std::mem::read_unsigned($,4))] 
+ptVar<GenericAUpgrade> armorUpgrades[while(std::mem::read_unsigned($,4))] 
         @ header.ptrs.armorUpgradeMats;
 
 CraftMatTable towerArmorCraftingTable @ header.ptrs.armorTowerForging

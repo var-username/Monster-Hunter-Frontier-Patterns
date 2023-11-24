@@ -19,11 +19,7 @@ struct ArenaEquips {
     DefBlock def[4];
 } [[inline]];
 
-struct ptArenaEquipment {
-    ArenaEquips *ptEquip : ptr [[inline]];
-};
-
-ptArenaEquipment ArenaEquipment[17] @ header.ptrs.arenaEquipment;
+ptVar<ArenaEquips> ArenaEquipment[17] @ header.ptrs.arenaEquipment;
 
 // ***** Arena Item Block ***** //
 
@@ -41,17 +37,9 @@ struct ItemTable {
     ItemBlock items[while(std::mem::read_signed($, 2) != -1)];
 } [[inline]];
 
-struct ptItemBlock {
-    if (std::mem::read_unsigned($, 4) != 0x00) {
-        ItemTable *ptItemTable : ptr [[inline]];
-    } else {
-        padding[4];
-    }
-};
+ptVar<ItemTable> ArenaItems[68] @ header.ptrs.arenaItems;
 
-ptItemBlock ArenaItems[68] @ header.ptrs.arenaItems;
-
-ptItemBlock unkPointers[23] @ header.ptrs.arenaAmmo
+ptVar<ItemTable> unkPointers[23] @ header.ptrs.arenaAmmo
 [[comment("Maybe items to add as ammo for ranged weapons?")]];
 
 /* I have no idea what these are, they're just referenced in a pattern
@@ -64,14 +52,6 @@ u16 stageIDChunk1[34] @ header.ptrs.arenaStageIDC1;
 
 struct unkChunk {
     u16 unkVals[10];
-};
+} [[inline]];
 
-struct ptUnkChunk {
-    if (std::mem::read_unsigned($, 4) != 0x00) {
-        unkChunk *item : ptr [[inline]];
-    } else {
-        padding[4];
-    }
-};
-
-ptUnkChunk moreMysteryPointers[23] @ header.ptrs.hd_dll_af5261;
+ptVar<unkChunk> moreMysteryPointers[23] @ header.ptrs.hd_dll_af5261;

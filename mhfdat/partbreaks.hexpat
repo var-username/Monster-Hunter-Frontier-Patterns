@@ -34,10 +34,6 @@ struct PartBreakDropTable {
         [[inline]];
 } [[inline]];
 
-// Pointer to part break drop table
-struct ptPartBreaksDT {
-    PartBreakDropTable *ptPartBreaks : u32 [[inline]];
-};
 
 using CarveDrop;
 fn carveDropFmt (CarveDrop n) {
@@ -55,17 +51,14 @@ struct CarveDropTable {
     CarveDrop carves [while(std::mem::read_signed($,2)!=-1)] [[inline]];
 } [[inline]];
 
-// Pointer to carve drop table
-struct ptCarveDT {
-    CarveDropTable *ptCarveDT : u32 [[inline]];
-};
-
 // [mhfo-hd.dll + 0xaf4e98]
-ptPartBreaksDT ptPartBreakDTs[numPartBreakDTs] 
+// Pointer to part break drop table
+ptVar<PartBreakDropTable> ptPartBreakDTs[numPartBreakDTs] 
     @ header.ptrs.partBreakItemDrops;
 
 // [mhfo-hd.dll + 0xaf4e70]
-ptCarveDT ptCarveDTs[numCarveDTs] 
+// Pointer to carve drop table
+ptVar<CarveDropTable> ptCarveDTs[numCarveDTs] 
     @ header.ptrs.carveItemDrops;
 
 struct HC_GR_Carve {

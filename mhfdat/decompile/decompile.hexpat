@@ -3,7 +3,6 @@
 #include <misc/types.pat>
 #include <std/io.pat>
 
-struct varPaddT<T, auto pad> {T; padding[pad];};
 struct s32px4 {s32p unk0[4];};
 struct u32x10 {u32 unk[0x10] [[inline]];};
 struct ptu32x10 {u32x10 *pointer : u32 [[inline]];};

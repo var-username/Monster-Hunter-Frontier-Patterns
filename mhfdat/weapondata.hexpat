@@ -3,6 +3,7 @@
 #include <misc/s32p.pat>
 
 #ifndef __ITEMDATA
+// Define plusone if it wasn't defined in itemdata.hexpat
 // Add 1 to n (Used for pattern formatting)
 fn plusone (u8 n) {
 	return n+1;

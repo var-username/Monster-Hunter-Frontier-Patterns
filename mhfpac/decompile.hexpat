@@ -1,7 +1,6 @@
 #include <std/mem.pat>
 #include <misc/types.pat>
 
-struct varPaddT<T, auto pad> {T; padding[pad];};
 struct s32pxT<auto Size> {
     s_s32p data[Size] [[inline]];
 };
