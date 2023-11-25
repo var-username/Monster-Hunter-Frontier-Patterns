@@ -56,11 +56,19 @@ struct unk_struct_af9710 {
 	}
 };
 
+struct enrageStats {
+	u16 anger;
+	u16 frames [[comment("How long enrage lasts in frames")]];
+	float agility;
+	float attack;
+	float unk[12];
+} [[inline]];
+
 struct unk_struct_af96d8 {
 	MonsterStats *stats: u32; //af96ec
 	u32 unk04[0xC] [[static, sealed]]; //af973d
 	padding[0xC]; // This is just improvizing
-	u32 unk40[0xC] [[static, sealed]]; // Improvizing
+	ptVar<enrageStats> unk40[0xC] [[name("Ptrs to Enrage statistics?")]];
 	float unk70 [0xC] [[static, sealed]]; //Improvising
 	u16 unkA0 [[name("Base Health")]];
 	u16 unkA2 [[comment("Health for large? See vespoid")]];
