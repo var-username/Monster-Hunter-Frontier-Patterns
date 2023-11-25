@@ -80,10 +80,12 @@ struct hitzoneStatTable {
 struct enrageStats {
 	u16 anger;
 	u16 frames [[comment("How long enrage lasts in frames")]];
-	float agility;
+	float agility [[comment("No idea what this does")]];
 	float attack;
 	float defense;
-	float unk[11];
+	float buildupMult[11] 
+	[[comment("How quickly enrage builds. Starts at 100% hp, then 90%, etc.")]]
+	; 
 } [[inline]];
 
 struct unk_struct_af96d8 {
