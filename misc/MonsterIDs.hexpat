@@ -3,199 +3,183 @@
 #include <std/io.pat>
 
 enum MonsterID : u8 {
-    // 0x0n
-    UNK = 0x00,
-    Rathian,
-    Fatalis,
-    Kelbi,
-    Mosswine,
-    Bullfango,
-    Yian_KutKu,
-    LaoShan_Lung,
-    Cephadrome,
-    Felyne,
-    Veggie_Elder,
-    Rathalos,
-    Aptonoth,
-    Genprey,
-    Diablos,
-    Khezu,
-    // 0x1n
-    Velociprey,
-    Gravios,
-    MaybeFelyne,
-    Vespoid,
-    Gypceros,
-    Plesioth,
-    Basarios,
-    Melynx,
-    Hornetaur,
-    Apceros,
-    Monoblos,
-    Velocidrome,
-    Gendrome,
-    Rocks,
-    Ioprey,
-    Iodrome,
-    // 0x2n
-    Pugis,
-    Kirin,
-    Cephalos,
-    GiapreyGiadrome,
-    Crimson_Fatalis,
-    Pink_Rathian,
-    Blue_Yian_KutKu,
-    Purple_Gypceros,
-    Yian_Garuga,
-    Silver_Rathalos,
-    Gold_Rathian,
-    Black_Dioblos,
-    White_Monoblos,
-    Red_Khezu,
-    Green_Plesioth,
-    Black_Gravios,
-    // 0x3n
-    Diamyo_Hermitaur,
-    Azure_Rathalos,
-    Ashen_LaoShan_Lung,
-    Blangonga,
-    Congalala,
-    Rajang,
-    Kushala_Daora,
-    Shen_Gaoren,
-    Great_Thunderbug,
-    Shakalaka,
-    Yama_Tsukami,
-    Chameleos,
-    Rusted_Kushala_Daora,
-    Blango,
-    Conga,
-    Remobra,
-    // 0x4n
-    Lunastra,
-    Teostra,
-    Hermitaur,
-    Shogun_Ceanataur,
-    Bulldrome,
-    Anteka,
-    Popo,
-    White_Fatalis,
-    Yama_Tsukami2,
-    Ceanataur,
-    Hypnocatrice,
-    Lavasioth,
-    Tigrex,
-    Akantor,
-    Bright_Hypnoc,
-    Lavasioth_Subspecies,
-    // 0x5n
-    Espinas,
-    Orange_Espinas,
-    White_Hypnox,
-    Akura_Vashimu,
-    Akura_Jebia,
-    Berukyurosu,
-    Cactus,
-    Gorge_Objects,
-    Gorge_Rocks,
-    Pariapuria,
-    White_Espinas,
-    Kamu_Orugaron,
-    Nono_Orugaron,
-    Raviente,
-    Dyuragaua,
-    Doragyurosu,
-    // 0x6n
-    Gurenzeburu,
-    Burukku,
-    Erupe,
-    Rukodiora,
-    Unknown,
-    Gogomoa,
-    Kokomoa,
-    Taikun_Zamuza,
-    Abiorugu,
-    Kuarusepusu,
-    Odibatorasu,
-    Disufiroa,
-    Rebidiora,
-    Anorupatisu,
-    Hyujikiki,
-    Midogaron,
-    // 0x7n
-    Giaorugu,
-    Mi_Ru,
-    Farunokku,
-    Pokaradon,
-    Shantien,
-    Pokara,
-    Dummy,
-    Goruganosu,
-    Aruganosu,
-    Baruragaru,
-    Zerureusu,
-    Gougarf,
-    Uruki,
-    Forokururu,
-    Meraginasu,
-    Diorekkusu,
-    // 0x8n
-    Garuba_Daora,
-    Inagami,
-    Varusaburosu,
-    Poborubarumu,
-    Duremudira,
-    UNK,
-    Felyne2,
-    BlueNPC,
-    UNK,
-    Cactus,
-    Veggie_Elders,
-    Gureadomosu,
-    Harudomerugu,
-    Toridcless,
-    Gasurabazura,
-    Kusubami,
-    // 0x9n
-    Yama_Kurai,
-    Dure_3rd_Phase,
-    Zinogre,
-    Deviljho,
-    Brachydios,
-    Berserk_Raviente,
-    Toa_Tesukatora,
-    Barioth,
-    Uragaan,
-    Stygian_Zinogre,
-    Guanzorumu,
-    Deviljho,
-    UNK,
-    Egyurasu,
-    Voljang,
-    Nargacuga,
-    // 0xAn
-    Keoaruboru,
-    Zenaserisu,
-    Gore_Magala,
-    Blinking_Nargacuga,
-    Shagaru_Magala,
-    Amatsu,
-    Eruzerion,
-    Musou_Dure,
-    Rocks,
-    Seregios,
-    Bogabadorumu,
-    Blue_Barrek,
-    Musou_Bogabadorumu,
-    Costumed_Uruki,
-    Musou_Zerureusu,
-    PSO2_Rappy,
-    // 0xBn
-    King_Shakalaka
-} ;
-
-// This seems slow, maybe improve this in future?
-fn getMonsterID (u8 n) {
-    MonsterID tmp = n;
-    return std::format("{}", tmp);
+// |          Name          |  Hex  |  Dec  |
+// ==========================================
+    UNK                     = 0x00, //   0
+    Rathian                 = 0x01, //   1
+    Fatalis                 = 0x02, //   2
+    Kelbi                   = 0x03, //   3
+    Mosswine                = 0x04, //   4
+    Bullfango               = 0x05, //   5
+    Yian_KutKu              = 0x06, //   6
+    LaoShan_Lung            = 0x07, //   7
+    Cephadrome              = 0x08, //   8
+    Felyne                  = 0x09, //   9
+    Veggie_Elder            = 0x0A, //  10
+    Rathalos                = 0x0B, //  11
+    Aptonoth                = 0x0C, //  12
+    Genprey                 = 0x0D, //  13
+    Diablos                 = 0x0E, //  14
+    Khezu                   = 0x0F, //  15
+    Velociprey              = 0x10, //  16
+    Gravios                 = 0x11, //  17
+    MaybeFelyne             = 0x12, //  18
+    Vespoid                 = 0x13, //  19
+    Gypceros                = 0x14, //  20
+    Plesioth                = 0x15, //  21
+    Basarios                = 0x16, //  22
+    Melynx                  = 0x17, //  23
+    Hornetaur               = 0x18, //  24
+    Apceros                 = 0x19, //  25
+    Monoblos                = 0x1A, //  26
+    Velocidrome             = 0x1B, //  27
+    Gendrome                = 0x1C, //  28
+    Rocks                   = 0x1D, //  29
+    Ioprey                  = 0x1E, //  30
+    Iodrome                 = 0x1F, //  31
+    Pugis                   = 0x20, //  32
+    Kirin                   = 0x21, //  33
+    Cephalos                = 0x22, //  34
+    GiapreyGiadrome         = 0x23, //  35
+    Crimson_Fatalis         = 0x24, //  36
+    Pink_Rathian            = 0x25, //  37
+    Blue_Yian_KutKu         = 0x26, //  38
+    Purple_Gypceros         = 0x27, //  39
+    Yian_Garuga             = 0x28, //  40
+    Silver_Rathalos         = 0x29, //  41
+    Gold_Rathian            = 0x2A, //  42
+    Black_Diablos           = 0x2B, //  43
+    White_Monoblos          = 0x2C, //  44
+    Red_Khezu               = 0x2D, //  45
+    Green_Plesioth          = 0x2E, //  46
+    Black_Gravios           = 0x2F, //  47
+    Diamyo_Hermitaur        = 0x30, //  48
+    Azure_Rathalos          = 0x31, //  49
+    Ashen_LaoShan_Lung      = 0x32, //  50
+    Blangonga               = 0x33, //  51
+    Congalala               = 0x34, //  52
+    Rajang                  = 0x35, //  53
+    Kushala_Daora           = 0x36, //  54
+    Shen_Gaoren             = 0x37, //  55
+    Great_Thunderbug        = 0x38, //  56
+    Shakalaka               = 0x39, //  57
+    Yama_Tsukami            = 0x3A, //  58
+    Chameleos               = 0x3B, //  59
+    Rusted_Kushala_Daora    = 0x3C, //  60
+    Blango                  = 0x3D, //  61
+    Conga                   = 0x3E, //  62
+    Remobra                 = 0x3F, //  63
+    Lunastra                = 0x40, //  64
+    Teostra                 = 0x41, //  65
+    Hermitaur               = 0x42, //  66
+    Shogun_Ceanataur        = 0x43, //  67
+    Bulldrome               = 0x44, //  68
+    Anteka                  = 0x45, //  69
+    Popo                    = 0x46, //  70
+    White_Fatalis           = 0x47, //  71
+    Yama_Tsukami2           = 0x48, //  72
+    Ceanataur               = 0x49, //  73
+    Hypnocatrice            = 0x4A, //  74
+    Lavasioth               = 0x4B, //  75
+    Tigrex                  = 0x4C, //  76
+    Akantor                 = 0x4D, //  77
+    Bright_Hypnoc           = 0x4E, //  78
+    Lavasioth_Subspecies    = 0x4F, //  79
+    Espinas                 = 0x50, //  80
+    Orange_Espinas          = 0x51, //  81
+    White_Hypnox            = 0x52, //  82
+    Akura_Vashimu           = 0x53, //  83
+    Akura_Jebia             = 0x54, //  84
+    Berukyurosu             = 0x55, //  85
+    Cactus                  = 0x56, //  86
+    Gorge_Objects           = 0x57, //  87
+    Gorge_Rocks             = 0x58, //  88
+    Pariapuria              = 0x59, //  89
+    White_Espinas           = 0x5A, //  90
+    Kamu_Orugaron           = 0x5B, //  91
+    Nono_Orugaron           = 0x5C, //  92
+    Raviente                = 0x5D, //  93
+    Dyuragaua               = 0x5E, //  94
+    Doragyurosu             = 0x5F, //  95
+    Gurenzeburu             = 0x60, //  96
+    Burukku                 = 0x61, //  97
+    Erupe                   = 0x62, //  98
+    Rukodiora               = 0x63, //  99
+    Unknown                 = 0x64, // 100
+    Gogomoa                 = 0x65, // 101
+    Kokomoa                 = 0x66, // 102
+    Taikun_Zamuza           = 0x67, // 103
+    Abiorugu                = 0x68, // 104
+    Kuarusepusu             = 0x69, // 105
+    Odibatorasu             = 0x6A, // 106
+    Disufiroa               = 0x6B, // 107
+    Rebidiora               = 0x6C, // 108
+    Anorupatisu             = 0x6D, // 109
+    Hyujikiki               = 0x6E, // 110
+    Midogaron               = 0x6F, // 111
+    Giaorugu                = 0x70, // 112
+    Mi_Ru                   = 0x71, // 113
+    Farunokku               = 0x72, // 114
+    Pokaradon               = 0x73, // 115
+    Shantien                = 0x74, // 116
+    Pokara                  = 0x75, // 117
+    Dummy                   = 0x76, // 118
+    Goruganosu              = 0x77, // 119
+    Aruganosu               = 0x78, // 120
+    Baruragaru              = 0x79, // 121
+    Zerureusu               = 0x7A, // 122
+    Gougarf                 = 0x7B, // 123
+    Uruki                   = 0x7C, // 124
+    Forokururu              = 0x7D, // 125
+    Meraginasu              = 0x7E, // 126
+    Diorekkusu              = 0x7F, // 127
+    Garuba_Daora            = 0x80, // 128
+    Inagami                 = 0x81, // 129
+    Varusaburosu            = 0x82, // 130
+    Poborubarumu            = 0x83, // 131
+    Duremudira              = 0x84, // 132
+    UNK                     = 0x85, // 133
+    Felyne2                 = 0x86, // 134
+    BlueNPC                 = 0x87, // 135
+    UNK                     = 0x88, // 136
+    Cactus                  = 0x89, // 137
+    Veggie_Elders           = 0x8A, // 138
+    Gureadomosu             = 0x8B, // 139
+    Harudomerugu            = 0x8C, // 140
+    Toridcless              = 0x8D, // 141
+    Gasurabazura            = 0x8E, // 142
+    Kusubami                = 0x8F, // 143
+    Yama_Kurai              = 0x90, // 144
+    Dure_3rd_Phase          = 0x91, // 145
+    Zinogre                 = 0x92, // 146
+    Deviljho                = 0x93, // 147
+    Brachydios              = 0x94, // 148
+    Berserk_Raviente        = 0x95, // 149
+    Toa_Tesukatora          = 0x96, // 150
+    Barioth                 = 0x97, // 151
+    Uragaan                 = 0x98, // 152
+    Stygian_Zinogre         = 0x99, // 153
+    Guanzorumu              = 0x9A, // 154
+    Deviljho                = 0x9B, // 155
+    UNK                     = 0x9C, // 156
+    Egyurasu                = 0x9D, // 157
+    Voljang                 = 0x9E, // 158
+    Nargacuga               = 0x9F, // 159
+    Keoaruboru              = 0xA0, // 160
+    Zenaserisu              = 0xA1, // 161
+    Gore_Magala             = 0xA2, // 162
+    Blinking_Nargacuga      = 0xA3, // 163
+    Shagaru_Magala          = 0xA4, // 164
+    Amatsu                  = 0xA5, // 165
+    Eruzerion               = 0xA6, // 166
+    Musou_Dure              = 0xA7, // 167
+    Rocks                   = 0xA8, // 168
+    Seregios                = 0xA9, // 169
+    Bogabadorumu            = 0xAA, // 170
+    Blue_Barrek             = 0xAB, // 171
+    Musou_Bogabadorumu      = 0xAC, // 172
+    Costumed_Uruki          = 0xAD, // 173
+    Musou_Zerureusu         = 0xAE, // 174
+    PSO2_Rappy              = 0xAF, // 175
+    King_Shakalaka          = 0xB0  // 176
 };
