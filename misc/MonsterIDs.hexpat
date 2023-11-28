@@ -1,6 +1,7 @@
 #pragma once
 
 #include <std/io.pat>
+#include <std/string.pat>
 
 enum MonsterID : u8 {
 // |          Name          |  Hex  |  Dec  |
@@ -182,4 +183,10 @@ enum MonsterID : u8 {
     Musou_Zerureusu         = 0xAE, // 174
     PSO2_Rappy              = 0xAF, // 175
     King_Shakalaka          = 0xB0  // 176
+};
+
+fn fmtMonsterID (MonsterID n) {
+    str s = std::string::to_string(n);
+    // Lop off the "MonsterID::" part of the string
+    return std::string::substr(s, 11, std::string::length(s) - 11);
 };

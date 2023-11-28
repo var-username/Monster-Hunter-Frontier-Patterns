@@ -1,5 +1,6 @@
 #pragma pattern_limit 500000
 
+#include <std/io.pat>
 #include <std/mem.pat>
 #include <std/core.pat>
 #include <misc/MonsterIDs.hexpat>
@@ -7,47 +8,41 @@
 
 //#define __DECOMPILE 1
 
-ptr unkPtr_at_00000058 @ 0x58; //Modified by comfy to point to new data
+#include <mhfemd/header.hexpat>
 
-struct unknownData {
-	u32 unk[while(std::mem::read_unsigned($,16))];
-};
+/*	// This data is unknown, but documented as the pointer leading to it was
+	// modified by TsuyaC's comfy patch
 
-struct unknownDatap {
-	unknownData *ptr : u32 [[inline]];
-};
+	struct maybeMonsterData {
+		MonsterID id;
+		padding[3];
 
-//unknownDatap ptrArray[0x15] @ 0x04;
+		float unk[6];
+	};
 
-struct maybeMonsterData {
-	MonsterID id;
-	padding[3];
+	maybeMonsterData test[while(std::mem::read_unsigned($,8))] @ header.hd_dll_af9882;
+*/
 
-	float unk[6];
-};
-
-maybeMonsterData test[while(std::mem::read_unsigned($,8))] @ unkPtr_at_00000058;
-
-
-struct monsterStatTable{
+struct monsterStatRow{
 	float hp [[comment("This is a multiplier for the base hp, which varies by monster!")]];
 	float dmg;
 	float def;
 	float stagger;
 	float unk10;
 	float unk14;
-}; //size of 0x18;
+} [[static]]; //size of 0x18;
 
 struct MonsterStats {
-	monsterStatTable statTable[68] [[inline]];
+	monsterStatRow statBlock[68] [[inline]];
 } [[inline]]; //size of 0x660
 
-u32 hd_dll_af96a1 @ 0x00;
-u8 hd_dll_af96a5 @ (hd_dll_af96a1 + 4) [[name("Number of monsters")]];
-ptr hd_dll_af96cc @ 0xC  [[name("Pointer to Monster Stat Block")]];
+// [mhfo-hd.dll + 0xaf96a5]
+u8 numMonsters @ (header.important_nums + 4) [[name("Number of monsters")]];
 
-s16 hd_dll_af96d2 = u16(hd_dll_af96a5);
+// [mhfo-hd.dll + 0xaf96d2]
+s16 sNumMonsters = u16(numMonsters);
 
+// [mhfo-hd.dll + 0xaf9710]
 struct unk_struct_af9710 {
 	if ((std::mem::read_signed($, 4)) && (std::mem::read_signed($ + 4, 4))) {
 		u32 unk00; padding[4];
@@ -86,12 +81,22 @@ struct enrageStats {
 	float buildupMult[11] 
 	[[comment("How quickly enrage builds. Starts at 100% hp, then 90%, etc.")]]
 	; 
-} [[inline]];
+} [[static, inline]];
 
-struct unk_struct_af96d8 {
-	MonsterStats *stats: ptr; //af96ec
+using genMonsterStats;
+/// By request from SephVII, name stat block entries by monster
+fn fmtMonsterStatBlock (auto n) {
+	MonsterID m = u8(std::core::array_index());
+	return std::format("{}", fmtMonsterID(m));
+};
+
+// [mhfo-hd.dll + 0xaf96d8]
+struct monsterStatBlock {
+	padding[8];
+	// [mhfo-hd.dll + 0xaf96ec]
+	MonsterStats *stats: ptr; 
 	
-	//af973d
+	//[mhfo-hd.dll + 0xaf973d]
 	ptVar<hitzoneStatTable> unk04[0xC] [[name("Ptrs to Hitzone stats?")]]; 
 	
 	padding[0xC]; // This is just improvizing
@@ -105,25 +110,57 @@ struct unk_struct_af96d8 {
 	 */
 	ptVar<enrageStats> unk40[0xC] [[name("Ptrs to Enrage stats?")]];
 	
-	float unk70 [0xC] [[static, sealed]]; //Improvising
+	float unk70 [0xC] [[sealed]]; //Improvising
 	u16 unkA0 [[name("Base Health")]];
 	u16 unkA2 [[comment("Health for large? See vespoid")]];
 	u16;
 	u16;
-	ptr; //af96dd
+	
+	// [mhfo-hd.dll + 0xaf96dd]
+	ptr;
+	
 	padding[4];
 	if (std::mem::read_signed($, 4)) {
-		unk_struct_af9710 *unkAC[200]: ptr; // af9723
-		//padding[4];
+		// [mhfo-hd.dll + 0xaf9723]
+		unk_struct_af9710 *unkAC[200]: ptr;
 	} else {
 		padding[4];
 	}
-	padding[0xC];
-}; // size of 0xC0
+	padding[4];
+}[[format("fmtMonsterStatBlock")]]; // size of 0xC0
 
-unk_struct_af96d8 hd_dll_af96d8[hd_dll_af96d2] @ (hd_dll_af96cc + 8) 
-[[name("Monster Stat Block")]]; 
+// [mhfo-hd.dll + 0xaf96d8]
+monsterStatBlock monsterStatTable[sNumMonsters] @ (header.monStatTable) 
+[[name("Monster Stat Table")]]; 
 
+using specificValues;
+fn fmtSpecificValues(specificValues n) {
+	return std::format("{} | {}", fmtMonsterID(n.monID), n.rank);
+};
+
+struct specificValues {
+	MonsterID monID;
+	padding[1];
+
+	/**	
+		0 = Low-rank
+		1 = High-rank
+		3 = Gou
+		7 = G-Rank
+		-1 = ???
+	 */
+	u16 rank;
+
+	float attack;
+	float defense;
+	float aggro;
+	float enrage_def;
+	float hp;
+	float flinch;
+} [[static, format("fmtSpecificValues")]];
+
+specificValues specificValues[while(std::mem::read_signed($,4))] 
+	@ header.specificValues [[name("Specific Values (HC/UL Stats)")]];
 
 #ifdef __DECOMPILE
 #include <mhfemd/decompile.hexpat>

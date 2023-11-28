@@ -1,7 +1,7 @@
 #pragma once
 
 using ptr = u32 
-[[hidden]]
+//[[hidden]]
 ;
 
 using unk_ptr = ptr

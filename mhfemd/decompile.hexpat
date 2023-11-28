@@ -1,50 +1,33 @@
 #include <misc/MonsterIDs.hexpat>
 #include <misc/types.pat>
 
-ptr hd_dll_af96ab @ 0x4;
-ptr hd_dll_af96ae[0xC] @ hd_dll_af96ab;
-ptr hd_dll_af96be @ 0x18;
-ptr hd_dll_af96c1[3] @ hd_dll_af96be;
+ptr hd_dll_af96ae[0xC] @ header.hd_dll_af96ab;
+ptr hd_dll_af96c1[3] @ header.hd_dll_af96be;
 
-ptr hd_dll_af975c @ 0x08;
-ptr hd_dll_af975f @ 0x10;
-ptr hd_dll_af9762[0xC] @ hd_dll_af975f;
-ptr hd_dll_af9778 @ 0x1C;
-ptr hd_dll_af977b @ 0x14;
+ptr hd_dll_af9762[0xC] @ header.hd_dll_af975f;
 
-num hd_dll_af9780 @ (hd_dll_af96a1 + 0xC);
+num hd_dll_af9780 @ (header.important_nums + 0xC);
 struct unk_struct_af978a{MonsterID id; padding[3]; ptr; float;};
-unk_struct_af978a hd_dll_af978a[hd_dll_af9780] @ hd_dll_af9778;
+unk_struct_af978a hd_dll_af978a[hd_dll_af9780] @ header.hd_dll_af9778;
 
-ptr hd_dll_af97a0 @ 0x24;
-float *hd_dll_af97a3[] : u32 @ 0x20;
-num hd_dll_af97a6 @ (hd_dll_af96a1 + 0x10);
-ptr hd_dll_af97b2[hd_dll_af97a6] @ hd_dll_af97a0;
+float hd_dll_af97a3_1[] @ header.hd_dll_af97a3;
+num hd_dll_af97a6 @ (header.important_nums + 0x10);
+ptr hd_dll_af97b2[hd_dll_af97a6] @ header.hd_dll_af97a0;
 
-ptr hd_dll_af97c4 @ 0x28;
 // Seemingly useless loop at af97ce?
-ptr hd_dll_af97dc[while(std::mem::read_unsigned($,4))] @ hd_dll_af97c4;
+ptr hd_dll_af97dc[while(std::mem::read_unsigned($,4))] @ header.hd_dll_af97c4;
 
-ptr hd_dll_af97f7 @ 0x40;
-ptr hd_dll_af97fa @ 0x2c;
-ptr hd_dll_af97fd @ 0x30;
-ptr hd_dll_af9800 @ 0x34;
-ptr hd_dll_af9803 @ 0x38;
-ptr hd_dll_af9806 @ 0x3c;
 
-num hd_dll_af9809 @ (hd_dll_af96a1 + 0x16);
-ptr hd_dll_af9816[hd_dll_af9809] @ hd_dll_af97f7;
-num hd_dll_af9827 @ (hd_dll_af96a1 + 0x18);
-ptr hd_dll_af982b @ 0x44;
+num hd_dll_af9809 @ (header.important_nums + 0x16);
+ptr hd_dll_af9816[hd_dll_af9809] @ header.hd_dll_af97f7;
+num hd_dll_af9827 @ (header.important_nums + 0x18);
 
 struct p4_ptr {
 	padding[4]; ptr pointer;
 };
-p4_ptr hd_dll_af9834[hd_dll_af9827] @ (hd_dll_af982b);
+p4_ptr hd_dll_af9834[hd_dll_af9827] @ (header.hd_dll_af982b);
 
-ptr hd_dll_af984b @ 0x48;
-num hd_dll_af9850 @ (hd_dll_af96a1 + 0x1c);
-ptr hd_dll_af9854 @ 0x4c;
+num hd_dll_af9850 @ (header.important_nums + 0x1c);
 
 struct unk_struct_af985f {
 	padding[0x1A]; s16 unk1A;
@@ -54,14 +37,9 @@ struct unk_struct_af985f {
 		padding[4];
 	}
 };
-unk_struct_af985f hd_dll_af985f[hd_dll_af9850] @ hd_dll_af9854;
+unk_struct_af985f hd_dll_af985f[hd_dll_af9850] @ header.hd_dll_af9854;
 
-ptr hd_dll_af987c @ 0x50;
-ptr hd_dll_af987f @ 0x54;
-ptr hd_dll_af9882 @ 0x58;
-ptr hd_dll_af9885 @ 0x5c;
-
-//u32 hd_dll_0503af[16] @ (hd_dll_af97a0 + 0x7a0);
+//u32 hd_dll_0503af[16] @ (header.hd_dll_af97a0 + 0x7a0);
 
 /* [mhfo-hd.dll + 0x02fb40] FUN_10030740
 	u32 hd_dll_02fbda @ 0x4C;
@@ -75,7 +53,7 @@ ptr hd_dll_af9885 @ 0x5c;
 		u32; padding[0xC];
 	};
 
-	ptr hd_dll_0503ac = hd_dll_af97a0;
+	ptr hd_dll_0503ac = header.hd_dll_af97a0;
 	struct_0503bb hd_dll_0503bb[4] @ (hd_dll_0503ac + 0x7a0);
 	struct_0503bb hd_dll_0503df[4] @ (hd_dll_0503ac + 0x7a4);
 	struct_0503bb hd_dll_0503fa[4] @ (hd_dll_0503ac + 0x7a8);
