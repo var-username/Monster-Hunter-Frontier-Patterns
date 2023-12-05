@@ -105,28 +105,67 @@ struct MeleeWeaponEntry {
 	u16 modelId [[color("0088FF")]];
 	u8 rarity [[format("plusone"), color("22FF22")]];
 	u8 classId [[format("className"), color("0088FF")]];
-	u32 zennyCost [[comment("Seems to be twice what Ferias reports"), color("22FF22")]];
+	
+	u32 zennyCost [[
+		comment("Seems to be twice what Ferias reports"), 
+		color("22FF22")
+	]];
+
 	u16 sharpnessId [[color("FFFF00")]];
-	u16 rawDamage [[comment("In-game attack is raw damage * some multiplier. SnS:1.4x, GS:4.8x"), color("22FF22")]]; 
+
+	u16 rawDamage [[
+		comment("In-game attack is raw damage * some multiplier."), 
+		color("22FF22")
+	]]; 
+
 	u16 defense [[color("22FF22")]];
 	s8 affinity [[color("22FF22")]];
+
 	u8 elementId [[format("elementName"), color("00FF00")]];
 	u8 eleDamage [[format("timesten"), color("00FF00")]];
+
 	u8 ailmentId [[format("ailmentName"), color("00FF00")]];
 	u8 ailDamage [[format("timesten"), color("00FF00")]];
+
 	u8 slots [[color("00FF00")]];
+
 	u8 unk14 [[hidden]]; 
-	u8 unk15 [[hidden, comment("Maybe related to particle effects? 2 for dark effects? 1 for ice?"), color("FF0000")]];
-	u16 upgradePath [[comment("Maybe what weapon it upgrades from, how many indecies to look back. 0xFF for none?"), color("FF0000")]]; 
-	u16 otherModel [[comment("Often the same or similar to modelId. Maybe drawn modelId?"), color("FF0000")]]; 
+	
+	u8 unk15 [[
+		hidden, 
+		comment("Maybe related to particle effects? 2 for dark effects? 1 for ice?"), 
+		color("FF0000")
+	]];
+
+	u16 upgradePath [[
+		comment("Maybe what weapon it upgrades from, how many indecies to look back. 0xFF for none?"), 
+		color("FF0000")
+	]]; 
+
+	u16 otherModel [[
+		comment("Often the same or similar to modelId. Maybe drawn modelId?"), 
+		color("FF0000")
+	]]; 
+
 	u8 eqType [[format("eqType"), color("FFFF00")]]; 
+
 	u8 unk1B [[hidden]];
-	u32 unk1C [[hidden]]; u32 unk20 [[hidden]];
-	u16 unk24 [[color("FF0000")]]; 
+	u32 unk1C [[hidden]]; 
+	u32 unk20 [[hidden]];
+	
+	u16 unk24 [[
+		comment("Seems to be related to weapon visual effects"),
+		color("FF0000")
+	]]; 
+	
 	u16 unk26 [[hidden]];
-	u8 unk28 [[hidden]]; u8 unk29 [[hidden]]; 
-	u8 unk2A [[hidden]]; u8 zeroF [[comment("Always 0F?"), color("FF0000")]];
-	u32 unk2C [[hidden]]; u32 unk30 [[hidden]];
+	u8 unk28 [[hidden]]; 
+	u8 unk29 [[hidden]]; 
+	u8 unk2A [[hidden]]; 
+	u8 zeroF [[comment("Always 0F?"), color("FF0000")]];
+	u32 unk2C [[hidden]]; 
+	u16 zenithSkill;
+	padding[2];
 } [[format("meleeNameWE")]];
 	
 struct RangedWeaponEntry {
@@ -137,7 +176,9 @@ struct RangedWeaponEntry {
 	u8 unk05 [[hidden]];
 	u8 eq [[format("eqType")]];
 	u8 unk07 [[hidden]];
-	u32 unk08 [[hidden]]; u32 unk0C [[hidden]]; u32 unk10 [[hidden]];
+	u32 unk08 [[hidden]]; 
+	u32 unk0C [[hidden]]; 
+	u32 unk10 [[hidden]];
 	u32 zennyCost;
 	u16 rawDamage;
 	u16 defense;
@@ -155,9 +196,11 @@ struct RangedWeaponEntry {
 };
 
 // [mhfo-hd.dll + 0xaf49a9]
-MeleeWeaponEntry meleeData [while(std::mem::read_signed($,2)!=-1)] 
+MeleeWeaponEntry meleeData 
+	[ while (std::mem::read_signed($, 2) != -1) ] 
 	@ header.ptrs.meleeWeapons [[name("Melee Weapon Data")]];
 
 // [mhfo-hd.dll + 0xaf4a3a]
-RangedWeaponEntry rangedData [while(std::mem::read_signed($,2)!=-1)] 
+RangedWeaponEntry rangedData 
+	[ while (std::mem::read_signed($, 2) != -1) ] 
 	@ header.ptrs.rangedWeapons [[name("Ranged Weapon Data")]];

@@ -378,7 +378,7 @@ struct ptr_table {
     unk_ptr hd_dll_af6602;      // @ 0x540
     unk_ptr hd_dll_af6608;
     unk_ptr hd_dll_af660e;
-    unk_ptr hd_dll_af6614;
+    ptr seasonalEventTiming     [[name("Seasonal Event Timing Table Pointer")]];
     unk_ptr hd_dll_af661a;      // @ 0x550
     unk_ptr hd_dll_af6640;
     unk_ptr hd_dll_af6646;

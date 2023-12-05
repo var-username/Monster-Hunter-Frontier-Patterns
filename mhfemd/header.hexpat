@@ -23,7 +23,7 @@ struct ptr_table {
 
     // + 0x30
     unk_ptr hd_dll_af97fd;
-    ptr specificValues          [[name("Pointer to Specific Values (HC/UL)")]];
+    ptr specificValues          [[name("Pointer to Specific Values (HC)")]];
     unk_ptr hd_dll_af9803;
     unk_ptr hd_dll_af9806;
 

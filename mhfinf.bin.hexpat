@@ -24,12 +24,12 @@ std::assert_warn(header2 == 0x00000006, __header_fail_msg);
 std::assert_warn(header3 == 0x00000088, __header_fail_msg);
 
 u32 hd_dll_afa411 @ 0x10 
-[[name("Inf Quantities")]];
+    [[name("Inf Quantities")]];
 num hd_dll_afa421 @ hd_dll_afa411
-[[name("Number of quest table entries")]];
+    [[name("Number of quest table entries")]];
 
 ptr ptQuestTable @ 0x14
-[[name("Pointer to quest table")]];
+    [[name("Pointer to quest table")]];
 
 #ifdef __DECOMPILE
 #include <mhfinf/decompile.hexpat>

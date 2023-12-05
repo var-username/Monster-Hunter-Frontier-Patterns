@@ -13,6 +13,8 @@
 /*	// This data is unknown, but documented as the pointer leading to it was
 	// modified by TsuyaC's comfy patch
 
+	// TODO: Are these UL stats?
+
 	struct maybeMonsterData {
 		MonsterID id;
 		padding[3];
@@ -68,7 +70,7 @@ struct hitzoneStatTable {
 	hitzoneStats hitzones
 		// This unfortunately uses a lot of resources.
 		// Comment out to limit each table to a single hitzone
-		[while(std::mem::read_unsigned($,4)!=0)]
+		[ while (std::mem::read_unsigned($, 4) != 0) ]
 	;
 } [[inline]];
 
@@ -127,7 +129,7 @@ struct monsterStatBlock {
 		padding[4];
 	}
 	padding[4];
-}[[format("fmtMonsterStatBlock")]]; // size of 0xC0
+} [[format("fmtMonsterStatBlock")]]; // size of 0xC0
 
 // [mhfo-hd.dll + 0xaf96d8]
 monsterStatBlock monsterStatTable[sNumMonsters] @ (header.monStatTable) 
@@ -159,8 +161,8 @@ struct specificValues {
 	float flinch;
 } [[static, format("fmtSpecificValues")]];
 
-specificValues specificValues[while(std::mem::read_signed($,4))] 
-	@ header.specificValues [[name("Specific Values (HC/UL Stats)")]];
+specificValues specificValues[ while (std::mem::read_signed($, 4)) ] 
+	@ header.specificValues [[name("Specific Values (HC Stats)")]];
 
 #ifdef __DECOMPILE
 #include <mhfemd/decompile.hexpat>

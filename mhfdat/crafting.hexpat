@@ -141,7 +141,7 @@ struct CraftMatReq {
 } [[color("660066")]];
 
 struct CraftMatTable {
-    CraftMatReq entry[while(std::mem::read_signed($, 1)!=-1)] [[inline]];
+    CraftMatReq entry [ while (std::mem::read_signed($, 1) != -1)] [[inline]];
 };
 
 //WUpgradePath wUpgradePath1[13] @ 0xAE0DC4;
@@ -151,44 +151,45 @@ g50WUpgrade g50WeaponUpgrades[81914] @ header.ptrs.weaponG50Forging;
 
 // [mhfo-hd.dll + 0xaf47ed]
 ptVar<GenericAUpgrade> armorUpgrades[while(std::mem::read_unsigned($,4))] 
-        @ header.ptrs.armorUpgradeMats;
+    @ header.ptrs.armorUpgradeMats;
 
 CraftMatTable towerArmorCraftingTable @ header.ptrs.armorTowerForging
-[[name("Tower Armor Forging Data")]];
+    [[name("Tower Armor Forging Data")]];
 CraftMatTable towerWeaponCraftingTable @ header.ptrs.weaponTowerForging
-[[name("Tower Weapon Forging Data")]];
+    [[name("Tower Weapon Forging Data")]];
 CraftMatTable specialWeaponCraftingTable @ header.ptrs.weaponSpecialForging
-[[name("Special Weapon Forging Data??")]];
+    [[name("Special Weapon Forging Data??")]];
 CraftMatTable armorGCraftingTable @ header.ptrs.armorGRForging
-[[name("G-Rank Armor Forging Data")]];
+    [[name("G-Rank Armor Forging Data")]];
 CraftMatTable weaponGCraftingTable @ header.ptrs.weaponGRForging
-[[name("G-Rank Weapon Forging Data")]];
+    [[name("G-Rank Weapon Forging Data")]];
 
 CraftMatTable transmogCraftingTable @ header.ptrs.transmogForging
-[[name("Transmog Forging Data")]];
+    [[name("Transmog Forging Data")]];
 CraftMatTable weaponCraftingTable @ header.ptrs.weaponForging
-[[name("Weapon Forging Data")]];
+    [[name("Weapon Forging Data")]];
 CraftMatTable zArmorCraftingTable @ header.ptrs.armorZenithForging
-[[name("Zenith Armor Forging Data")]];
+    [[name("Zenith Armor Forging Data")]];
 CraftMatTable armorCraftingTable @ header.ptrs.armorForging
-[[name("Armor Forging Data")]];
+    [[name("Armor Forging Data")]];
 CraftMatTable miscCrafting5 @ header.ptrs.otherWeaponForging
-[[name("Other Weapon Forging Data")]];
+    [[name("Other Weapon Forging Data")]];
 
 
-//Unknown struct starting at 0x0156BF40
-//maybe evolution weapons?
-//Changed from CE, reduced g Cost?
-
-//Test data at 0x0156DB70
+/* TODO: This section is weird
+    Reena discovered the array names were wrong, and that
+    evoUpgradeSub contains data for the weapon. 
+    Rework these structs when more info is available
+ */
 
 struct evoUpgradeSub {
-    u16 unkSub0;
+    u16 dmg;
     u16 unkSub2;
-    padding[4];
+    u16 eleDamage;
+    padding[2];
     u16 unkSub8;
     padding[2];
-} [[single_color, sealed]];
+} [[single_color]];
 
 struct evoUpgrade {
     u32 gCost;
@@ -210,9 +211,8 @@ struct evoUpgrade {
     padding[2];
 };
 
-//evoUpgrade testEvo[10] @ 0x0156DB70;
 
-evoUpgrade evoUpgradesHR[100] @ header.ptrs.evoUpgrades;
-evoUpgrade evoUpgradesHR5[100] @ $;
-evoUpgrade evoUpgradesGR[100] @ $;
-evoUpgrade evoUpgradesZR[100] @ $;
+evoUpgrade evoUpgradesClear[100] @ header.ptrs.evoUpgrades;
+evoUpgrade evoUpgradesGlory[100] @ $;
+evoUpgrade evoUpgradesShine[100] @ $;
+evoUpgrade evoUpgradesFlash[100] @ $;

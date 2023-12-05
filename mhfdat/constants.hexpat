@@ -12,11 +12,11 @@ num numItems            @ (header.ptrs.important_nums + 0x8)
 
 // [mhfo-hd.dll + 0xaf4e70]
 num numCarveDTs         @ (header.ptrs.important_nums + 0x1C)
-[[name("Number of Carve Drop Tables")]];
+	[[name("Number of Carve Drop Tables")]];
 
 // [mhfo-hd.dll + 0xaf4e98]
 num numPartBreakDTs     @ (header.ptrs.important_nums + 0x1E)
-[[name("Number of Part Breat Drop Tables")]];
+	[[name("Number of Part Breat Drop Tables")]];
 
 // TODO: Add an entry for `hd_dll_af5261` once I figure out
 // what the data at that pointer describes

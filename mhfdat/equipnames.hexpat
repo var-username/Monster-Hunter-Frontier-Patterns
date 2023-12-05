@@ -32,5 +32,6 @@ s32p waistNames[numStringWaist] @ header.ptrs.waistArmorNames
 // [mhfo-hd.dll + 0xaf4944]
 u32 numStringLeg = (sizeof(legEntries)/sizeOfArmor);
 s32p legNames[numStringLeg] @ header.ptrs.legArmorNames
-[[name("Leg Armor Names")]];
+[[name("Leg Armor Names")]]
+;
 #endif
