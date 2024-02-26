@@ -24,8 +24,13 @@ struct RewardItem {
 } [[single_color]];
 
 struct SupplyItem {
-    ItemID item;
-    u16 quantity;
+    if (std::mem::read_signed($,2)==0) {
+        padding[4];
+        continue;
+    } else {
+        ItemID item;
+        u16 quantity;
+    }
 } [[single_color]];
 
 struct GatherItem {
@@ -48,7 +53,7 @@ struct LargeMonsterSpawn {
     u32 spawnAmount;
     u32 spawnStage;
     padding[0x10];
-    u32;
+    u32 orientation;
     float xPos;
     float yPos;
     float zPos;
@@ -151,22 +156,19 @@ struct gatheringPoint{
     float xPos;
     float yPos;
     float zPos;
-    float scope;
+    float range;
     u16 gatheringID;
     u16 maxCount;
     padding[2];
     u16 minCount;
 };
 
-/*  TODO: Broken for some reason in imHex v1.33.0? 
-    Fix then uncomment inf declaration
- */
 struct ptGatheringPoint {
     ptr ptr;
 
     // Ignore null pointers
-    if (ptr) {
-        //gatheringPoint inf[4] @ ptr;
+    if (ptr != 0) {
+        gatheringPoint point[4] @ ptr;
     }
 };
 
@@ -187,9 +189,8 @@ struct facPoint {
     float xPos;
     float yPos;
     float zPos;
-    u16 kn2;
-    u16 kn3;
-    u16 kn4;
+    float range;
+    u16 kn4; // ID/fishing code
     padding[2];
 };
 
@@ -201,20 +202,9 @@ struct facPointBlock {
     float;
 } [[inline]];
 
-struct facilityPoints {
-    ptr ptr;
-    if (ptr) {
-        facPointBlock points @ ptr;
-    }
-};
-
 struct gatheringTable {
     GatherItem items[while(std::mem::read_signed($,2)!=-1)];
 } [[inline]];
-
-struct ptGatheringTable {
-    gatheringTable *ptr : u32 [[inline]];
-};
 
 struct generalQuestProperties {
     u16 questSizeMulti
@@ -316,7 +306,6 @@ struct mainQuestProperties {
 
     ItemID items[3];
     
-
     // Interception Settings
     if (QuestObjectives[0].goalType == questObjType::SlayAll) {
         u8 monsterVariant1;
@@ -341,19 +330,19 @@ struct QuestFileHeader {
     ptr loadedStagesPtr;
     ptr supplyBoxPtr;
     ptr rewardPtr;
-    u16 subSupplyBoxPtr;
+    u16 subSupplyBoxPtr; //EndMessagePtr?
     u8 [[hidden]];
     u8 subSupplyBoxLen;
     ptr questAreaPtr;
     ptr largeMonsterPtr;
-    ptr areaFloats; // areaChange
-    ptr unkFloats1; //AreaMapping
-    ptr baseCampPtr; //MapInfo
-    ptr unk28; //gatherPoints
-    ptr unk2C; //BaseCampInf
+    ptr areaTransitionsPtr;
+    ptr areaMappingPtr;
+    ptr mapInfoPtr;
+    ptr gatheringPointsPtr;
+    ptr areaFacilitiesPtr;
     ptr unk30; //someStrings
     ptr unk34; //FixedCords1
-    ptr gatheringPointers; 
+    ptr gatheringTablesPtr; 
     ptr unk3C; //fixedCords2
     ptr unk40; //FixedInf
 };
@@ -367,24 +356,16 @@ generalQuestProperties genQuestProp @ $;
 mainQuestProperties MainQuestProperties @ header.questTypeFlagsPtr;
 
 // 2.0 Loaded Stages
-Stage loadedStages[while($ < header.unk34)] @ header.loadedStagesPtr;
+Stage loadedStages[while($ < header.unk34)] @ header.loadedStagesPtr; //Player slot spawns?
 
 // 3.0 Supply Box
-SupplyItem supplies[while(std::mem::read_unsigned($,2))] 
-    @ header.supplyBoxPtr;
+SupplyItem supplies[24] @ header.supplyBoxPtr;
+SupplyItem suppliesSubA[8] @ (header.supplyBoxPtr + 0x60);
+SupplyItem suppliesSubB[8] @ (header.supplyBoxPtr + 0x80);
 
 // 4.0 Reward
 RewardTable rewards[while(std::mem::read_signed($,2)!=-1)] 
     @ header.rewardPtr;
-
-// 5.0 Sub Supply Box
-/*
-    //  This is incorrect. The real subSupplies are appended to the end 
-    //  of the normal suppies. Looking into how the game knows how they're
-    //  separate
-    SupplyItem subSupplies[while($ < header.subSupplyBoxPtr + header.subSupplyBoxLen)]
-        @ header.subSupplyBoxPtr;
-*/
 
 // 6.0 Quest Area
 MapZones mapZones @ header.questAreaPtr;
@@ -394,29 +375,31 @@ largeMonsterPointers largeMonsterPointers @ header.largeMonsterPtr;
 
 // 8.0 Area Change
 playerAreaChange PlayerAreaChange[genQuestProp.area1zones] 
-    @ header.areaFloats;
+    @ header.areaTransitionsPtr;
 
 // 9.0 AreaMappingFloats
 
 // This while loop probably isn't the best way to do this,
 // but it's what the 010 pattern does.
-AreaMappings areaMappings[while($<header.areaFloats)] @ header.unkFloats1;
+AreaMappings areaMappings[while($<header.areaTransitionsPtr)] 
+    @ header.areaMappingPtr;
 
 // 10.0 Map Information
-qMapID mapID @ header.baseCampPtr;
-u32 returnBC_ID @ header.baseCampPtr + sizeof(qMapID);
+qMapID mapID @ header.mapInfoPtr;
+u32 returnBC_ID @ header.mapInfoPtr + sizeof(qMapID);
 
 // 11.0 Gathering Points per Area
 
 // The area1zones length is an assumption, just looks better than a loop
 ptGatheringPoint gatheringPerArea[genQuestProp.area1zones] 
-    @ header.unk28;
+    @ header.gatheringPointsPtr;
 
 // 12.0 Base Camp Facilities
 
 // The area1zones length is an assumption, and 
 // I liked it better than looping
-facilityPoints facilities[genQuestProp.area1zones] @ header.unk2C;
+ptVar<facPointBlock> facilities[genQuestProp.area1zones] 
+    @ header.areaFacilitiesPtr;
 
 // 13.0 Some Strings
 ptr someStringPtr @ header.unk30;
@@ -426,5 +409,5 @@ ptr questTypePtr @ header.unk30 + 4;
 
 // 15.0 Gathering Tables
 
-ptGatheringTable gatheringTables[genQuestProp.gatheringTablesQty] 
-    @ header.gatheringPointers;
+ptVar<gatheringTable> gatheringTables[genQuestProp.gatheringTablesQty] 
+    @ header.gatheringTablesPtr;

@@ -10,21 +10,6 @@
 
 #include <mhfemd/header.hexpat>
 
-/*	// This data is unknown, but documented as the pointer leading to it was
-	// modified by TsuyaC's comfy patch
-
-	// TODO: Are these UL stats?
-
-	struct maybeMonsterData {
-		MonsterID id;
-		padding[3];
-
-		float unk[6];
-	};
-
-	maybeMonsterData test[while(std::mem::read_unsigned($,8))] @ header.hd_dll_af9882;
-*/
-
 struct monsterStatRow{
 	float hp [[comment("This is a multiplier for the base hp, which varies by monster!")]];
 	float dmg;
@@ -163,6 +148,20 @@ struct specificValues {
 
 specificValues specificValues[ while (std::mem::read_signed($, 4)) ] 
 	@ header.specificValues [[name("Specific Values (HC Stats)")]];
+
+struct ULvalues {
+	MonsterID monID;
+	padding[3];
+	float attack;
+	float defense;
+	float aggro;
+	float enrage_def;
+	float hp;
+	float flinch;
+} [[static]];
+
+ULvalues ulValues [ while (std::mem::read_unsigned($, 8)) ]
+	@ header.ulValues [[name("UL Stats")]];
 
 #ifdef __DECOMPILE
 #include <mhfemd/decompile.hexpat>

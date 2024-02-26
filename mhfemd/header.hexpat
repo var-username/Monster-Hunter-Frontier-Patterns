@@ -36,7 +36,7 @@ struct ptr_table {
     // + 0x50
     unk_ptr hd_dll_af987c;
     unk_ptr hd_dll_af987f;
-    unk_ptr hd_dll_af9882;
+    ptr ulValues                [[name("Pointer to UL values")]];
     unk_ptr hd_dll_af9885;
 };
 
