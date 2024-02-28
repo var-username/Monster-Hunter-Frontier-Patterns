@@ -3,7 +3,6 @@
 #pragma array_limit 200000
 #include <std/sys.pat>
 #include <std/io.pat>
-#include <type/time.pat>
 #include <misc/s32p.pat>
 
 //#define __ITEMNAMES 1
@@ -17,6 +16,7 @@
 //#define __PARTBREAKS 1
 //#define __QUESTLIST 1
 //#define __ARENA 1
+//#define __SEASONALEVENTS 1
 
 //#define __DECOMPILE 1
 
@@ -78,15 +78,9 @@ fn getItemName(u16 n) {
 #include <mhfdat/arena.hexpat>
 #endif
 
-// TODO: Clean this up and put in a sub-pat
-/// Seasonal Event timing
-struct Event_Time {
-    u32;
-    type::time_t;
-    type::time_t;
-} [[static]];
-
-Event_Time seaonalEvents[136] @ header.ptrs.seasonalEventTiming;
+#ifdef __SEASONALEVENTS
+#include <mhfdat/seasonalevents.hexpat>
+#endif
 
 #ifdef __DECOMPILE
 #include <mhfdat/decompile/decompile.hexpat>
