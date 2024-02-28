@@ -20,7 +20,15 @@ fn meleeNameWE (auto n) {
 	return rIPPS(header.ptrs.meleeWeaponNames, 
 	(($-header.ptrs.meleeWeapons) / 0x34));
 };
+
+// 0x3C is the size of RangedWeaponEntry
+fn rangedNameWE (auto n) {
+	return rIPPS(header.ptrs.rangedWeaponNames,
+	(($-header.ptrs.rangedWeapons) / 0x3C));
+};
 	
+// TODO: Maybe replace these functions with enums?
+// It won't look as pretty but it'd make a bit more sense
 fn className (u8 n) {
 	str ret = "!!Unknown!!";
 
@@ -129,7 +137,11 @@ struct MeleeWeaponEntry {
 
 	u8 slots [[color("00FF00")]];
 
-	u8 unk14 [[hidden]]; 
+	u8 unk14 [[
+		name("Weapon Attribute?"),
+		comment("Could be secondary weapon attribute, such as Swaxe Phial type?"),
+		color("FF0000")
+	]]; 
 	
 	u8 unk15 [[
 		hidden, 
@@ -193,7 +205,7 @@ struct RangedWeaponEntry {
 	u32 unk24 [[hidden]]; u32 unk28 [[hidden]]; 
 	u32 unk2C [[hidden]]; u32 unk30 [[hidden]];
 	u32 unk34 [[hidden]]; u32 unk38 [[hidden]];
-};
+} [[format("rangedNameWE")]];
 
 // [mhfo-hd.dll + 0xaf49a9]
 MeleeWeaponEntry meleeData 

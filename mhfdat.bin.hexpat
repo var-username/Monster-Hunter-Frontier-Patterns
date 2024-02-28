@@ -2,7 +2,6 @@
 #pragma pattern_limit 10000000
 #pragma array_limit 200000
 #include <std/sys.pat>
-#include <std/mem.pat>
 #include <std/io.pat>
 #include <type/time.pat>
 #include <misc/s32p.pat>
