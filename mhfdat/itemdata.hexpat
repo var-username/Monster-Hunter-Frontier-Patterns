@@ -114,35 +114,40 @@ fn getStructItemName(auto i) {
 };
 
 struct Item {
-	u16 unk00;
+	u8 unk00; // interaction_type (1 = carryable, 2 = gun ammo, 3 = coating)
+	u8 unk01; // is_usable. bitflag & 0x10 == eatable
 	u8 rarity [[format("plusone")]];
 	u8 maxStack;
-	u8 unk04;
+	
+	u8 unk04 [[hidden]]; // data_bitset 0x20 sale, 6 mytra? 0x4 and 0x2 diva related, 0x40 = calculate tower points
 	ItemIcon icon [[comment("Item Icon")]];
-
-	/* TODO: Malckyor's code puts this as a u32, but 
-		I think it'd be more accurate as a u16 or so. 
-	*/
 
 	/** These colors are not the same as the text color codes 
 		00 = White, 01 = Red, 02 = Green, 03 = Blue, 04 = Yellow, 
 		05 = Purple, 06 = Light Blue, 08 = Pink, 0A = Gray
 	*/
-	u32 iconColor [[comment("Icon color")]]; 
-
-	u16 unk08 [[hidden]];
+	u8 iconColor [[comment("Icon color")]]; 
+	u8 unk07 [[hidden]];
+	
+	u16 unk08 [[hidden]]; // pax says the internal name for this is bottle?
+	u16 unk0A [[hidden]]; // related to hc carbes/eggs/infos books, probably depreciated
 	
 	u32 buyPrice;
 	u32 sellPrice;
-	u16 type [[comment("Item Type")]]; // 04 = Consumable, 05 = Placeable
-		
-	u16 unk16 [[hidden]];
+
+	u16 type [[comment("Item Type")]]; // 04 = Consumable, 05 = Placeable	
+	u16 unk16 [[hidden]]; // deco_id
+	
 	u16 unk18 [[hidden]];
-	u16 unk1A [[hidden]];
-	u16 unk1C [[hidden]]; // itemVar
-	u16 unk1E [[hidden]];
-	u16 unk20 [[hidden]]; // itemVari
-	u16 unk22 [[hidden]];
+	u8 unk1A [[hidden]];
+	u8 unk1B [[hidden]];
+	
+	u16 unk1C [[hidden]]; // equip_type
+	u8 unk1E [[hidden]]; //is_gz
+	u8 unk1F [[hidden]];
+	
+	u16 unk20 [[hidden]]; 
+	u16 unk22 [[hidden]]; 
 } 
 [[format("getStructItemName")]]
 ;

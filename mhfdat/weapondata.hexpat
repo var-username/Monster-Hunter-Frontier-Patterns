@@ -17,14 +17,16 @@ fn timesten (u8 n) {
 
 // 0x34 is the size of MeleeWeaponEntry
 fn meleeNameWE (auto n) {
-	return rIPPS(header.ptrs.meleeWeaponNames, 
-	(($-header.ptrs.meleeWeapons) / 0x34));
+	u16 weapon_id = (($-header.ptrs.meleeWeapons) / 0x34);
+	str weapon_name = rIPPS(header.ptrs.meleeWeaponNames, weapon_id);
+	return std::format("{:04X} | {}", weapon_id, weapon_name);
 };
 
 // 0x3C is the size of RangedWeaponEntry
 fn rangedNameWE (auto n) {
-	return rIPPS(header.ptrs.rangedWeaponNames,
-	(($-header.ptrs.rangedWeapons) / 0x3C));
+	u16 weapon_id = (($-header.ptrs.rangedWeapons) / 0x3C);
+	str weapon_name = rIPPS(header.ptrs.rangedWeaponNames, weapon_id);
+	return std::format("{:04X} | {}", weapon_id, weapon_name);
 };
 	
 // TODO: Maybe replace these functions with enums?
