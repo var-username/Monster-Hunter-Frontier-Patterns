@@ -6,6 +6,10 @@ fn meleeName (u16 n) {
     return rIPPS(header.ptrs.meleeWeaponNames, n);
 };
 
+fn rangedName (u16 n) {
+    return rIPPS(header.ptrs.rangedWeaponNames, n);
+};
+
 fn getEquipType(u8 n) {
     str ret = "!!Unknown!!";
     match (n) {
@@ -43,11 +47,18 @@ fn getEquipName(u32 n) {
     return std::format("{} | {}", getEquipType(equipType), equipName);
 };
 
-fn upgradeName (auto n) {
-    //             sizeof(WUpgradePath) = 36 
-    //                                    \/
+fn mUpgradeName (auto n) {
+    //                  sizeof(WUpgradePath) = 36 
+    //                                         \/
 	return rIPPS(header.ptrs.meleeWeaponNames, 
-    ( ($-header.ptrs.weaponUpgradePath) / 36));
+    ( ($-header.ptrs.meleeWeaponUpgradePath) / 36));
+};
+
+fn rUpgradeName (auto n) {
+    //                   sizeof(WUpgradePath) = 36 
+    //                                          \/
+	return rIPPS(header.ptrs.rangedWeaponNames, 
+    ( ($-header.ptrs.rangedWeaponUpgradePath) / 36));
 };
 
 struct RegWUpgrade {
@@ -64,7 +75,7 @@ struct RegWUpgrade {
     padding[5];
 } [[comment("On using the materials listed, the weapon will upgrade to the listed weaponID, if it exists")]];
 
-struct WUpgradePath {
+struct MWUpgradePath {
     u16 upgradeMaterial1 [[format("getItemName"), color("8888FF")]];
     u16 numMaterial1 [[color("FF8888")]];
     padding[4];
@@ -79,7 +90,24 @@ struct WUpgradePath {
     u16 upgradesTo3 [[format("meleeName")]];
     u16 upgradesTo4 [[format("meleeName")]];
     padding[4];
-} [[format("upgradeName"), color("88FF88")]];
+} [[format("mUpgradeName"), color("88FF88")]];
+
+struct RWUpgradePath {
+    u16 upgradeMaterial1 [[format("getItemName"), color("8888FF")]];
+    u16 numMaterial1 [[color("FF8888")]];
+    padding[4];
+    u16 upgradeMaterial2 [[format("getItemName"), color("8888FF")]];
+    u16 numMaterial2 [[color("FF8888")]];
+    padding[4];
+    u16 upgradeMaterial3 [[format("getItemName"), color("8888FF")]];
+    u16 numMaterial3 [[color("FF8888")]];
+    padding[4];
+    u16 upgradesTo1 [[format("rangedName")]];
+    u16 upgradesTo2 [[format("rangedName")]];
+    u16 upgradesTo3 [[format("rangedName")]];
+    u16 upgradesTo4 [[format("rangedName")]];
+    padding[4];
+} [[format("rUpgradeName"), color("88FF88")]];
 
 struct g50WUpgrade {
     u16 weaponId [[format("meleeName")]];
@@ -110,7 +138,7 @@ struct RegAUpgradeRow {
 };
 
 struct GenericAUpgrade {
-    RegAUpgradeRow itemsForUpgrade[while(std::mem::read_unsigned($,0x10))];
+    RegAUpgradeRow itemsForUpgrade [ while (std::mem::read_unsigned($, 0x10)) ];
 };
 
 struct CraftMatReq {
@@ -144,8 +172,8 @@ struct CraftMatTable {
     CraftMatReq entry [ while (std::mem::read_signed($, 1) != -1)] [[inline]];
 };
 
-//WUpgradePath wUpgradePath1[13] @ 0xAE0DC4;
-WUpgradePath wUpgradePath[17568] @ header.ptrs.weaponUpgradePath;
+MWUpgradePath mwUpgradePath[numMeleeW] @ header.ptrs.meleeWeaponUpgradePath;
+RWUpgradePath rwUpgradePath[numRangedW] @ header.ptrs.rangedWeaponUpgradePath;
 
 g50WUpgrade g50WeaponUpgrades[81914] @ header.ptrs.weaponG50Forging;
 

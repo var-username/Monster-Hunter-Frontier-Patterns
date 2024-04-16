@@ -37,11 +37,11 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		header.ptrs.equipDesc [[name("Pointers to equipment descriptions?")]];
 
 	#ifdef __WEAPONNAMES
-	s32px4 hd_dll_af49df[numMelee] @ header.ptrs.meleeWeaponDesc
+	s32px4 hd_dll_af49df[numMeleeW] @ header.ptrs.meleeWeaponDesc
 	//[[name("Pointers to Melee Weapon Descriptions")]]
 	;
 
-	s32px4 hd_dll_af4a6f[numRanged] @ header.ptrs.rangedWeaponDesc
+	s32px4 hd_dll_af4a6f[numRangedW] @ header.ptrs.rangedWeaponDesc
 	//[[name("Pointers to Ranged Weapon Descriptions")]]
 	;
 	#endif

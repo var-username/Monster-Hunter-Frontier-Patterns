@@ -20,9 +20,9 @@ struct ptr_table {
     
     ptr armorForging            [[name("Armor Forging Pointer")]]; 
     ptr otherWeaponForging      [[name("Other Weapon Forging Pointer")]];
-    ptr weaponUpgradePath       [[name("Weapon Upgrade Path Pointer")]];
-    
-    unk_ptr hd_dll_af47d5;
+    ptr meleeWeaponUpgradePath  [[name("Melee Weapon Upgrade Path Pointer")]];
+    ptr rangedWeaponUpgradePath [[name("Ranged Weapon Upgrade Path Pointer")]];
+
     unk_ptr hd_dll_af47d8;
     unk_ptr hd_dll_af47e1;
 
