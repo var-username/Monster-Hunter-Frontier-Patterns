@@ -139,14 +139,13 @@ struct MeleeWeaponEntry {
 
 	u8 slots [[color("00FF00")]];
 
-	u8 unk14 [[
-		name("Weapon Attribute?"),
+	u8 Weapon_attribute [[
+		name("Weapon Attribute"),
 		comment("Could be secondary weapon attribute, such as Swaxe Phial type?"),
 		color("FF0000")
 	]]; 
 	
-	u8 unk15 [[
-		hidden, 
+	u8 unk15 [[ 
 		comment("Maybe related to particle effects? 2 for dark effects? 1 for ice?"), 
 		color("FF0000")
 	]];
@@ -163,21 +162,21 @@ struct MeleeWeaponEntry {
 
 	u8 eqType [[format("eqType"), color("FFFF00")]]; 
 
-	u8 unk1B [[hidden]];
-	u32 unk1C [[hidden]]; 
-	u32 unk20 [[hidden]];
+	u8 unk1B;
+	u32 Length; 
+	u32 Weapon_type [[comment("it define if its zenith, prayer, grank, exotic, gou, etc..."), color("FF0000")]];
 	
-	u16 unk24 [[
+	u16 Visual_effects [[
 		comment("Seems to be related to weapon visual effects"),
 		color("FF0000")
 	]]; 
 	
-	u16 unk26 [[hidden]];
-	u8 unk28 [[hidden]]; 
-	u8 unk29 [[hidden]]; 
-	u8 unk2A [[hidden]]; 
+	u16 unk26;
+	u8 unk28; 
+	u8 unk29; 
+	u8 unk2A; 
 	u8 zeroF [[comment("Always 0F?"), color("FF0000")]];
-	u32 unk2C [[hidden]]; 
+	u32 unk2C; 
 	u16 zenithSkill;
 	padding[2];
 } [[format("meleeNameWE")]];
@@ -187,12 +186,12 @@ struct RangedWeaponEntry {
 	u8 rarity [[format("plusone")]];
 	u8 maxSlotsMaybe;
 	u8 classId [[format("className")]];
-	u8 unk05 [[hidden]];
+	u8 unk05;
 	u8 eq [[format("eqType")]];
-	u8 unk07 [[hidden]];
-	u32 unk08 [[hidden]]; 
-	u32 unk0C [[hidden]]; 
-	u32 unk10 [[hidden]];
+	u8 unk07;
+	u32 unk08; 
+	u32 Weapon_type; 
+	u32 unk10;
 	u32 zennyCost;
 	u16 rawDamage;
 	u16 defense;
@@ -200,13 +199,13 @@ struct RangedWeaponEntry {
 	u8 slots;
 	s8 affinity;
 	u8 sortOrderMaybe;
-	u8 unk20 [[hidden]];
+	u8 Weapon_attribute [[comment("define gunners shot?")]];
 	u8 elementId [[format("elementName")]];
 	u8 eleDamage [[format("timesten")]];
-	u8 unk23 [[hidden]];
-	u32 unk24 [[hidden]]; u32 unk28 [[hidden]]; 
-	u32 unk2C [[hidden]]; u32 unk30 [[hidden]];
-	u32 unk34 [[hidden]]; u32 unk38 [[hidden]];
+	u8 unk23;
+	u32 unk24; u32 bullet; 
+	u32 unk2C; u32 unk30;
+	u32 unk34; u32 unk38;
 } [[format("rangedNameWE")]];
 
 // [mhfo-hd.dll + 0xaf49a9]
