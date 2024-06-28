@@ -6,6 +6,7 @@ fn meleeName (u16 n) {
     return rIPPS(header.ptrs.meleeWeaponNames, n);
 };
 
+
 fn rangedName (u16 n) {
     return rIPPS(header.ptrs.rangedWeaponNames, n);
 };
@@ -60,6 +61,7 @@ fn rUpgradeName (auto n) {
 	return rIPPS(header.ptrs.rangedWeaponNames, 
     ( ($-header.ptrs.rangedWeaponUpgradePath) / 36));
 };
+
 
 struct RegWUpgrade {
     u16 weaponID [[format("meleeName")]];
@@ -185,7 +187,7 @@ CraftMatTable towerArmorCraftingTable @ header.ptrs.armorTowerForging
     [[name("Tower Armor Forging Data")]];
 CraftMatTable towerWeaponCraftingTable @ header.ptrs.weaponTowerForging
     [[name("Tower Weapon Forging Data")]];
-CraftMatTable specialWeaponCraftingTable @ header.ptrs.weaponSpecialForging
+CraftMatTable specialWeaponCraftingTable @ header.ptrs.weaponSpecialForging //length = 56
     [[name("Special Weapon Forging Data??")]];
 CraftMatTable armorGCraftingTable @ header.ptrs.armorGRForging
     [[name("G-Rank Armor Forging Data")]];
@@ -196,6 +198,8 @@ CraftMatTable transmogCraftingTable @ header.ptrs.transmogForging
     [[name("Transmog Forging Data")]];
 CraftMatTable weaponCraftingTable @ header.ptrs.weaponForging
     [[name("Weapon Forging Data")]];
+CraftMatTable armorPremiumCraftingTable @ header.ptrs.armorPremiumForging
+    [[name("Armor Premium Forging Data")]];
 CraftMatTable zArmorCraftingTable @ header.ptrs.armorZenithForging
     [[name("Zenith Armor Forging Data")]];
 CraftMatTable armorCraftingTable @ header.ptrs.armorForging
