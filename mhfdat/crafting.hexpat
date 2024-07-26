@@ -62,7 +62,6 @@ fn rUpgradeName (auto n) {
     ( ($-header.ptrs.rangedWeaponUpgradePath) / 36));
 };
 
-
 struct RegWUpgrade {
     u16 weaponID [[format("meleeName")]];
     padding[10];
@@ -193,6 +192,9 @@ CraftMatTable armorGCraftingTable @ header.ptrs.armorGRForging
     [[name("G-Rank Armor Forging Data")]];
 CraftMatTable weaponGCraftingTable @ header.ptrs.weaponGRForging
     [[name("G-Rank Weapon Forging Data")]];
+CraftMatTable transmogCraftingTable2 @ header.ptrs.transmogForging2
+    [[name("Unk Armor Shop Forging Data")]];
+
 
 CraftMatTable transmogCraftingTable @ header.ptrs.transmogForging
     [[name("Transmog Forging Data")]];
