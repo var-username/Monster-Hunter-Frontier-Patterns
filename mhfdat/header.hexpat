@@ -745,11 +745,11 @@ struct ptr_table {
 
     ptr transmogForging         [[name("Transmog Forging Pointer")]];
 
-    ptr TransmogForging2            [[name("Second Transmog Forging Pointer")]];
+    ptr transmogForging2        [[name("Second Transmog Forging Pointer")]];
 
     // @ 0xAC0
-    ptr weaponForging           [[name("Weapon Forging Pointer")]];
-    ptr armorZenithForging      [[name("Zenith Armor Forging")]];
+    ptr zenithWeaponForging     [[name("Zenith Weapon Forging Pointer")]];
+    ptr armorZenithForging     [[name("Zenith Armor Forging")]];
 
     unk_ptr hd_dll_af8d66;
     unk_ptr hd_dll_af8dc1;

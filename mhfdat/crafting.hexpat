@@ -185,7 +185,7 @@ ptVar<GenericAUpgrade> armorUpgrades[while(std::mem::read_unsigned($,4))]
 CraftMatTable towerArmorCraftingTable @ header.ptrs.armorTowerForging
     [[name("Tower Armor Forging Data")]];
 CraftMatTable towerWeaponCraftingTable @ header.ptrs.weaponTowerForging
-    [[name("Tower Weapon Forging Data")]];
+    [[name("Tower Weapon ForgWfing Data")]];
 CraftMatTable specialWeaponCraftingTable @ header.ptrs.weaponSpecialForging //length = 56
     [[name("Special Weapon Forging Data??")]];
 CraftMatTable armorGCraftingTable @ header.ptrs.armorGRForging
@@ -198,8 +198,8 @@ CraftMatTable transmogCraftingTable2 @ header.ptrs.transmogForging2
 
 CraftMatTable transmogCraftingTable @ header.ptrs.transmogForging
     [[name("Transmog Forging Data")]];
-CraftMatTable weaponCraftingTable @ header.ptrs.weaponForging
-    [[name("Weapon Forging Data")]];
+CraftMatTable zenithWeaponCraftingTable @ header.ptrs.zenithWeaponForging
+    [[name("Zenith Weapon Forging Data")]];
 CraftMatTable armorPremiumCraftingTable @ header.ptrs.armorPremiumForging
     [[name("Armor Premium Forging Data")]];
 CraftMatTable zArmorCraftingTable @ header.ptrs.armorZenithForging
