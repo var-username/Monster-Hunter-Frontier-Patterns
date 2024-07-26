@@ -193,7 +193,7 @@ CraftMatTable armorGCraftingTable @ header.ptrs.armorGRForging
 CraftMatTable weaponGCraftingTable @ header.ptrs.weaponGRForging
     [[name("G-Rank Weapon Forging Data")]];
 CraftMatTable transmogCraftingTable2 @ header.ptrs.transmogForging2
-    [[name("Unk Armor Shop Forging Data")]];
+    [[name("Second Transmog Forging Data")]];
 
 
 CraftMatTable transmogCraftingTable @ header.ptrs.transmogForging
