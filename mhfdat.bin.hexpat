@@ -17,6 +17,7 @@
 //#define __QUESTLIST 1
 //#define __ARENA 1
 //#define __SEASONALEVENTS 1
+//#define __SHARPNESS 1
 
 //#define __DECOMPILE 1
 
@@ -80,6 +81,10 @@ fn getItemName(u16 n) {
 
 #ifdef __SEASONALEVENTS
 #include <mhfdat/seasonalevents.hexpat>
+#endif
+
+#ifdef __SHARPNESS
+#include <mhfdat/sharpness.hexpat>
 #endif
 
 #ifdef __DECOMPILE
