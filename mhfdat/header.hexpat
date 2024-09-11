@@ -22,7 +22,6 @@ struct ptr_table {
     ptr otherWeaponForging      [[name("Other Weapon Forging Pointer")]];
     ptr meleeWeaponUpgradePath  [[name("Melee Weapon Upgrade Path Pointer")]];
     ptr rangedWeaponUpgradePath [[name("Ranged Weapon Upgrade Path Pointer")]];
-
     unk_ptr hd_dll_af47d8;
     unk_ptr hd_dll_af47e1;
 
@@ -62,9 +61,9 @@ struct ptr_table {
     
     
     unk_ptr hd_dll_af5038;      // @ 0x0A0
-    unk_ptr hd_dll_af503e;
+    ptr BulletSets              [[name("Bullet Sets Pointer")]];
     unk_ptr hd_dll_af5044;
-    unk_ptr hd_dll_af504a;
+    ptr SharpnessIds           [[name("Sharpness Ids Pointer")]];
     unk_ptr hd_dll_af5073;      // @ 0x0B0
     unk_ptr hd_dll_af5079;
     unk_ptr hd_dll_af507f;
@@ -537,7 +536,7 @@ struct ptr_table {
 
     ptr weaponSpecialForging    [[name("Special Weapon Forging Pointer")]];
     
-    unk_ptr hd_dll_af786f;      // @ 0x7B0
+    ptr armorPremiumForging    [[name("Armor Premium Forging Pointer")]];      // @ 0x7B0
     unk_ptr hd_dll_af787b;
     unk_ptr hd_dll_af7881;
     unk_ptr hd_dll_af7887;
@@ -746,11 +745,11 @@ struct ptr_table {
 
     ptr transmogForging         [[name("Transmog Forging Pointer")]];
 
-    unk_ptr hd_dll_af8d4e;
+    ptr transmogForging2        [[name("Second Transmog Forging Pointer")]];
 
     // @ 0xAC0
-    ptr weaponForging           [[name("Weapon Forging Pointer")]];
-    ptr armorZenithForging      [[name("Zenith Armor Forging")]];
+    ptr zenithWeaponForging     [[name("Zenith Weapon Forging Pointer")]];
+    ptr armorZenithForging     [[name("Zenith Armor Forging")]];
 
     unk_ptr hd_dll_af8d66;
     unk_ptr hd_dll_af8dc1;
