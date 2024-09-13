@@ -3,22 +3,22 @@
 #include <misc/s32p.pat>
 
 struct SharpnessPattern {
-    u8 Shaprness_Quantity[[
+    u8 Shaprness_Quantity1[[
       name("Shaprness Quantity")
       ]];
-    u8 Shaprness_Quantity[[
+    u8 Shaprness_Quantity2[[
       name("Shaprness Quantity")
       ]];;
-    u8 Shaprness_Quantity[[
+    u8 Shaprness_Quantity3[[
       name("Shaprness Quantity")
       ]];;
-    u8 Shaprness_Quantity[[
+    u8 Shaprness_Quantity4[[
       name("Shaprness Quantity")
       ]];;
-    u8 Shaprness_Quantity[[
+    u8 Shaprness_Quantity5[[
       name("Shaprness Quantity")
       ]];;
-    u8 Shaprness_Quantity[[
+    u8 Shaprness_Quantity6[[
       name("Shaprness Quantity")
       ]];;
     u16 unk00;
