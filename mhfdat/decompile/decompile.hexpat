@@ -153,8 +153,6 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 	};
 
 	struct_af5001 hd_dll_af5001[0xB1] @ header.ptrs.hd_dll_af4ff0;
-
-	ptr hd_dll_af505b[0xE] @ header.ptrs.hd_dll_af504a;
 //
 
 /* Yeah I have no idea how this works 
@@ -231,11 +229,7 @@ u16 hd_dll_af477c @ (header.ptrs.important_nums + 0x402);
 		item_num_pair items[6] [[inline]];
 	} [[single_color, inline]];
 
-	struct ptMacha {
-		macha_pot_rewards *ptr : ptr [[inline]];
-	};
-
-	ptMacha hd_dll_af52a7[while(std::mem::read_signed($,4))] 
+	ptVar<macha_pot_rewards> hd_dll_af52a7[while(std::mem::read_signed($,4))] 
 		@ header.ptrs.machaPotRewards [[name("Macha Pot Rewards")]];
 
 	struct struct_af52db {

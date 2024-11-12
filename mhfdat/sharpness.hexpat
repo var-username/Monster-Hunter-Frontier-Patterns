@@ -1,31 +1,16 @@
 #pragma once
 
+#include <std/mem.pat>
 #include <misc/s32p.pat>
 
-struct SharpnessPattern {
-    u8 Shaprness_Quantity1[[
-      name("Shaprness Quantity")
-      ]];
-    u8 Shaprness_Quantity2[[
-      name("Shaprness Quantity")
-      ]];;
-    u8 Shaprness_Quantity3[[
-      name("Shaprness Quantity")
-      ]];;
-    u8 Shaprness_Quantity4[[
-      name("Shaprness Quantity")
-      ]];;
-    u8 Shaprness_Quantity5[[
-      name("Shaprness Quantity")
-      ]];;
-    u8 Shaprness_Quantity6[[
-      name("Shaprness Quantity")
-      ]];;
-    u16 unk00;
-    u16 unk01;
-    u16 unk03;
-    u16 unk04;
-    u16 unk05;
-};
+struct SharpnessCell {
+    u16 Sharpness_Quantity [8];
+} [[static]];
 
-SharpnessPattern Shaprness[NumSharpness] @ header.ptrs.SharpnessIds;
+struct SharpnessTable {
+    // This array length likely isn't accurate, 
+    // but it seems to line up fine enough
+    SharpnessCell cell[0x80] [[inline]];
+} [[inline]];
+
+ptVar<SharpnessTable> ptSharpness[0xE] @ header.ptrs.SharpnessIds;
