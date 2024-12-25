@@ -1,6 +1,6 @@
 #pragma once
 
-#include <std/mem.pat>
+import std.mem;
 
 struct Quest {
     u16 questId;

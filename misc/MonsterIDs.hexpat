@@ -1,7 +1,7 @@
 #pragma once
 
-#include <std/io.pat>
-#include <std/string.pat>
+import std.io;
+import std.string;
 
 enum MonsterID : u8 {
 // |          Name          |  Hex  |  Dec  |

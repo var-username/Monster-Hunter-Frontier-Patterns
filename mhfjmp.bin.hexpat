@@ -1,8 +1,8 @@
 // Very large limits just in case, feel free to make these more sensible
 #pragma pattern_limit 10000000
 #pragma array_limit 200000
-#include <std/mem.pat>
-#include <std/io.pat>
+import std.mem;
+import std.io;
 #include <misc/s32p.pat>
 
 u32 hd_dll_1cbc3f @ 0x00;

@@ -1,4 +1,4 @@
-#include <type/time.pat>
+import type.time;
 
 /// Seasonal Event timing
 struct Event_Time {

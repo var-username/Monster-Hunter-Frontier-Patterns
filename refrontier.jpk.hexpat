@@ -1,6 +1,6 @@
-#include <std/sys.pat>
-#include <std/mem.pat>
-#include <std/io.pat>
+import std.sys;
+import std.mem;
+import std.io;
 
 str __header_fail_msg = "File header does not match expected jpk header";
 

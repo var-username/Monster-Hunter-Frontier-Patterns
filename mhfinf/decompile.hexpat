@@ -1,4 +1,4 @@
-#include <std/core.pat>
+import std.core;
 #include <misc/s32p.pat>
 #include <misc/types.pat>
 

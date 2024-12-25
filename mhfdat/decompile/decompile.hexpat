@@ -1,7 +1,7 @@
 #pragma once
 
 #include <misc/types.pat>
-#include <std/io.pat>
+import std.io;
 
 struct s32px4 {s32p unk0[4];};
 struct u32x10 {u32 unk[0x10] [[inline]];};

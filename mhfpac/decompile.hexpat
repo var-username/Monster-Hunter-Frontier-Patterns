@@ -1,4 +1,4 @@
-#include <std/mem.pat>
+import std.mem;
 #include <misc/types.pat>
 
 struct s32pxT<auto Size> {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <std/mem.pat>
+import std.mem;
 #include <misc/s32p.pat>
 
 struct SharpnessCell {

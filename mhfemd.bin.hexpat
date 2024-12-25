@@ -1,8 +1,8 @@
 #pragma pattern_limit 500000
 
-#include <std/io.pat>
-#include <std/mem.pat>
-#include <std/core.pat>
+import std.io;
+import std.mem;
+import std.core;
 #include <misc/MonsterIDs.hexpat>
 #include <misc/types.pat>
 

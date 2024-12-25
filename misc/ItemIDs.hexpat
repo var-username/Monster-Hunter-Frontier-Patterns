@@ -1,6 +1,6 @@
 #pragma once
 
-#include <std/io.pat>
+import std.io;
 
 using ItemID;
 /// Format ItemID to make it easier to look up on Ferias
