@@ -1,0 +1,9 @@
+📂 patterns
+├─ 📂 mhfdat
+┊  ...
+└─ 📄 mhfdat.bin.hexpat
+
+📄 *.hexproj (Save your .hexproj files here for automatic pattern discovery)
+📄 LICENSE.md
+📄 README.md
+📄 .gitignore
