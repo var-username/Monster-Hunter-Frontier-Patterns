@@ -1,6 +1,6 @@
 #pragma once
 
-#include <std/mem.pat>
+import std.mem;
 
 /** Read a Pointer to a String
 	@param p A u32 pointer

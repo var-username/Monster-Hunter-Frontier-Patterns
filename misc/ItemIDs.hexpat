@@ -1,10 +1,13 @@
 #pragma once
 
-#include <std/io.pat>
+import std.io;
 
 using ItemID;
 /// Format ItemID to make it easier to look up on Ferias
 fn fmtItemID(ItemID n) {
-    return std::format("{:04X}", n);
+    return std::format("{:04X}", n.id);
 };
-using ItemID = u16 [[format("fmtItemID")]];
+
+struct ItemID {
+    u16 id;
+} [[sealed, format("fmtItemID")]];

@@ -78,10 +78,10 @@ struct ptr_table {
     unk_ptr hd_dll_af4d14;
     unk_ptr hd_dll_af4d08;      // @ 0x0E0
     unk_ptr hd_dll_af47b5;
-    unk_ptr hd_dll_af47af       [[comment
-                                  ("Seems to point to how many of certain 
-                                    objects there are, such as weapons") 
-                                ]];
+    unk_ptr hd_dll_af47af       
+    [[comment
+    ("Seems to point to how many of certain objects there are, such as weapons") 
+    ]];
     unk_ptr hd_dll_af4d2d;
     
     // + 0x0F0

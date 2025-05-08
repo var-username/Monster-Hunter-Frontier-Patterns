@@ -1,8 +1,8 @@
 // Very large limits just in case, feel free to make these more sensible
 #pragma pattern_limit 5000000
 #pragma array_limit 200000
-#include <std/sys.pat>
-#include <std/io.pat>
+import std.sys;
+import std.io;
 #include <misc/s32p.pat>
 #include <misc/types.pat>
 
