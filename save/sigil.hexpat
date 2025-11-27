@@ -52,23 +52,23 @@ fn effectName(u8 effect) {
         (0x2C): ret = "Spoilt";
         (0x2D): ret = "Unity";
         (0x2E): ret = "Aid";
-        (0x2F): ret = "Rapid Norm lv1";
+        (0x2F): ret = "Rapid Fire"; // Strength determines type of ammo
 
-        (0x30): ret = "Ult. R. Norm LV1";
-        (0x31): ret = "Normal Norm LV1";
+        (0x30): ret = "Ult. Rapid Fire"; // Strength determines type of ammo
+        (0x31): ret = "Normal Fire"; // Strength determines type of ammo
         (0x32): ret = "Heat Cannon Add";
         (0x33): ret = "Ballista Saver";
         (0x34): ret = "Raw Bow Boost";
         (0x35): ret = "Raw SnS Boost";
         (0x36): ret = "Sonic Bomb Range";
-        (0x37): ret = "SnS Slide";
-        (0x38): ret = "DS Frontflip";
-        (0x39): ret = "GS Upswing";
-        (0x3A): ret = "LS Piercing";
-        (0x3B): ret = "Lance Shield";
-        (0x3C): ret = "GL Rush Thrust";
-        (0x3D): ret = "Hammer B. Ball";
-        (0x3E): ret = "HH Musical";
+        (0x37): ret = "T. Boost SnS"; // Strength determines type of tech boost
+        (0x38): ret = "T. Boost DS"; // Strength determines type of tech boost
+        (0x39): ret = "T. Boost GS"; // Strength determines type of tech boost
+        (0x3A): ret = "T. Boost LS"; // Strength determines type of tech boost
+        (0x3B): ret = "T. Boost Lance"; // Strength determines type of tech boost
+        (0x3C): ret = "T. Boost GL"; // Strength determines type of tech boost
+        (0x3D): ret = "T. Boost Hammer"; // Strength determines type of tech boost
+        (0x3E): ret = "T. Boost HH"; // Strength determines type of tech boost
         (0x3F): ret = "Beam Slash SNS";
 
         (0x40): ret = "T. Change DS";
@@ -81,18 +81,18 @@ fn effectName(u8 effect) {
         (0x47): ret = "LBG J Gauge";
         (0x48): ret = "T. Change HBG";
         (0x49): ret = "Bow Pierce";
-        (0x4A): ret = "SnS Length";
-        (0x4B): ret = "Normal Shells";
-        (0x4C): ret = "Note 1 White";
-        (0x4D): ret = "Note 2 White";
-        (0x4E): ret = "Note 3 White";
-        (0x4F): ret = "Arc Wide";
+        (0x4A): ret = "Weapon Length"; // Strength determines weapon type
+        (0x4B): ret = "Shelling Change"; // Strength determines shelling type
+        (0x4C): ret = "Note 1"; // Strength determines color
+        (0x4D): ret = "Note 2"; // Strength determines color
+        (0x4E): ret = "Note 3"; // Strength determines color
+        (0x4F): ret = "Arc Shot"; // Strength determines arc type
 
-        (0x50): ret = "Rarity 1";
-        (0x51): ret = "Shelling Change";
+        (0x50): ret = "Rarity";
+        (0x51): ret = "Shelling Lv Up";
         (0x52): ret = "Bow Shoryuken";
         (0x53): ret = "Cat Breeder";
-        (0x54): ret = "Cluster Nuke";
+        (0x54): ret = "Shot Change"; // Strength determines change type
         (0x55): ret = "Unsheath GS";
         (0x56): ret = "Unsheath Hammer";
         (0x57): ret = "Unsheath Lance";
@@ -102,11 +102,11 @@ fn effectName(u8 effect) {
         (0x5B): ret = "Unsheath HH";
         (0x5C): ret = "Unsheath GL";
         (0x5D): ret = "Unsheath Tonfa";
-        (0x5E): ret = "Tonfa EX Gauge";
+        (0x5E): ret = "T. Boost Tonfa"; // Strength determines type of tech boost
         (0x5F): ret = "Fanged Wyvern";
 
-        (0x60): ret = "Unsheathed Walk LBG";
-        (0x61): ret = "SAF Stun B.";
+        (0x60): ret = "Unsheathed Walk";
+        (0x61): ret = "T. Boost SAF"; // Strength determines type of tech boost
         (0x62): ret = "HBG NUKE CLUST";
         (0x63): ret = "Great Sword Up";
         (0x64): ret = "Heavy Bowgun Up";
@@ -121,7 +121,7 @@ fn effectName(u8 effect) {
         (0x6D): ret = "Bow Up";
         (0x6E): ret = "Tonfa Up";
         (0x6F): ret = "Switch Axe F Up";
-        
+
         (0x70): ret = "Magnet Spike UP";
         (0x71): ret = "Wait Time";
         (0x72): ret = "Duration";
@@ -132,17 +132,18 @@ fn effectName(u8 effect) {
         (0x77): ret = "Dragon Resistance";
         (0x78): ret = "Healing";
         (0x79): ret = "Heroics";
-        
-        (0x7A): ret = "Attack Again";
-        (0x7B): ret = "Element";
-        (0x7C): ret = "Move Speed";
-        (0x7D): ret = "Attack Again";
-        (0x7E): ret = "Element Again";
-        (0x7F): ret = "Affinity Again";
-        
-        (0x80): ret = "Status";
-        (0x81): ret = "Stun";
-        (0x82): ret = "Healing";
+
+        (0x7A): ret = "Z. Attack";
+        (0x7B): ret = "Z. Element";
+        (0x7C): ret = "Z. Move Speed";
+        (0x7D): ret = "AoE Attack";
+        (0x7E): ret = "AoE Element";
+        (0x7F): ret = "AoE Affinity";
+
+        (0x80): ret = "AoE Status";
+        (0x81): ret = "AoE Stun";
+        (0x82): ret = "AoE Healing";
+        (0x83): ret = "AoE All Resistance";
     }
 
     return ret;
@@ -155,11 +156,10 @@ struct SigilEffect {
     u8 effect_code2 [[format("effectName")]];
     padding[1];                 // Previously padding[1]
     u8 effect_code3 [[format("effectName")]];
-    padding[1];                 // Previously padding[1]
-    u16 strength [[name("Strength")]];            // Effect strength (0–15)
-    u16 strength2 [[name("Strength 2")]];
-    u16 strength3 [[name("Strength 3")]];
-    padding[3];
+    be s16 strength [[name("Strength")]];            // Effect strength (-10–20)
+    be s16 strength2 [[name("Strength 2")]];
+    be s16 strength3 [[name("Strength 3")]];
+    padding[4];
 };
 
 // Pattern to match all sigils in the file
