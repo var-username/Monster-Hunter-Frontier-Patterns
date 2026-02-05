@@ -18,6 +18,7 @@ import std.io;
 //#define __ARENA 1
 //#define __SEASONALEVENTS 1
 //#define __SHARPNESS 1
+//#define __SIGIL 1
 
 //#define __DECOMPILE 1
 
@@ -36,7 +37,7 @@ import std.io;
 */
 fn getItemName(u16 n) {
     return std::format("{:04X} | {}", n, rIPPS(header.ptrs.itemNames, n));
-	return std::format("{:04X}", n);
+    return std::format("{:04X}", n);
 };
 
 #ifdef __ITEMDATA
@@ -85,6 +86,10 @@ fn getItemName(u16 n) {
 
 #ifdef __SHARPNESS
 #include <mhfdat/sharpness.hexpat>
+#endif
+
+#ifdef __SIGIL
+#include <mhfdat/sigil.hexpat>
 #endif
 
 #ifdef __DECOMPILE
