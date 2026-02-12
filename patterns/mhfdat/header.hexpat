@@ -433,9 +433,11 @@ struct ptr_table {
     unk_ptr hd_dll_af6c32;
     unk_ptr hd_dll_af6c98;
     unk_ptr hd_dll_af6d00;
-    unk_ptr hd_dll_af6d60;      // @ 0x620
-    unk_ptr hd_dll_af6d66;
-    unk_ptr hd_dll_af6d6c;
+	
+    // @ 0x620
+    ptr sigilCraftingRecipes  [[name("Sigil Crafting Recipes Pointer")]];
+    ptr sigilSkillProbabilities [[name("Sigil Skill Probabilities Pointer")]];
+    ptr sigilSkillBlacklists  [[name("Sigil Random Skill Blacklists Pointer")]];
     unk_ptr hd_dll_af6da0;
     unk_ptr hd_dll_af6da6;      // @ 0x630
     unk_ptr hd_dll_af6dac;
