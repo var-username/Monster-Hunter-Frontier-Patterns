@@ -15,10 +15,10 @@ struct ptr_table {
     padding[0x14];
 
     unk_ptr hd_dll_af5f9b;
-    
+
     padding[0x8];
-    
-    ptr armorForging            [[name("Armor Forging Pointer")]]; 
+
+    ptr armorForging            [[name("Armor Forging Pointer")]];
     ptr otherWeaponForging      [[name("Other Weapon Forging Pointer")]];
     ptr meleeWeaponUpgradePath  [[name("Melee Weapon Upgrade Path Pointer")]];
     ptr rangedWeaponUpgradePath [[name("Ranged Weapon Upgrade Path Pointer")]];
@@ -49,7 +49,7 @@ struct ptr_table {
     ptr meleeWeaponDesc         [[name("Melee Weapon Descriptions Pointer")]];
     ptr rangedWeaponDesc        [[name("Ranged Weapon Descriptions Pointer")]];
 
-    ptr armorStatArray          [[name("Armor Stat Pointer Array"), 
+    ptr armorStatArray          [[name("Armor Stat Pointer Array"),
                                   comment("Seems redundant")
                                 ]];
     ptr armorWeaponStatArray    [[name("Armor and Weapon Stat Pointer Array"),
@@ -58,8 +58,8 @@ struct ptr_table {
     ptr armorNameArray          [[name("Armor Name Pointer Array"),
                                   comment("Probably redundant")
                                 ]];
-    
-    
+
+
     unk_ptr hd_dll_af5038;      // @ 0x0A0
     ptr BulletSets              [[name("Bullet Sets Pointer")]];
     unk_ptr hd_dll_af5044;
@@ -78,12 +78,12 @@ struct ptr_table {
     unk_ptr hd_dll_af4d14;
     unk_ptr hd_dll_af4d08;      // @ 0x0E0
     unk_ptr hd_dll_af47b5;
-    unk_ptr hd_dll_af47af       
+    unk_ptr hd_dll_af47af
     [[comment
-    ("Seems to point to how many of certain objects there are, such as weapons") 
+    ("Seems to point to how many of certain objects there are, such as weapons")
     ]];
     unk_ptr hd_dll_af4d2d;
-    
+
     // + 0x0F0
     ptr hunterPearlSkills       [[name("Hunter Pearl Skills")]];
 
@@ -96,7 +96,7 @@ struct ptr_table {
     unk_ptr hd_dll_af4dec;
     unk_ptr hd_dll_af4df2;
     unk_ptr hd_dll_af4df8;
-    
+
     unk_ptr hd_dll_af4de0;      // @ 0x110
     unk_ptr hd_dll_af4e1b;
     unk_ptr hd_dll_af4e0f;
@@ -433,12 +433,12 @@ struct ptr_table {
     unk_ptr hd_dll_af6c32;
     unk_ptr hd_dll_af6c98;
     unk_ptr hd_dll_af6d00;
-	
+
     // @ 0x620
     ptr sigilCraftingRecipes  [[name("Sigil Crafting Recipes Pointer")]];
     ptr sigilSkillProbabilities [[name("Sigil Skill Probabilities Pointer")]];
     ptr sigilSkillBlacklists  [[name("Sigil Random Skill Blacklists Pointer")]];
-    unk_ptr hd_dll_af6da0;
+    ptr sigilSkillBaseInfo [[name("Sigil Skill Base Info Pointer")]];
     unk_ptr hd_dll_af6da6;      // @ 0x630
     unk_ptr hd_dll_af6dac;
     unk_ptr hd_dll_af6db2;
@@ -537,7 +537,7 @@ struct ptr_table {
     unk_ptr hd_dll_af7825;
 
     ptr weaponSpecialForging    [[name("Special Weapon Forging Pointer")]];
-    
+
     ptr armorPremiumForging    [[name("Armor Premium Forging Pointer")]];      // @ 0x7B0
     unk_ptr hd_dll_af787b;
     unk_ptr hd_dll_af7881;
@@ -659,7 +659,7 @@ struct ptr_table {
     unk_ptr hd_dll_af8374;
     unk_ptr hd_dll_af837a;      // @ 0x980
     unk_ptr hd_dll_af8380;
-    unk_ptr hd_dll_af46c9; 
+    unk_ptr hd_dll_af46c9;
     unk_ptr hd_dll_af839f;
     unk_ptr hd_dll_af83a5;      // @ 0x990
     unk_ptr hd_dll_af83ab;

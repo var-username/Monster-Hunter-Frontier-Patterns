@@ -137,6 +137,12 @@ enum SigilSkill: u16 {
     RAllRes = 131,
 };
 
+enum SigilType: u8 {
+    Normal = 0,
+    Premium = 1,
+    Zenith = 2,
+};
+
 struct SigilMaterial {
     u16 item [[format("getItemName"), color("8888FF")]];
     u8 percentage_filled;
@@ -144,10 +150,10 @@ struct SigilMaterial {
 };
 
 struct SigilRecipe {
-    u8 unk0;
-    u8 extra_skills_low;
-    u8 extra_skills_high; // used together to determine how many skills a sigil gets
-    u8 unk1;
+    SigilType sigil_type;
+    u8 budget_low;
+    u8 budget_high;
+    u8 unk;
     u16 cost;
     padding[0x2];
     SigilMaterial key_materials[0x5];
@@ -164,13 +170,31 @@ struct BlacklistPtr {
 
 struct SigilSkillProbability {
     SigilSkill skill;
-    u16 percentage_chance;
+    u8 percentage_chance;
+	u8 always_rolled;
     s16 low_points;
     s16 high_points;
 };
 
 struct SigilSkillProbabilities {
     SigilSkillProbability probabilities[0x8];
+};
+
+struct SigilSkillPointsBudget {
+	s16 points_low;
+	s16 points_high;
+	u16 budget;
+	padding[2];
+};
+
+struct SigilSkillBaseInfo {
+	SigilSkillPointsBudget rolls_entries[8];
+	s16 max_roll;
+	padding[2];
+	u8 can_red_roll;
+	padding[1];
+	s16 red_roll_threshold;
+	s16 specific_red_roll_points[8];
 };
 
 SigilRecipe recipes[while(std::mem::read_unsigned($, 4) != 0)] @ header.ptrs.sigilCraftingRecipes
@@ -180,3 +204,4 @@ SigilSkillProbabilities probabilities[recipes_len] @ header.ptrs.sigilSkillProba
     [[name("Sigil Skill Probabilities")]];
 BlacklistPtr blacklist_ptrs[recipes_len] @ header.ptrs.sigilSkillBlacklists
     [[name("Sigil Random Skill Blacklists")]];
+SigilSkillBaseInfo random_points_rolls[132] @ header.ptrs.sigilSkillBaseInfo [[name("Sigil Skill Base Info")]];
